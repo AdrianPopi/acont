@@ -1,0 +1,353 @@
+{
+  "nav": {
+    "features": "Funcționalități",
+    "how": "Cum funcționează",
+    "pricing": "Abonamente",
+    "login": "Conectare",
+    "signup": "Creare cont"
+  },
+  "hero": {
+    "title": "Contabilitate modernă, simplă și sigură",
+    "subtitle": "Facturi, cheltuieli, rapoarte și colaborare cu contabilul — într-un singur loc.",
+    "ctaPrimary": "Începe acum",
+    "ctaSecondary": "Vezi demo"
+  },
+  "sections": {
+    "featuresTitle": "Tot ce ai nevoie, într-o platformă",
+    "howTitle": "Cum funcționează",
+    "ctaTitle": "Gata să începi?"
+  },
+  "features": {
+    "items": [
+      {
+        "title": "Facturi & Creditare",
+        "desc": "Emitere, numerotare automată, PDF, plăți, storno (credit note)."
+      },
+      {
+        "title": "Achiziții",
+        "desc": "Upload facturi furnizori, scan, email, validare contabil."
+      },
+      {
+        "title": "Nomenclator",
+        "desc": "Clienți, produse/servicii, TVA per produs, istoric."
+      },
+      {
+        "title": "Colaborare contabil",
+        "desc": "Flux documente, comentarii, aprobare/respinge, export."
+      },
+      {
+        "title": "Rapoarte",
+        "desc": "Vânzări, TVA, status plăți, export CSV/PDF (MVP)."
+      },
+      {
+        "title": "Securitate",
+        "desc": "Roluri Merchant, permisiuni, audit (phase)."
+      }
+    ]
+  },
+  "cta": {
+    "subtitle": "Începe cu landing + auth, apoi dashboard Merchant."
+  },
+  "how": {
+    "steps": [
+      {
+        "n": "01",
+        "title": "Creezi cont",
+        "desc": "Merchant. Setup firmă și preferințe."
+      },
+      {
+        "n": "02",
+        "title": "Lucrezi zilnic",
+        "desc": "Facturi, clienți, produse, cheltuieli, upload documente."
+      },
+      {
+        "n": "03",
+        "title": "Contabilul validează",
+        "desc": "Comentarii, status, export — totul centralizat."
+      }
+    ]
+  },
+  "footer": {
+    "rgpd": "RGPD",
+    "terms": "Termeni",
+    "contact": "Contact"
+  },
+  "auth": {
+    "login": {
+      "title": "Autentificare",
+      "emailLabel": "Email",
+      "emailPlaceholder": "Adresa de email",
+      "passwordLabel": "Parolă",
+      "passwordPlaceholder": "Parolă",
+      "signIn": "Intră în cont",
+      "signingIn": "Se autentifică...",
+      "showPassword": "Afișează parola",
+      "hidePassword": "Ascunde parola",
+      "errorGeneric": "Autentificare eșuată"
+    },
+    "signup": {
+      "title": "Creează cont",
+      "merchant": "Firmă (Merchant)",
+      "firstName": "Prenume",
+      "lastName": "Nume",
+      "email": "Email",
+      "passwordMin": "Parolă (min 8)",
+      "passwordConfirm": "Confirmă parola",
+      "showPassword": "Afișează parola",
+      "hidePassword": "Ascunde parola",
+      "companyName": "Denumire firmă",
+      "countryLabel": "Țară",
+      "countryPlaceholder": "Selectează țara",
+      "countryLoading": "Se încarcă...",
+      "countries": {
+        "RO": "România",
+        "NL": "Olanda",
+        "FR": "Franța",
+        "BE": "Belgia"
+      },
+      "phone": "Telefon",
+      "acceptTerms": "Accept Termeni + GDPR",
+      "acceptPrefix": "Sunt de acord cu",
+      "termsLink": "Termenii și condițiile",
+      "acceptAnd": "și",
+      "privacyLink": "Politica de confidențialitate (GDPR)",
+      "acceptSuffix": ".",
+      "displayName": "Nume afișat (opțional)",
+      "createAccount": "Creează cont",
+      "creating": "Se creează...",
+      "errorGeneric": "Înregistrare eșuată",
+      "hints": {
+        "passwordMin": "Minim 8 caractere",
+        "passwordMatch": "Parolele se potrivesc",
+        "loginInstead": "Ai deja cont?",
+        "loginLink": "Conectează-te"
+      },
+      "errors": {
+        "emailInvalid": "Email invalid.",
+        "passwordTooShort": "Parola trebuie să aibă minim 8 caractere.",
+        "passwordsDontMatch": "Parolele nu se potrivesc.",
+        "countryRequired": "Selectează o țară.",
+        "mustAccept": "Trebuie să accepți Termenii și Politica de confidențialitate."
+      }
+    }
+  },
+  "admin": {
+    "title": "Panou Admin",
+    "subtitle": "Administrare platformă, utilizatori și conformitate.",
+    "tabs": {
+      "overview": "Prezentare",
+      "merchants": "Firme",
+      "users": "Utilizatori",
+      "audit": "Audit logs",
+      "compliance": "Conformitate"
+    },
+    "signedInAs": "Conectat ca",
+    "role": "Rol",
+    "logout": "Delogare",
+    "loading": "Se încarcă...",
+    "errors": { "generic": "A apărut o eroare" },
+    "overview": {
+      "whatCanYouDoTitle": "Ce poate face Admin-ul",
+      "item1": "Gestionare acces și roluri (platform_admin).",
+      "item2": "Suport operațional și gestionare abonamente (MVP/Phase 2).",
+      "item3": "Monitorizare audit logs și activitate pe platformă.",
+      "item4": "Setări de conformitate și retention (10 ani, jurisdicții).",
+      "note": "Notă: unele secțiuni sunt „placeholder” până adaugi endpoint-urile backend.",
+      "quickStats": "Statistici rapide",
+      "systemStatus": "Status sistem",
+      "statsPlaceholder": "Aici vei afișa: număr merchants, users, invites, etc.",
+      "statusPlaceholder": "Aici vei afișa: health checks, queue, email/peppol status etc."
+    },
+    "merchants": {
+      "title": "Firme (Merchants)",
+      "placeholder": "Listă firme + detalii + blocare/activare (Phase 2 endpoints)."
+    },
+    "users": {
+      "title": "Utilizatori",
+      "placeholder": "Listă users + roluri + reset/parolă (Phase 2 endpoints)."
+    },
+    "audit": {
+      "title": "Audit logs",
+      "placeholder": "Filtre + export + vizualizare acțiuni (Phase 2 endpoints)."
+    },
+    "compliance": {
+      "title": "Conformitate",
+      "placeholder": "Setări GDPR/retention/jurisdicție (Phase 2 endpoints)."
+    }
+  },
+  "dashboard": {
+    "menu": "Meniu",
+    "youAreIn": "Ești în",
+    "signedInAs": "Conectat ca",
+    "logout": "Deconectare",
+    "loggingOut": "Se deconectează...",
+    "merchant": {
+      "title": "Merchant",
+      "overview": "Prezentare",
+      "invoices": "Facturi",
+      "creditNotes": "Note de credit",
+      "clients": "Clienți",
+      "products": "Produse",
+      "deviz": "devize",
+      "reports": "Rapoarte",
+      "settings": "Setări",
+      "kpiClients": "Clienți",
+      "kpiIssuedInvoices": "Facturi emise",
+      "kpiToValidate": "De validat"
+    },
+    "merchantSettings": {
+      "title": "Setări firmă",
+      "subtitle": "Personalizează datele companiei și logo-ul de pe factură.",
+      "logoTitle": "Logo pe factură",
+      "logoHelp": "Încarcă un PNG/JPG (max 2MB). Logo-ul apare în PDF automat.",
+      "noLogo": "Fără logo",
+      "upload": "Încarcă logo",
+      "uploading": "Se încarcă..."
+    },
+
+    "invoices": {
+      "title": "Facturi",
+      "create": "Creează factură",
+      "createTitle": "Creare factură",
+      "createSubtitle": "Completează datele de bază și liniile facturii. Monedă: EUR.",
+
+      "loading": "Se încarcă...",
+      "empty": "Nu există facturi încă.",
+
+      "colNo": "Nr. fact.",
+      "colClient": "Client",
+      "colIssueDate": "Data emitere",
+      "colTotal": "Total",
+      "colStatus": "Stare",
+      "colActions": "Acțiuni",
+      "downloadPdf": "Descarcă PDF",
+
+      "clientName": "Nume client",
+      "clientEmail": "Email client",
+      "issueDate": "Data emitere",
+      "dueDate": "Termen limită",
+      "language": "Limbă document",
+      "discount": "Discount (%)",
+      "advancePaid": "Plătit în avans",
+      "issueNow": "Emite acum (numerotare)",
+      "lines": "Linii factură",
+      "addLine": "Adaugă linie",
+      "code": "Cod",
+      "description": "Denumire produs/serviciu",
+      "unitPrice": "Valoare fără TVA",
+      "qty": "Cantitate",
+      "vat": "TVA (%)",
+      "remove": "Șterge",
+      "save": "Salvează",
+      "saving": "Se salvează...",
+
+      "clientNameLabel": "Nume client",
+      "clientNamePlaceholder": "Ex: SC Exemplu SRL",
+      "clientNameHelp": "Denumirea clientului care apare pe factură.",
+
+      "clientEmailLabel": "Email client",
+      "clientEmailPlaceholder": "Ex: contabilitate@client.ro",
+      "clientEmailHelp": "Opțional. Util pentru trimitere ulterioară.",
+
+      "issueDateLabel": "Data emiterii",
+      "issueDateHelp": "Implicit: azi. Poți seta manual.",
+
+      "dueDateLabel": "Termen limită",
+      "dueDateHelp": "Data scadenței (opțional).",
+
+      "languageLabel": "Limbă document",
+      "languageHelp": "Limba în care se generează factura/PDF.",
+
+      "discountLabel": "Discount (%)",
+      "discountHelp": "Discount aplicat la total (MVP).",
+
+      "advancePaidLabel": "Plătit în avans",
+      "advancePaidHelp": "Sumă plătită înainte (MVP).",
+
+      "issueNowLabel": "Emite acum",
+      "issueNowHelp": "Dacă bifezi, factura devine „issued”.",
+
+      "linesTitle": "Linii factură",
+      "linesHelp": "Adaugă produse/servicii cu preț, cantitate și TVA.",
+
+      "actions": "Acțiuni",
+      "codePlaceholder": "Cod",
+      "descriptionPlaceholder": "Ex: Servicii consultanță"
+    }
+  },
+  "legal": {
+    "common": {
+      "print": "Printează"
+    },
+    "accept": {
+      "title": "Confirmă documentele legale",
+      "subtitle": "Am actualizat Termenii și/sau Politica de confidențialitate. Te rugăm să le accepți ca să continui.",
+      "termsVersion": "Versiune Termeni",
+      "privacyVersion": "Versiune GDPR",
+      "agreeTermsPrefix": "Sunt de acord cu",
+      "termsLink": "Termenii și condițiile",
+      "agreePrivacyPrefix": "Sunt de acord cu",
+      "privacyLink": "Politica de confidențialitate (GDPR)",
+      "acceptAndContinue": "Acceptă și continuă",
+      "saving": "Se salvează...",
+      "footerNote": "Acceptarea este salvată în cont pentru audit și conformitate.",
+      "errorGeneric": "A apărut o eroare"
+    },
+    "terms": {
+      "title": "Termeni și condiții",
+      "lastUpdatedLabel": "Ultima actualizare",
+      "lastUpdatedValue": "2025-12-17",
+      "backToSignup": "Înapoi la creare cont",
+      "s1Title": "1. Prezentare",
+      "s1Body": "Înlocuiește acest text cu Termenii tăi reali.",
+      "s2Title": "2. Obligațiile utilizatorului",
+      "s2Body": "Înlocuiește acest text cu Termenii tăi reali.",
+      "s3Title": "3. Limitarea răspunderii",
+      "s3Body": "Înlocuiește acest text cu Termenii tăi reali.",
+      "footerNote": "Acest document va fi actualizat pe măsură ce produsul evoluează."
+    },
+    "privacy": {
+      "title": "Politica de confidențialitate (GDPR)",
+      "lastUpdatedLabel": "Ultima actualizare",
+      "lastUpdatedValue": "2025-12-17",
+      "backToSignup": "Înapoi la creare cont",
+      "s1Title": "1. Ce date colectăm",
+      "s1Body": "Înlocuiește acest text cu Politica ta GDPR reală..",
+      "s2Title": "2. De ce prelucrăm datele",
+      "s2Body": "Înlocuiește acest text cu Politica ta GDPR reală.",
+      "s3Title": "3. Drepturile tale",
+      "s3Body": "Înlocuiește acest text cu Politica ta GDPR reală.",
+      "footerNote": "Contactează-ne dacă ai întrebări despre prelucrarea datelor personale."
+    }
+  },
+  "clients": {
+    "title": "Clienți",
+    "add": "Adaugă client",
+    "loading": "Se încarcă...",
+    "name": "Nume",
+    "email": "Email",
+    "taxId": "CUI",
+    "created": "Creat la",
+    "actions": "Acțiuni",
+    "edit": "Editează",
+    "delete": "Șterge",
+    "confirmDelete": "Sigur vrei să ștergi acest client?"
+  },
+  "products": {
+    "title": "Produse / Servicii",
+    "add": "Adaugă produs",
+    "loading": "Se încarcă...",
+    "name": "Denumire",
+    "code": "Cod",
+    "price": "Preț fără TVA",
+    "vat": "TVA (%)",
+    "actions": "Acțiuni",
+    "edit": "Editează",
+    "delete": "Șterge",
+    "confirmDelete": "Sigur vrei să ștergi acest produs?",
+    "empty": "Nu există produse.",
+    "cancel": "Anulează",
+    "save": "Salvează",
+    "errorSave": "Eroare la salvare"
+  }
+}

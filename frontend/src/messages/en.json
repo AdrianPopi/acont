@@ -1,0 +1,353 @@
+{
+  "nav": {
+    "features": "Features",
+    "how": "How it works",
+    "pricing": "Pricing",
+    "login": "Log in",
+    "signup": "Create account"
+  },
+  "hero": {
+    "title": "Modern accounting, simple and secure",
+    "subtitle": "Invoices, deviz, reports, and collaboration with your accountant — all in one place.",
+    "ctaPrimary": "Get started",
+    "ctaSecondary": "See demo"
+  },
+  "sections": {
+    "featuresTitle": "Everything you need, in one platform",
+    "howTitle": "How it works",
+    "ctaTitle": "Ready to get started?"
+  },
+  "features": {
+    "items": [
+      {
+        "title": "Invoices & Credit notes",
+        "desc": "Issue invoices, automatic numbering, PDF export, payments, credit notes."
+      },
+      {
+        "title": "Purchases",
+        "desc": "Upload supplier invoices, scan, email import, accountant validation."
+      },
+      {
+        "title": "Directory",
+        "desc": "Clients, products/services, VAT per item, history."
+      },
+      {
+        "title": "Accountant collaboration",
+        "desc": "Document flow, comments, approve/reject, exports."
+      },
+      {
+        "title": "Reports",
+        "desc": "Sales, VAT, payment status, CSV/PDF export (MVP)."
+      },
+      {
+        "title": "Security",
+        "desc": "Merchant roles, permissions, audit trail (phase)."
+      }
+    ]
+  },
+  "cta": {
+    "subtitle": "Start with landing + auth, then Merchant dashboard."
+  },
+  "how": {
+    "steps": [
+      {
+        "n": "01",
+        "title": "Create an account",
+        "desc": "Merchant. Company setup and preferences."
+      },
+      {
+        "n": "02",
+        "title": "Work daily",
+        "desc": "Invoices, customers, products, deviz, document uploads."
+      },
+      {
+        "n": "03",
+        "title": "Accountant validates",
+        "desc": "Comments, statuses, exports — everything centralized."
+      }
+    ]
+  },
+  "footer": {
+    "rgpd": "GDPR",
+    "terms": "Terms",
+    "contact": "Contact"
+  },
+  "auth": {
+    "login": {
+      "title": "Login",
+      "emailLabel": "Email",
+      "emailPlaceholder": "Email address",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Password",
+      "signIn": "Sign in",
+      "signingIn": "Signing in...",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password",
+      "errorGeneric": "Login failed"
+    },
+    "signup": {
+      "title": "Create account",
+      "merchant": "Merchant",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "passwordMin": "Password (min 8)",
+      "passwordConfirm": "Confirm password",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password",
+      "companyName": "Company name",
+      "countryLabel": "Country",
+      "countryPlaceholder": "Select a country",
+      "countryLoading": "Loading...",
+      "countries": {
+        "RO": "Romania",
+        "NL": "Netherlands",
+        "FR": "France",
+        "BE": "Belgium"
+      },
+      "phone": "Phone",
+      "acceptTerms": "Accept Terms + GDPR",
+      "acceptPrefix": "I agree to the",
+      "termsLink": "Terms of Service",
+      "acceptAnd": "and",
+      "privacyLink": "Privacy Policy (GDPR)",
+      "acceptSuffix": ".",
+      "displayName": "Display name (optional)",
+      "createAccount": "Create account",
+      "creating": "Creating...",
+      "errorGeneric": "Signup failed",
+      "hints": {
+        "passwordMin": "At least 8 characters",
+        "passwordMatch": "Passwords match",
+        "loginInstead": "Already have an account?",
+        "loginLink": "Sign in"
+      },
+      "errors": {
+        "emailInvalid": "Invalid email address.",
+        "passwordTooShort": "Password must be at least 8 characters.",
+        "passwordsDontMatch": "Passwords do not match.",
+        "countryRequired": "Please select a country.",
+        "mustAccept": "You must accept the Terms and Privacy Policy."
+      }
+    }
+  },
+  "admin": {
+    "title": "Admin Console",
+    "subtitle": "Platform administration, users and compliance.",
+    "tabs": {
+      "overview": "Overview",
+      "merchants": "Merchants",
+      "users": "Users",
+      "audit": "Audit logs",
+      "compliance": "Compliance"
+    },
+    "signedInAs": "Signed in as",
+    "role": "Role",
+    "logout": "Logout",
+    "loading": "Loading...",
+    "errors": { "generic": "Something went wrong" },
+    "overview": {
+      "whatCanYouDoTitle": "What an Admin can do",
+      "item1": "Manage access and roles (platform_admin).",
+      "item2": "Operational support and subscriptions (MVP/Phase 2).",
+      "item3": "Monitor audit logs and platform activity.",
+      "item4": "Compliance and retention settings (10 years, jurisdictions).",
+      "note": "Note: some sections are placeholders until backend endpoints are added.",
+      "quickStats": "Quick stats",
+      "systemStatus": "System status",
+      "statsPlaceholder": "Show: merchants count, users count, invites, etc.",
+      "statusPlaceholder": "Show: health checks, queues, email/peppol status, etc."
+    },
+    "merchants": {
+      "title": "Merchants",
+      "placeholder": "Merchants list + details + disable/enable (Phase 2 endpoints)."
+    },
+    "users": {
+      "title": "Users",
+      "placeholder": "Users list + roles + password reset (Phase 2 endpoints)."
+    },
+    "audit": {
+      "title": "Audit logs",
+      "placeholder": "Filters + export + activity timeline (Phase 2 endpoints)."
+    },
+    "compliance": {
+      "title": "Compliance",
+      "placeholder": "GDPR/retention/jurisdiction settings (Phase 2 endpoints)."
+    }
+  },
+  "dashboard": {
+    "menu": "Menu",
+    "youAreIn": "You are in",
+    "signedInAs": "Signed in as",
+    "logout": "Log out",
+    "loggingOut": "Logging out...",
+    "merchant": {
+      "title": "Merchant",
+      "overview": "Overview",
+      "invoices": "Invoices",
+      "creditNotes": "Credit notes",
+      "clients": "Clients",
+      "products": "Products",
+      "deviz": "Estimates",
+      "reports": "Reports",
+      "settings": "Settings",
+      "kpiClients": "Clients",
+      "kpiIssuedInvoices": "Issued invoices",
+      "kpiToValidate": "To validate"
+    },
+    "merchantSettings": {
+      "title": "Company settings",
+      "subtitle": "Customize your company details and the invoice logo.",
+      "logoTitle": "Invoice logo",
+      "logoHelp": "Upload a PNG/JPG (max 2MB). The logo will appear automatically in the PDF.",
+      "noLogo": "No logo",
+      "upload": "Upload logo",
+      "uploading": "Uploading..."
+    },
+    "invoices": {
+      "title": "Invoices",
+      "create": "Create invoice",
+      "createTitle": "Create invoice",
+      "createSubtitle": "Fill in the basic details and invoice lines. Currency: EUR.",
+
+      "loading": "Loading...",
+      "empty": "No invoices yet.",
+
+      "colNo": "Invoice #",
+      "colClient": "Client",
+      "colIssueDate": "Issue date",
+      "colTotal": "Total",
+      "colStatus": "Status",
+      "colActions": "Actions",
+      "downloadPdf": "Download PDF",
+
+      "clientName": "Client name",
+      "clientEmail": "Client email",
+      "issueDate": "Issue date",
+      "dueDate": "Due date",
+      "language": "Document language",
+      "discount": "Discount (%)",
+      "advancePaid": "Advance paid",
+      "issueNow": "Issue now (numbering)",
+      "lines": "Invoice lines",
+      "addLine": "Add line",
+      "code": "Code",
+      "description": "Product/service description",
+      "unitPrice": "Net value",
+      "qty": "Qty",
+      "vat": "VAT (%)",
+      "remove": "Remove",
+      "save": "Save",
+      "saving": "Saving...",
+
+      "clientNameLabel": "Client name",
+      "clientNamePlaceholder": "e.g. Example Ltd",
+      "clientNameHelp": "The client name shown on the invoice.",
+
+      "clientEmailLabel": "Client email",
+      "clientEmailPlaceholder": "e.g. accounting@client.com",
+      "clientEmailHelp": "Optional. Useful for sending later.",
+
+      "issueDateLabel": "Issue date",
+      "issueDateHelp": "Default: today. You can set it manually.",
+
+      "dueDateLabel": "Due date",
+      "dueDateHelp": "Due date (optional).",
+
+      "languageLabel": "Document language",
+      "languageHelp": "Language used for the invoice/PDF.",
+
+      "discountLabel": "Discount (%)",
+      "discountHelp": "Discount applied to the total (MVP).",
+
+      "advancePaidLabel": "Advance paid",
+      "advancePaidHelp": "Amount paid in advance (MVP).",
+
+      "issueNowLabel": "Issue now",
+      "issueNowHelp": "If checked, the invoice becomes “issued”.",
+
+      "linesTitle": "Invoice lines",
+      "linesHelp": "Add products/services with price, quantity and VAT.",
+
+      "actions": "Actions",
+      "codePlaceholder": "Code",
+      "descriptionPlaceholder": "e.g. Consulting services"
+    }
+  },
+  "legal": {
+    "common": {
+      "print": "Print"
+    },
+    "accept": {
+      "title": "Confirm legal documents",
+      "subtitle": "We updated our Terms and/or Privacy Policy. Please accept to continue.",
+      "termsVersion": "Terms version",
+      "privacyVersion": "Privacy version",
+      "agreeTermsPrefix": "I agree to the",
+      "termsLink": "Terms and Conditions",
+      "agreePrivacyPrefix": "I agree to the",
+      "privacyLink": "Privacy Policy (GDPR)",
+      "acceptAndContinue": "Accept and continue",
+      "saving": "Saving...",
+      "footerNote": "Your acceptance is stored for audit and compliance purposes.",
+      "errorGeneric": "Something went wrong"
+    },
+    "terms": {
+      "title": "Terms and Conditions",
+      "lastUpdatedLabel": "Last updated",
+      "lastUpdatedValue": "2025-12-17",
+      "backToSignup": "Back to signup",
+      "s1Title": "1. Overview",
+      "s1Body": "Replace this text with your actual Terms.",
+      "s2Title": "2. User obligations",
+      "s2Body": "Replace this text with your actual Terms.",
+      "s3Title": "3. Liability",
+      "s3Body": "Replace this text with your actual Terms.",
+      "footerNote": "This document will be updated as the product evolves."
+    },
+    "privacy": {
+      "title": "Privacy Policy (GDPR)",
+      "lastUpdatedLabel": "Last updated",
+      "lastUpdatedValue": "2025-12-17",
+      "backToSignup": "Back to signup",
+      "s1Title": "1. What we collect",
+      "s1Body": "Replace this text with your actual Privacy Policy.",
+      "s2Title": "2. Why we process data",
+      "s2Body": "Replace this text with your actual Privacy Policy.",
+      "s3Title": "3. Your rights",
+      "s3Body": "Replace this text with your actual Privacy Policy.",
+      "footerNote": "Contact us if you have questions about personal data processing."
+    }
+  },
+
+  "clients": {
+    "title": "Clients",
+    "add": "Add client",
+    "loading": "Loading...",
+    "name": "Name",
+    "email": "Email",
+    "taxId": "Tax ID",
+    "created": "Created",
+    "actions": "Actions",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirmDelete": "Are you sure you want to delete this client?"
+  },
+  "products": {
+    "title": "Products / Services",
+    "add": "Add product",
+    "loading": "Loading...",
+    "name": "Name",
+    "code": "Code",
+    "price": "Net price",
+    "vat": "VAT (%)",
+    "actions": "Actions",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirmDelete": "Are you sure you want to delete this product?",
+    "empty": "No products found.",
+    "cancel": "Cancel",
+    "save": "Save",
+    "errorSave": "Failed to save"
+  }
+}

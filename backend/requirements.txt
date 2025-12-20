@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+SQLAlchemy
+alembic
+psycopg2-binary
+python-jose[cryptography]
+passlib[bcrypt]
+PyJWT==2.9.0
+python-multipart
+pydantic-settings
+email-validator
+reportlab
+requests
+

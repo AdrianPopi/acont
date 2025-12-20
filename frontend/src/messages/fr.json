@@ -1,0 +1,352 @@
+{
+  "nav": {
+    "features": "Fonctionnalités",
+    "how": "Comment ça marche",
+    "pricing": "Tarifs",
+    "login": "Connexion",
+    "signup": "Créer un compte"
+  },
+  "hero": {
+    "title": "Comptabilité moderne, simple et sécurisée",
+    "subtitle": "Factures, dépenses, rapports et collaboration avec votre comptable — au même endroit.",
+    "ctaPrimary": "Commencer",
+    "ctaSecondary": "Voir la démo"
+  },
+  "sections": {
+    "featuresTitle": "Tout ce dont vous avez besoin, sur une seule plateforme",
+    "howTitle": "Comment ça marche",
+    "ctaTitle": "Prêt à commencer ?"
+  },
+  "features": {
+    "items": [
+      {
+        "title": "Factures & Avoirs",
+        "desc": "Émission, numérotation automatique, PDF, paiements, avoirs (notes de crédit)."
+      },
+      {
+        "title": "Achats",
+        "desc": "Import factures fournisseurs, scan, email, validation par le comptable."
+      },
+      {
+        "title": "Répertoire",
+        "desc": "Clients, produits/services, TVA par produit, historique."
+      },
+      {
+        "title": "Collaboration comptable",
+        "desc": "Flux de documents, commentaires, validation/refus, export."
+      },
+      {
+        "title": "Rapports",
+        "desc": "Ventes, TVA, statut paiements, export CSV/PDF (MVP)."
+      },
+      {
+        "title": "Sécurité",
+        "desc": "Rôles Marchand, permissions, audit (phase)."
+      }
+    ]
+  },
+  "cta": {
+    "subtitle": "Commencez par la landing + l’auth, puis le dashboard Marchand."
+  },
+  "how": {
+    "steps": [
+      {
+        "n": "01",
+        "title": "Créer un compte",
+        "desc": "Marchand ou Comptable. Configuration de l’entreprise et préférences."
+      },
+      {
+        "n": "02",
+        "title": "Travailler au quotidien",
+        "desc": "Factures, clients, produits, dépenses, import de documents."
+      },
+      {
+        "n": "03",
+        "title": "Validation du comptable",
+        "desc": "Commentaires, statuts, exports — tout est centralisé."
+      }
+    ]
+  },
+  "footer": {
+    "rgpd": "RGPD",
+    "terms": "Conditions",
+    "contact": "Contact"
+  },
+  "auth": {
+    "login": {
+      "title": "Connexion",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "Adresse e-mail",
+      "passwordLabel": "Mot de passe",
+      "passwordPlaceholder": "Mot de passe",
+      "signIn": "Se connecter",
+      "signingIn": "Connexion...",
+      "showPassword": "Afficher le mot de passe",
+      "hidePassword": "Masquer le mot de passe",
+      "errorGeneric": "Échec de la connexion"
+    },
+    "signup": {
+      "title": "Créer un compte",
+      "merchant": "Entreprise (Merchant)",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "E-mail",
+      "passwordMin": "Mot de passe (min 8)",
+      "passwordConfirm": "Confirmer le mot de passe",
+      "showPassword": "Afficher le mot de passe",
+      "hidePassword": "Masquer le mot de passe",
+      "companyName": "Nom de l’entreprise",
+      "countryLabel": "Pays",
+      "countryPlaceholder": "Sélectionnez un pays",
+      "countryLoading": "Chargement...",
+      "countries": {
+        "RO": "Roumanie",
+        "NL": "Pays-Bas",
+        "FR": "France",
+        "BE": "Belgique"
+      },
+      "phone": "Téléphone",
+      "acceptTerms": "J’accepte les Conditions + le RGPD",
+      "acceptPrefix": "J’accepte les",
+      "termsLink": "Conditions d’utilisation",
+      "acceptAnd": "et la",
+      "privacyLink": "Politique de confidentialité (RGPD)",
+      "acceptSuffix": ".",
+      "displayName": "Nom d’affichage (optionnel)",
+      "createAccount": "Créer un compte",
+      "creating": "Création...",
+      "errorGeneric": "Échec de l’inscription",
+      "hints": {
+        "passwordMin": "Au moins 8 caractères",
+        "passwordMatch": "Les mots de passe correspondent",
+        "loginInstead": "Vous avez déjà un compte ?",
+        "loginLink": "Se connecter"
+      },
+      "errors": {
+        "emailInvalid": "Adresse e-mail invalide.",
+        "passwordTooShort": "Le mot de passe doit contenir au moins 8 caractères.",
+        "passwordsDontMatch": "Les mots de passe ne correspondent pas.",
+        "countryRequired": "Veuillez sélectionner un pays.",
+        "mustAccept": "Vous devez accepter les Conditions et la Politique de confidentialité."
+      }
+    }
+  },
+  "admin": {
+    "title": "Console Admin",
+    "subtitle": "Administration de la plateforme, utilisateurs et conformité.",
+    "tabs": {
+      "overview": "Aperçu",
+      "merchants": "Entreprises",
+      "users": "Utilisateurs",
+      "audit": "Journaux d’audit",
+      "compliance": "Conformité"
+    },
+    "signedInAs": "Connecté en tant que",
+    "role": "Rôle",
+    "logout": "Déconnexion",
+    "loading": "Chargement...",
+    "errors": { "generic": "Une erreur est survenue" },
+    "overview": {
+      "whatCanYouDoTitle": "Ce que l’Admin peut faire",
+      "item1": "Gérer les accès et rôles (platform_admin).",
+      "item2": "Support opérationnel et abonnements (MVP/Phase 2).",
+      "item3": "Surveiller les journaux d’audit et l’activité.",
+      "item4": "Paramètres de conformité et conservation (10 ans, juridictions).",
+      "note": "Note : certaines sections sont des placeholders jusqu’aux endpoints backend.",
+      "quickStats": "Statistiques rapides",
+      "systemStatus": "État du système",
+      "statsPlaceholder": "Afficher : nombre d’entreprises, utilisateurs, invitations, etc.",
+      "statusPlaceholder": "Afficher : health checks, files, statut email/peppol, etc."
+    },
+    "merchants": {
+      "title": "Entreprises",
+      "placeholder": "Liste + détails + activer/désactiver (endpoints Phase 2)."
+    },
+    "users": {
+      "title": "Utilisateurs",
+      "placeholder": "Liste + rôles + reset mot de passe (endpoints Phase 2)."
+    },
+    "audit": {
+      "title": "Journaux d’audit",
+      "placeholder": "Filtres + export + timeline (endpoints Phase 2)."
+    },
+    "compliance": {
+      "title": "Conformité",
+      "placeholder": "Paramètres RGPD/conservation/juridiction (endpoints Phase 2)."
+    }
+  },
+  "dashboard": {
+    "menu": "Menu",
+    "youAreIn": "Vous êtes dans",
+    "signedInAs": "Connecté en tant que",
+    "logout": "Déconnexion",
+    "loggingOut": "Déconnexion...",
+    "merchant": {
+      "title": "Marchand",
+      "overview": "Aperçu",
+      "invoices": "Factures",
+      "creditNotes": "Avoirs",
+      "clients": "Clients",
+      "products": "Produits",
+      "deviz": "Devis",
+      "reports": "Rapports",
+      "settings": "Paramètres",
+      "kpiClients": "Clients",
+      "kpiIssuedInvoices": "Factures émises",
+      "kpiToValidate": "À valider"
+    },
+    "merchantSettings": {
+      "title": "Paramètres de l’entreprise",
+      "subtitle": "Personnalisez les informations de l’entreprise et le logo sur la facture.",
+      "logoTitle": "Logo sur la facture",
+      "logoHelp": "Téléversez un PNG/JPG (max 2 Mo). Le logo apparaîtra automatiquement dans le PDF.",
+      "noLogo": "Aucun logo",
+      "upload": "Téléverser le logo",
+      "uploading": "Téléversement..."
+    },
+    "invoices": {
+      "title": "Factures",
+      "create": "Créer une facture",
+      "createTitle": "Créer une facture",
+      "createSubtitle": "Renseignez les informations de base et les lignes de facture. Devise : EUR.",
+
+      "loading": "Chargement...",
+      "empty": "Aucune facture pour le moment.",
+
+      "colNo": "N° de facture",
+      "colClient": "Client",
+      "colIssueDate": "Date d’émission",
+      "colTotal": "Total",
+      "colStatus": "Statut",
+      "colActions": "Actions",
+      "downloadPdf": "Télécharger le PDF",
+
+      "clientName": "Nom du client",
+      "clientEmail": "E-mail du client",
+      "issueDate": "Date d’émission",
+      "dueDate": "Date d’échéance",
+      "language": "Langue du document",
+      "discount": "Remise (%)",
+      "advancePaid": "Acompte versé",
+      "issueNow": "Émettre maintenant (numérotation)",
+      "lines": "Lignes de facture",
+      "addLine": "Ajouter une ligne",
+      "code": "Code",
+      "description": "Description produit/service",
+      "unitPrice": "Valeur nette",
+      "qty": "Qté",
+      "vat": "TVA (%)",
+      "remove": "Supprimer",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+
+      "clientNameLabel": "Nom du client",
+      "clientNamePlaceholder": "Ex : Société Exemple SARL",
+      "clientNameHelp": "Nom du client affiché sur la facture.",
+
+      "clientEmailLabel": "E-mail du client",
+      "clientEmailPlaceholder": "Ex : compta@client.fr",
+      "clientEmailHelp": "Optionnel. Utile pour un envoi ultérieur.",
+
+      "issueDateLabel": "Date d’émission",
+      "issueDateHelp": "Par défaut : aujourd’hui. Vous pouvez la définir manuellement.",
+
+      "dueDateLabel": "Date d’échéance",
+      "dueDateHelp": "Date d’échéance (optionnel).",
+
+      "languageLabel": "Langue du document",
+      "languageHelp": "Langue utilisée pour la facture/le PDF.",
+
+      "discountLabel": "Remise (%)",
+      "discountHelp": "Remise appliquée au total (MVP).",
+
+      "advancePaidLabel": "Acompte versé",
+      "advancePaidHelp": "Montant payé à l’avance (MVP).",
+
+      "issueNowLabel": "Émettre maintenant",
+      "issueNowHelp": "Si coché, la facture devient « émise ».",
+
+      "linesTitle": "Lignes de facture",
+      "linesHelp": "Ajoutez des produits/services avec prix, quantité et TVA.",
+
+      "actions": "Actions",
+      "codePlaceholder": "Code",
+      "descriptionPlaceholder": "Ex : Services de conseil"
+    }
+  },
+  "legal": {
+    "common": {
+      "print": "Imprimer"
+    },
+    "accept": {
+      "title": "Confirmer les documents légaux",
+      "subtitle": "Nous avons mis à jour les Conditions et/ou la Politique de confidentialité. Veuillez accepter pour continuer.",
+      "termsVersion": "Version des conditions",
+      "privacyVersion": "Version confidentialité",
+      "agreeTermsPrefix": "J’accepte les",
+      "termsLink": "Conditions générales",
+      "agreePrivacyPrefix": "J’accepte la",
+      "privacyLink": "Politique de confidentialité (RGPD)",
+      "acceptAndContinue": "Accepter et continuer",
+      "saving": "Enregistrement...",
+      "footerNote": "Votre acceptation est enregistrée à des fins d’audit et de conformité.",
+      "errorGeneric": "Une erreur est survenue"
+    },
+    "terms": {
+      "title": "Conditions générales",
+      "lastUpdatedLabel": "Dernière mise à jour",
+      "lastUpdatedValue": "2025-12-17",
+      "backToSignup": "Retour à l’inscription",
+      "s1Title": "1. Présentation",
+      "s1Body": "Remplacez ce texte par vos Conditions réelles.",
+      "s2Title": "2. Obligations de l’utilisateur",
+      "s2Body": "Remplacez ce texte par vos Conditions réelles.",
+      "s3Title": "3. Responsabilité",
+      "s3Body": "Remplacez ce texte par vos Conditions réelles.",
+      "footerNote": "Ce document peut être mis à jour au fur et à mesure de l’évolution du produit."
+    },
+    "privacy": {
+      "title": "Politique de confidentialité (RGPD)",
+      "lastUpdatedLabel": "Dernière mise à jour",
+      "lastUpdatedValue": "2025-12-17",
+      "backToSignup": "Retour à l’inscription",
+      "s1Title": "1. Données collectées",
+      "s1Body": "Remplacez ce texte par votre Politique réelle.",
+      "s2Title": "2. Finalités du traitement",
+      "s2Body": "Remplacez ce texte par votre Politique réelle.",
+      "s3Title": "3. Vos droits",
+      "s3Body": "Remplacez ce texte par votre Politique réelle.",
+      "footerNote": "Contactez-nous si vous avez des questions concernant les données personnelles."
+    }
+  },
+  "clients": {
+    "title": "Clients",
+    "add": "Ajouter un client",
+    "loading": "Chargement...",
+    "name": "Nom",
+    "email": "Email",
+    "taxId": "Numéro TVA",
+    "created": "Créé le",
+    "actions": "Actions",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "confirmDelete": "Êtes-vous sûr de vouloir supprimer ce client ?"
+  },
+  "products": {
+    "title": "Produits / Services",
+    "add": "Ajouter un produit",
+    "loading": "Chargement...",
+    "name": "Désignation",
+    "code": "Code",
+    "price": "Prix HT",
+    "vat": "TVA (%)",
+    "actions": "Actions",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "confirmDelete": "Voulez-vous vraiment supprimer ce produit ?",
+    "empty": "Aucun produit.",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "errorSave": "Erreur lors de l’enregistrement"
+  }
+}

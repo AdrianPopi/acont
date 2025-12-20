@@ -1,0 +1,353 @@
+{
+  "nav": {
+    "features": "Functionaliteiten",
+    "how": "Hoe het werkt",
+    "pricing": "Prijzen",
+    "login": "Inloggen",
+    "signup": "Account aanmaken"
+  },
+  "hero": {
+    "title": "Moderne boekhouding, eenvoudig en veilig",
+    "subtitle": "Facturen, uitgaven, rapporten en samenwerken met je boekhouder — allemaal op één plek.",
+    "ctaPrimary": "Aan de slag",
+    "ctaSecondary": "Bekijk demo"
+  },
+  "sections": {
+    "featuresTitle": "Alles wat je nodig hebt, in één platform",
+    "howTitle": "Hoe het werkt",
+    "ctaTitle": "Klaar om te starten?"
+  },
+  "features": {
+    "items": [
+      {
+        "title": "Facturen & Creditnota’s",
+        "desc": "Facturen opmaken, automatische nummering, PDF, betalingen, creditnota’s."
+      },
+      {
+        "title": "Aankopen",
+        "desc": "Leveranciersfacturen uploaden, scannen, e-mail import, validatie door boekhouder."
+      },
+      {
+        "title": "Relaties & Artikelen",
+        "desc": "Klanten, producten/diensten, btw per item, historiek."
+      },
+      {
+        "title": "Samenwerking boekhouder",
+        "desc": "Documentflow, opmerkingen, goedkeuren/weigeren, export."
+      },
+      {
+        "title": "Rapporten",
+        "desc": "Verkoop, btw, betalingsstatus, CSV/PDF export (MVP)."
+      },
+      {
+        "title": "Beveiliging",
+        "desc": "Rollen Handelaar, rechten, auditlog (fase)."
+      }
+    ]
+  },
+  "cta": {
+    "subtitle": "Start met landing + auth, daarna Merchant dashboard."
+  },
+  "how": {
+    "steps": [
+      {
+        "n": "01",
+        "title": "Account maken",
+        "desc": "Merchant of Accountant. Bedrijf instellen en voorkeuren."
+      },
+      {
+        "n": "02",
+        "title": "Dagelijks werken",
+        "desc": "Facturen, klanten, producten, kosten, documenten uploaden."
+      },
+      {
+        "n": "03",
+        "title": "Accountant valideert",
+        "desc": "Opmerkingen, status, exports — alles gecentraliseerd."
+      }
+    ]
+  },
+  "footer": {
+    "rgpd": "AVG",
+    "terms": "Voorwaarden",
+    "contact": "Contact"
+  },
+  "auth": {
+    "login": {
+      "title": "Inloggen",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "E-mailadres",
+      "passwordLabel": "Wachtwoord",
+      "passwordPlaceholder": "Wachtwoord",
+      "signIn": "Inloggen",
+      "signingIn": "Bezig met inloggen...",
+      "showPassword": "Toon wachtwoord",
+      "hidePassword": "Verberg wachtwoord",
+      "errorGeneric": "Inloggen mislukt"
+    },
+    "signup": {
+      "title": "Account aanmaken",
+      "merchant": "Bedrijf (Merchant)",
+      "firstName": "Voornaam",
+      "lastName": "Achternaam",
+      "email": "E-mail",
+      "passwordMin": "Wachtwoord (min. 8)",
+      "passwordConfirm": "Bevestig wachtwoord",
+      "showPassword": "Toon wachtwoord",
+      "hidePassword": "Verberg wachtwoord",
+      "companyName": "Bedrijfsnaam",
+      "countryLabel": "Land",
+      "countryPlaceholder": "Selecteer een land",
+      "countryLoading": "Bezig met laden...",
+      "countries": {
+        "RO": "Roemenië",
+        "NL": "Nederland",
+        "FR": "Frankrijk",
+        "BE": "België"
+      },
+      "phone": "Telefoon",
+      "acceptTerms": "Ik accepteer de Voorwaarden + AVG",
+      "acceptPrefix": "Ik ga akkoord met de",
+      "termsLink": "Gebruiksvoorwaarden",
+      "acceptAnd": "en het",
+      "privacyLink": "Privacybeleid (AVG)",
+      "acceptSuffix": ".",
+      "displayName": "Weergavenaam (optioneel)",
+      "createAccount": "Account aanmaken",
+      "creating": "Bezig met aanmaken...",
+      "errorGeneric": "Registratie mislukt",
+      "hints": {
+        "passwordMin": "Minimaal 8 tekens",
+        "passwordMatch": "Wachtwoorden komen overeen",
+        "loginInstead": "Heb je al een account?",
+        "loginLink": "Inloggen"
+      },
+      "errors": {
+        "emailInvalid": "Ongeldig e-mailadres.",
+        "passwordTooShort": "Wachtwoord moet minstens 8 tekens bevatten.",
+        "passwordsDontMatch": "Wachtwoorden komen niet overeen.",
+        "countryRequired": "Selecteer een land.",
+        "mustAccept": "Je moet de Voorwaarden en het Privacybeleid accepteren."
+      }
+    }
+  },
+  "admin": {
+    "title": "Admin Dashboard",
+    "subtitle": "Platformbeheer, gebruikers en compliance.",
+    "tabs": {
+      "overview": "Overzicht",
+      "merchants": "Bedrijven",
+      "users": "Gebruikers",
+      "audit": "Auditlogs",
+      "compliance": "Compliance"
+    },
+    "signedInAs": "Ingelogd als",
+    "role": "Rol",
+    "logout": "Uitloggen",
+    "loading": "Laden...",
+    "errors": { "generic": "Er ging iets mis" },
+    "overview": {
+      "whatCanYouDoTitle": "Wat een Admin kan doen",
+      "item1": "Toegang en rollen beheren (platform_admin).",
+      "item2": "Operationele support en abonnementen (MVP/Fase 2).",
+      "item3": "Auditlogs en platformactiviteit monitoren.",
+      "item4": "Compliance- en bewaartermijninstellingen (10 jaar, jurisdicties).",
+      "note": "Let op: sommige secties zijn placeholders totdat backend-endpoints bestaan.",
+      "quickStats": "Snelle statistieken",
+      "systemStatus": "Systeemstatus",
+      "statsPlaceholder": "Toon: aantal bedrijven, gebruikers, uitnodigingen, enz.",
+      "statusPlaceholder": "Toon: health checks, queues, email/peppol status, enz."
+    },
+    "merchants": {
+      "title": "Bedrijven",
+      "placeholder": "Bedrijvenlijst + details + aan/uit (Fase 2 endpoints)."
+    },
+    "users": {
+      "title": "Gebruikers",
+      "placeholder": "Gebruikerslijst + rollen + wachtwoord reset (Fase 2 endpoints)."
+    },
+    "audit": {
+      "title": "Auditlogs",
+      "placeholder": "Filters + export + activiteit (Fase 2 endpoints)."
+    },
+    "compliance": {
+      "title": "Compliance",
+      "placeholder": "AVG/bewaartermijn/jurisdictie instellingen (Fase 2 endpoints)."
+    }
+  },
+  "dashboard": {
+    "menu": "Menu",
+    "youAreIn": "Je zit in",
+    "signedInAs": "Ingelogd als",
+    "logout": "Uitloggen",
+    "loggingOut": "Bezig met uitloggen...",
+    "merchant": {
+      "title": "Merchant",
+      "overview": "Overzicht",
+      "invoices": "Facturen",
+      "creditNotes": "Creditnota’s",
+      "clients": "Klanten",
+      "products": "Producten",
+      "deviz": "Offertes",
+      "reports": "Rapporten",
+      "settings": "Instellingen",
+      "kpiClients": "Klanten",
+      "kpiIssuedInvoices": "Uitgeschreven facturen",
+      "kpiToValidate": "Te valideren"
+    },
+    "merchantSettings": {
+      "title": "Bedrijfsinstellingen",
+      "subtitle": "Pas je bedrijfsgegevens en het factuurlogo aan.",
+      "logoTitle": "Factuurlogo",
+      "logoHelp": "Upload een PNG/JPG (max 2MB). Het logo verschijnt automatisch in de PDF.",
+      "noLogo": "Geen logo",
+      "upload": "Logo uploaden",
+      "uploading": "Bezig met uploaden..."
+    },
+    "invoices": {
+      "title": "Facturen",
+      "create": "Factuur maken",
+      "createTitle": "Factuur maken",
+      "createSubtitle": "Vul de basisgegevens en factuurregels in. Valuta: EUR.",
+
+      "loading": "Laden...",
+      "empty": "Nog geen facturen.",
+
+      "colNo": "Factuurnr.",
+      "colClient": "Klant",
+      "colIssueDate": "Factuurdatum",
+      "colTotal": "Totaal",
+      "colStatus": "Status",
+      "colActions": "Acties",
+      "downloadPdf": "PDF downloaden",
+
+      "clientName": "Klantnaam",
+      "clientEmail": "E-mailadres klant",
+      "issueDate": "Factuurdatum",
+      "dueDate": "Vervaldatum",
+      "language": "Documenttaal",
+      "discount": "Korting (%)",
+      "advancePaid": "Voorschot betaald",
+      "issueNow": "Nu uitgeven (nummering)",
+      "lines": "Factuurregels",
+      "addLine": "Regel toevoegen",
+      "code": "Code",
+      "description": "Omschrijving product/dienst",
+      "unitPrice": "Netto waarde",
+      "qty": "Aantal",
+      "vat": "BTW (%)",
+      "remove": "Verwijderen",
+      "save": "Opslaan",
+      "saving": "Opslaan...",
+
+      "clientNameLabel": "Klantnaam",
+      "clientNamePlaceholder": "bijv. Voorbeeld BV",
+      "clientNameHelp": "De klantnaam die op de factuur verschijnt.",
+
+      "clientEmailLabel": "E-mailadres klant",
+      "clientEmailPlaceholder": "bijv. administratie@klant.nl",
+      "clientEmailHelp": "Optioneel. Handig om later te verzenden.",
+
+      "issueDateLabel": "Factuurdatum",
+      "issueDateHelp": "Standaard: vandaag. Je kunt dit handmatig instellen.",
+
+      "dueDateLabel": "Vervaldatum",
+      "dueDateHelp": "Vervaldatum (optioneel).",
+
+      "languageLabel": "Documenttaal",
+      "languageHelp": "Taal waarin de factuur/PDF wordt gegenereerd.",
+
+      "discountLabel": "Korting (%)",
+      "discountHelp": "Korting toegepast op het totaal (MVP).",
+
+      "advancePaidLabel": "Voorschot betaald",
+      "advancePaidHelp": "Bedrag vooraf betaald (MVP).",
+
+      "issueNowLabel": "Nu uitgeven",
+      "issueNowHelp": "Indien aangevinkt, wordt de factuur “uitgegeven”.",
+
+      "linesTitle": "Factuurregels",
+      "linesHelp": "Voeg producten/diensten toe met prijs, aantal en BTW.",
+
+      "actions": "Acties",
+      "codePlaceholder": "Code",
+      "descriptionPlaceholder": "bijv. Adviesdiensten"
+    }
+  },
+  "legal": {
+    "common": {
+      "print": "Afdrukken"
+    },
+    "accept": {
+      "title": "Bevestig juridische documenten",
+      "subtitle": "We hebben de Voorwaarden en/of het Privacybeleid bijgewerkt. Accepteer om door te gaan.",
+      "termsVersion": "Versie voorwaarden",
+      "privacyVersion": "Versie privacy",
+      "agreeTermsPrefix": "Ik ga akkoord met de",
+      "termsLink": "Algemene voorwaarden",
+      "agreePrivacyPrefix": "Ik ga akkoord met het",
+      "privacyLink": "Privacybeleid (AVG)",
+      "acceptAndContinue": "Accepteren en doorgaan",
+      "saving": "Opslaan...",
+      "footerNote": "Je acceptatie wordt opgeslagen voor audit en compliance.",
+      "errorGeneric": "Er is iets misgegaan"
+    },
+    "terms": {
+      "title": "Algemene voorwaarden",
+      "lastUpdatedLabel": "Laatst bijgewerkt",
+      "lastUpdatedValue": "2025-12-17",
+      "backToSignup": "Terug naar aanmelden",
+      "s1Title": "1. Overzicht",
+      "s1Body": "Vervang deze tekst door je echte voorwaarden.",
+      "s2Title": "2. Verplichtingen van de gebruiker",
+      "s2Body": "Vervang deze tekst door je echte voorwaarden.",
+      "s3Title": "3. Aansprakelijkheid",
+      "s3Body": "Vervang deze tekst door je echte voorwaarden.",
+      "footerNote": "Dit document kan worden bijgewerkt naarmate het product evolueert."
+    },
+    "privacy": {
+      "title": "Privacybeleid (AVG)",
+      "lastUpdatedLabel": "Laatst bijgewerkt",
+      "lastUpdatedValue": "2025-12-17",
+      "backToSignup": "Terug naar aanmelden",
+      "s1Title": "1. Wat we verzamelen",
+      "s1Body": "Vervang deze tekst door je echte privacybeleid.",
+      "s2Title": "2. Waarom we gegevens verwerken",
+      "s2Body": "Vervang deze tekst door je echte privacybeleid.",
+      "s3Title": "3. Jouw rechten",
+      "s3Body": "Vervang deze tekst door je echte privacybeleid.",
+      "footerNote": "Neem contact op als je vragen hebt over verwerking van persoonsgegevens."
+    }
+  },
+
+  "clients": {
+    "title": "Klanten",
+    "add": "Klant toevoegen",
+    "loading": "Bezig met laden...",
+    "name": "Naam",
+    "email": "E-mail",
+    "taxId": "BTW-nummer",
+    "created": "Aangemaakt op",
+    "actions": "Acties",
+    "edit": "Bewerken",
+    "delete": "Verwijderen",
+    "confirmDelete": "Weet je zeker dat je deze klant wilt verwijderen?"
+  },
+  "products": {
+    "title": "Producten / Diensten",
+    "add": "Product toevoegen",
+    "loading": "Laden...",
+    "name": "Naam",
+    "code": "Code",
+    "price": "Netto prijs",
+    "vat": "BTW (%)",
+    "actions": "Acties",
+    "edit": "Bewerken",
+    "delete": "Verwijderen",
+    "confirmDelete": "Weet je zeker dat je dit product wilt verwijderen?",
+    "empty": "Geen producten gevonden.",
+    "cancel": "Annuleren",
+    "save": "Opslaan",
+    "errorSave": "Opslaan mislukt"
+  }
+}
