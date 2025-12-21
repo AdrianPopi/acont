@@ -1,11 +1,14 @@
+from __future__ import annotations
+
 from io import BytesIO
 from pathlib import Path
+from collections import defaultdict
 
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
+from reportlab.lib import colors
 import requests
-
 
 from app.models.invoice import Invoice
 
@@ -86,6 +89,7 @@ def tr(lang: str | None, key: str) -> str:
     lang2 = (lang or "FR").strip().upper()
     return LABELS.get(lang2, LABELS["FR"]).get(key, key)
 
+
 def draw_logo(c, merchant_logo_url: str | None, *, x=40, y=790, w=110, h=35) -> bool:
     if not merchant_logo_url:
         return False
@@ -111,11 +115,67 @@ def draw_logo(c, merchant_logo_url: str | None, *, x=40, y=790, w=110, h=35) -> 
                     mask="auto", preserveAspectRatio=True
                 )
                 return True
-    except:
+    except Exception:
         pass
 
     return False
 
+
+def _vat_breakdown_from_invoice(inv: Invoice):
+    # group by vat_rate (as stored on items)
+    b = defaultdict(lambda: {"base": 0.0, "vat": 0.0})
+    for it in inv.items:
+        k = f"{float(it.vat_rate):.2f}".rstrip("0").rstrip(".")
+        b[k]["base"] += float(it.line_net)
+        b[k]["vat"] += float(it.line_vat)
+    return dict(b)
+
+
+def _draw_totals_block(c: canvas.Canvas, inv: Invoice, lang: str, x_right: int, y: int):
+    breakdown = _vat_breakdown_from_invoice(inv)
+
+    c.setFont("Helvetica-Bold", 10)
+    c.drawRightString(x_right - 65, y, f"{tr(lang,'subtotal')}:")
+    c.drawRightString(x_right, y, f"{float(inv.subtotal_net):.2f} {inv.currency}")
+    y -= 14
+
+    # TVA pe cote
+    c.setFont("Helvetica", 9)
+    for rate, row in sorted(breakdown.items(), key=lambda kv: float(kv[0])):
+        c.drawRightString(x_right - 65, y, f"TVA {rate}%:")
+        c.drawRightString(x_right, y, f"{float(row['vat']):.2f} {inv.currency}")
+        y -= 12
+
+    c.setFont("Helvetica-Bold", 10)
+    c.drawRightString(x_right - 65, y, f"{tr(lang,'vat_total')}:")
+    c.drawRightString(x_right, y, f"{float(inv.vat_total):.2f} {inv.currency}")
+    y -= 14
+
+    c.setFont("Helvetica-Bold", 11)
+    c.drawRightString(x_right - 65, y, f"{tr(lang,'total')}:")
+    c.drawRightString(x_right, y, f"{float(inv.total_gross):.2f} {inv.currency}")
+    y -= 16
+
+    if float(inv.advance_paid) > 0:
+        c.setFont("Helvetica", 10)
+        c.drawRightString(x_right - 65, y, f"{tr(lang,'advance_paid')}:")
+        c.drawRightString(x_right, y, f"{float(inv.advance_paid):.2f} {inv.currency}")
+        y -= 14
+
+        due = float(inv.total_gross) - float(inv.advance_paid)
+        c.setFont("Helvetica-Bold", 11)
+        c.drawRightString(x_right - 65, y, f"{tr(lang,'due')}:")
+        c.drawRightString(x_right, y, f"{due:.2f} {inv.currency}")
+        y -= 14
+
+    # structured communication
+    if getattr(inv, "communication_mode", "simple") == "structured" and getattr(inv, "communication_reference", ""):
+        c.setFont("Helvetica", 9)
+        c.drawRightString(x_right - 65, y, "Communication:")
+        c.drawRightString(x_right, y, inv.communication_reference)
+        y -= 12
+
+    return y
 
 
 def build_invoice_pdf(inv: Invoice, merchant_logo_url: str | None = None) -> bytes:
@@ -124,18 +184,39 @@ def build_invoice_pdf(inv: Invoice, merchant_logo_url: str | None = None) -> byt
     w, h = A4
 
     lang = (inv.language or "FR").strip().upper()
+    tpl = (getattr(inv, "template", "classic") or "classic").strip().lower()
 
-    # ✅ logo sus-stânga + titlu la dreapta dacă există logo
-    logo_drawn = draw_logo(c, merchant_logo_url, x=40, y=h - 60, w=110, h=35)
+    # Header layout differences (3 templates)
+    if tpl == "modern":
+        # modern: top bar
+        c.setFillColor(colors.black)
+        c.rect(0, h - 72, w, 72, fill=1, stroke=0)
+        c.setFillColor(colors.white)
 
-    y = h - 50
-    c.setFont("Helvetica-Bold", 16)
+        draw_logo(c, merchant_logo_url, x=30, y=h - 55, w=110, h=35)
+        c.setFont("Helvetica-Bold", 18)
+        c.drawRightString(w - 30, h - 45, "ACONT")
+        c.setFillColor(colors.black)
 
-    title_x = 160 if logo_drawn else 50   # 40 + 110 + ~10 padding
-    c.drawString(title_x, y, "ACONT")
-    y -= 24
+        y = h - 95
 
+    elif tpl == "minimal":
+        # minimal: very clean
+        logo_drawn = draw_logo(c, merchant_logo_url, x=40, y=h - 60, w=110, h=35)
+        c.setFont("Helvetica-Bold", 14)
+        title_x = 160 if logo_drawn else 50
+        c.drawString(title_x, h - 50, "ACONT")
+        y = h - 80
 
+    else:
+        # classic (existing style)
+        logo_drawn = draw_logo(c, merchant_logo_url, x=40, y=h - 60, w=110, h=35)
+        c.setFont("Helvetica-Bold", 16)
+        title_x = 160 if logo_drawn else 50
+        c.drawString(title_x, h - 50, "ACONT")
+        y = h - 85
+
+    # Title
     c.setFont("Helvetica-Bold", 12)
     c.drawString(50, y, f"{tr(lang,'invoice')}: {inv.invoice_no or tr(lang,'draft')}")
     y -= 18
@@ -162,6 +243,8 @@ def build_invoice_pdf(inv: Invoice, merchant_logo_url: str | None = None) -> byt
         y -= 12
 
     y -= 18
+
+    # Table header
     c.setFont("Helvetica-Bold", 10)
     c.drawString(50, y, tr(lang, "code"))
     c.drawString(140, y, tr(lang, "description"))
@@ -176,7 +259,7 @@ def build_invoice_pdf(inv: Invoice, merchant_logo_url: str | None = None) -> byt
     for it in inv.items:
         if y < 120:
             c.showPage()
-            y = h - 60
+            y = h - 80
             c.setFont("Helvetica", 9)
 
         c.drawString(50, y, (it.item_code or "")[:12])
@@ -190,30 +273,7 @@ def build_invoice_pdf(inv: Invoice, merchant_logo_url: str | None = None) -> byt
     c.line(350, y, 545, y)
     y -= 16
 
-    c.setFont("Helvetica-Bold", 10)
-    c.drawRightString(480, y, f"{tr(lang,'subtotal')}:")
-    c.drawRightString(545, y, f"{float(inv.subtotal_net):.2f} {inv.currency}")
-    y -= 14
-
-    c.drawRightString(480, y, f"{tr(lang,'vat_total')}:")
-    c.drawRightString(545, y, f"{float(inv.vat_total):.2f} {inv.currency}")
-    y -= 14
-
-    c.setFont("Helvetica-Bold", 11)
-    c.drawRightString(480, y, f"{tr(lang,'total')}:")
-    c.drawRightString(545, y, f"{float(inv.total_gross):.2f} {inv.currency}")
-    y -= 16
-
-    if float(inv.advance_paid) > 0:
-        c.setFont("Helvetica", 10)
-        c.drawRightString(480, y, f"{tr(lang,'advance_paid')}:")
-        c.drawRightString(545, y, f"{float(inv.advance_paid):.2f} {inv.currency}")
-        y -= 14
-
-        c.setFont("Helvetica-Bold", 11)
-        c.drawRightString(480, y, f"{tr(lang,'due')}:")
-        due = float(inv.total_gross) - float(inv.advance_paid)
-        c.drawRightString(545, y, f"{due:.2f} {inv.currency}")
+    _draw_totals_block(c, inv, lang, 545, y)
 
     c.showPage()
     c.save()

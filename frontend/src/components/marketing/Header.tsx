@@ -30,6 +30,9 @@ export default function Header() {
             <a href="#features" className="opacity-80 hover:opacity-100">
               {t("nav.features")}
             </a>
+            <a href="#compliance" className="opacity-80 hover:opacity-100">
+              {t("nav.compliance")}
+            </a>
             <a href="#how" className="opacity-80 hover:opacity-100">
               {t("nav.how")}
             </a>
@@ -43,7 +46,6 @@ export default function Header() {
             <ThemeToggle />
             <LanguageSwitcher />
 
-            {/* Desktop auth buttons */}
             <Link
               href={`/${locale}/auth/login`}
               className="hidden sm:inline-flex rounded-xl border border-black/10 dark:border-white/10 px-4 py-2 text-sm hover:shadow-glow transition"
@@ -57,7 +59,6 @@ export default function Header() {
               {t("nav.signup")}
             </Link>
 
-            {/* Mobile hamburger */}
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
@@ -81,6 +82,13 @@ export default function Header() {
                   className="rounded-xl px-3 py-2 hover:bg-black/5 dark:hover:bg-white/5"
                 >
                   {t("nav.features")}
+                </a>
+                <a
+                  href="#compliance"
+                  onClick={() => setOpen(false)}
+                  className="rounded-xl px-3 py-2 hover:bg-black/5 dark:hover:bg-white/5"
+                >
+                  {t("nav.compliance")}
                 </a>
                 <a
                   href="#how"

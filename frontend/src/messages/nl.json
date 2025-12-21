@@ -1,71 +1,179 @@
 {
   "nav": {
-    "features": "Functionaliteiten",
-    "how": "Hoe het werkt",
+    "features": "Functies",
+    "compliance": "Compliance 2026",
+    "how": "Hoe werkt het",
     "pricing": "Prijzen",
     "login": "Inloggen",
-    "signup": "Account aanmaken"
+    "signup": "Account maken"
   },
   "hero": {
-    "title": "Moderne boekhouding, eenvoudig en veilig",
-    "subtitle": "Facturen, uitgaven, rapporten en samenwerken met je boekhouder — allemaal op één plek.",
-    "ctaPrimary": "Aan de slag",
-    "ctaSecondary": "Bekijk demo"
+    "badge": "België • Peppol • EN 16931 • Klaar voor 2026",
+    "title": "Elektronische facturatie voor België (Compliance 2026)",
+    "subtitle": "Maak van de wettelijke verplichting een voordeel: gestructureerde B2B-facturen, verzending via Peppol, volledige automatisering en realtime financieel inzicht.",
+    "ctaPrimary": "Start nu",
+    "ctaSecondary": "Bekijk compliance",
+    "highlights": {
+      "h1": {
+        "title": "Peppol-ready",
+        "desc": "Directe Access Point-koppeling en duidelijke statussen."
+      },
+      "h2": {
+        "title": "EN 16931",
+        "desc": "Gestructureerde EU-standaard (UBL / Peppol BIS)."
+      },
+      "h3": {
+        "title": "Wettelijke archivering",
+        "desc": "Bewaartermijnen, audit trail en enterprise-security."
+      }
+    }
   },
   "sections": {
-    "featuresTitle": "Alles wat je nodig hebt, in één platform",
-    "howTitle": "Hoe het werkt",
-    "ctaTitle": "Klaar om te starten?"
+    "featuresTitle": "Automatisering + compliance in één platform",
+    "featuresSubtitle": "Voor kmo’s en zelfstandigen: snel, veilig en EU-compatibel.",
+    "howTitle": "Onboarding in 3 stappen",
+    "howSubtitle": "Account → bedrijf → Peppol → compliant factureren.",
+    "ctaTitle": "Klaar voor 2026?"
   },
-  "features": {
-    "items": [
+  "compliance": {
+    "title": "Compliance 2026, helder uitgelegd",
+    "subtitle": "B2B e-facturatie wordt verplicht in België. Niet-conforme PDF’s verdwijnen. EN 16931 + Peppol wordt de norm.",
+    "cta": "Bekijk prijzen",
+    "blocks": [
       {
-        "title": "Facturen & Creditnota’s",
-        "desc": "Facturen opmaken, automatische nummering, PDF, betalingen, creditnota’s."
+        "title": "Wettelijke context",
+        "items": [
+          "B2B e-facturatie wordt verplicht.",
+          "Gestructureerd EN 16931-formaat is vereist.",
+          "Verzending via het Peppol-netwerk.",
+          "Niet-conforme PDF-facturen worden uitgefaseerd."
+        ]
       },
       {
-        "title": "Aankopen",
-        "desc": "Leveranciersfacturen uploaden, scannen, e-mail import, validatie door boekhouder."
+        "title": "Technische architectuur",
+        "items": [
+          "Beveiligde cloud-applicatie.",
+          "Directe koppeling met een Peppol Access Point.",
+          "Formaten: UBL en Peppol BIS.",
+          "EU-interoperabiliteit gegarandeerd."
+        ]
       },
       {
-        "title": "Relaties & Artikelen",
-        "desc": "Klanten, producten/diensten, btw per item, historiek."
-      },
-      {
-        "title": "Samenwerking boekhouder",
-        "desc": "Documentflow, opmerkingen, goedkeuren/weigeren, export."
-      },
-      {
-        "title": "Rapporten",
-        "desc": "Verkoop, btw, betalingsstatus, CSV/PDF export (MVP)."
-      },
-      {
-        "title": "Beveiliging",
-        "desc": "Rollen Handelaar, rechten, auditlog (fase)."
+        "title": "Security & archivering",
+        "items": [
+          "Veilige toegang en databescherming.",
+          "Wettelijke archivering van documenten.",
+          "Volledige traceerbaarheid en audit trail.",
+          "Conform EN 16931 en Peppol."
+        ]
       }
     ]
   },
-  "cta": {
-    "subtitle": "Start met landing + auth, daarna Merchant dashboard."
+  "features": {
+    "footerHint": "Gebouwd voor compliance • Ontworpen voor snelheid",
+    "items": [
+      {
+        "title": "Slimme onboarding",
+        "desc": "Account, bedrijfsgegevens (BCE/BTW), automatische validatie en Peppol-activatie."
+      },
+      {
+        "title": "Klantenbeheer",
+        "desc": "Centrale database, Peppol-statusdetectie, historiek, zoeken & filteren."
+      },
+      {
+        "title": "Verkoopfacturen",
+        "desc": "Automatische btw & totalen, EN 16931-output en veilige Peppol-verzending."
+      },
+      {
+        "title": "Creditnota’s",
+        "desc": "Vanuit de originele factuur, gedeeltelijk/volledig, automatische juridische referenties."
+      },
+      {
+        "title": "PDF + gestructureerd",
+        "desc": "Leesbare PDF + UBL/Peppol BIS voor compliance."
+      },
+      {
+        "title": "Tracking & status",
+        "desc": "Duidelijke statussen en end-to-end traceerbaarheid."
+      },
+      {
+        "title": "Financieel dashboard",
+        "desc": "Realtime omzet, betaald vs onbetaald, analyse per klant."
+      },
+      {
+        "title": "Grafieken & analyse",
+        "desc": "Trends, maand/jaar vergelijking, exports."
+      },
+      {
+        "title": "Wettelijke archivering",
+        "desc": "Bewaartermijnen, audit logs, toegangscontrole, enterprise-security."
+      }
+    ]
   },
   "how": {
     "steps": [
       {
         "n": "01",
-        "title": "Account maken",
-        "desc": "Merchant of Accountant. Bedrijf instellen en voorkeuren."
+        "title": "Account & bedrijf",
+        "desc": "Voeg BCE/BTW toe; automatische validatie van gegevens."
       },
       {
         "n": "02",
-        "title": "Dagelijks werken",
-        "desc": "Facturen, klanten, producten, kosten, documenten uploaden."
+        "title": "Peppol activeren",
+        "desc": "Access Point-koppeling en automatische klantcontrole."
       },
       {
         "n": "03",
-        "title": "Accountant valideert",
-        "desc": "Opmerkingen, status, exports — alles gecentraliseerd."
+        "title": "Uitgeven & opvolgen",
+        "desc": "Gestructureerde facturen/creditnota’s, duidelijke statussen, realtime dashboard."
       }
     ]
+  },
+  "pricing": {
+    "title": "Prijzen",
+    "subtitle": "Kies het plan dat past bij jouw factuurvolume. Upgrade wanneer je wilt.",
+    "note": "Indicatieve prijzen • excl. btw",
+    "cta": "Account maken",
+    "tiers": [
+      {
+        "name": "Starter",
+        "price": "€19 / maand",
+        "desc": "Voor zelfstandigen.",
+        "features": [
+          "Peppol + EN 16931",
+          "Facturen & creditnota’s",
+          "Basis dashboard",
+          "Standaard archivering"
+        ]
+      },
+      {
+        "name": "Business",
+        "price": "€49 / maand",
+        "badge": "Aanbevolen",
+        "desc": "Voor kmo’s.",
+        "features": [
+          "Alles van Starter",
+          "Automatisering + advanced status",
+          "Exports & rapporten",
+          "Prioritaire support"
+        ]
+      },
+      {
+        "name": "Enterprise",
+        "price": "Custom",
+        "desc": "Voor integraties en speciale vereisten.",
+        "features": [
+          "SLA",
+          "Geavanceerde controles",
+          "Uitgebreide audit & retentie",
+          "Dedicated integratie"
+        ]
+      }
+    ]
+  },
+  "cta": {
+    "subtitle": "Wees op tijd compliant en factureer modern in België.",
+    "secondary": "Bekijk prijzen"
   },
   "footer": {
     "rgpd": "AVG",
@@ -195,6 +303,131 @@
       "kpiIssuedInvoices": "Uitgeschreven facturen",
       "kpiToValidate": "Te valideren"
     },
+    "invoicesNew": {
+      "title": "Factuur aanmaken",
+      "subtitleIssueNow": "Volgend factuurnummer: {no}",
+      "subtitleDraft": "Concept (nog geen nummer)",
+      "subtitleLastIssued": "Laatst uitgegeven datum: {date}",
+
+      "errorLoad": "Kan klanten/producten niet laden.",
+      "importClient": "Klant importeren (JSON)",
+      "importClientError": "Ongeldig klant-JSON-bestand. Gebruik: { name, email, tax_id, address }",
+
+      "client": "Klant",
+      "existing": "Bestaand",
+      "new": "Nieuw",
+      "selectClient": "Selecteer klant",
+      "choose": "— Kies —",
+      "autoFillHint": "Een klant selecteren vult de velden automatisch in.",
+
+      "clientName": "Klantnaam",
+      "clientEmail": "Klant e-mail",
+      "taxId": "BTW-nummer",
+      "address": "Adres",
+
+      "settings": "Factuurinstellingen",
+      "issueDate": "Factuurdatum",
+      "dueDate": "Vervaldatum",
+      "language": "Taal",
+      "currency": "Valuta",
+      "currencyHint": "Alleen EUR",
+      "mustBeAfterLastIssued": "Moet ≥ laatst uitgegeven datum: {date}",
+
+      "communication": "Communicatie",
+      "simple": "Eenvoudig",
+      "structured": "Gestructureerd",
+      "structuredPlaceholder": "Optioneel. Leeg = automatisch gegenereerd.",
+
+      "template": "Factuursjabloon",
+      "templateHint": "3 PDF-sjablonen",
+      "templateClassic": "Klassiek",
+      "templateModern": "Modern",
+      "templateMinimal": "Minimal",
+
+      "discount": "Korting (%)",
+      "advancePaid": "Voorschot betaald",
+      "issueNow": "Nu uitgeven (nummer toekennen)",
+
+      "linesTitle": "Factuurregels",
+      "linesHint": "Artikel nr + product/dienst + prijs + qty + BTW + totaal.",
+      "addLine": "Regel toevoegen",
+
+      "colProduct": "Product",
+      "colArticleNo": "Artikel nr",
+      "colDescription": "Omschrijving",
+      "colValueExclVat": "Waarde (excl. BTW)",
+      "colQty": "Aantal",
+      "colVat": "BTW (%)",
+      "colTotalInclVat": "Totaal (incl. BTW)",
+      "colActions": "Acties",
+
+      "manual": "— handmatig —",
+      "productOrService": "Product / dienst",
+      "ttc": "TTC",
+      "remove": "Verwijderen",
+
+      "totalsTitle": "Factuurtotalen",
+      "totalExclVat": "Totaal excl. BTW",
+      "discountAmount": "Korting",
+      "totalVat": "Totaal BTW",
+      "totalInclVat": "Totaal incl. BTW",
+      "advancePaidLabel": "Voorschot betaald",
+      "totalDue": "Te betalen",
+
+      "save": "Factuur opslaan",
+      "saving": "Opslaan..."
+    },
+    "creditNotesNew": {
+      "title": "Creditnota aanmaken",
+      "subtitleIssueNow": "Volgend nummer: {no}",
+      "subtitleDraft": "Concept (nog geen nummer)",
+      "subtitleLastIssued": "Laatste uitgiftdatum: {date}",
+
+      "errorLoadClients": "Kon klanten niet laden.",
+      "errorLoadInvoices": "Kon facturen voor deze klant niet laden.",
+      "errorLoadInvoiceDetails": "Kon factuurdetails niet laden.",
+      "errorCreate": "Kon creditnota niet aanmaken.",
+
+      "client": "Klant",
+      "chooseClient": "— Kies klant —",
+      "clientHint": "Selecteer een klant om uitgegeven facturen te zien.",
+
+      "invoiceToCredit": "Factuur om te crediteren",
+      "chooseInvoice": "— Kies factuur —",
+      "invoiceHint": "Alleen uitgegeven facturen worden getoond.",
+
+      "issueDate": "Datum creditnota",
+      "language": "Taal",
+      "languageHint": "Standaard: FR",
+
+      "template": "Template",
+      "templateClassic": "Klassiek",
+      "templateModern": "Modern",
+      "templateMinimal": "Minimaal",
+
+      "communication": "Communicatie",
+      "simple": "Eenvoudig",
+      "structured": "Gestructureerd",
+      "structuredPlaceholder": "Optioneel. Als leeg, wordt automatisch gegenereerd.",
+
+      "issueNow": "Nu uitgeven (nummer toekennen)",
+
+      "previewTitle": "Voorbeeld (wordt gecrediteerd)",
+      "previewEmpty": "Selecteer een factuur om details te zien.",
+      "previewInvoice": "Factuur",
+      "previewClient": "Klant",
+      "previewTotals": "Totaal (factuur)",
+      "previewHint": "De creditnota wordt gemaakt met negatieve regels en totalen.",
+
+      "colCode": "Code",
+      "colDescription": "Omschrijving",
+      "colQty": "Aantal",
+      "colVat": "BTW (%)",
+      "colLineTotal": "Regeltotaal",
+
+      "save": "Creditnota aanmaken",
+      "saving": "Opslaan..."
+    },
     "merchantSettings": {
       "title": "Bedrijfsinstellingen",
       "subtitle": "Pas je bedrijfsgegevens en het factuurlogo aan.",
@@ -272,6 +505,70 @@
       "actions": "Acties",
       "codePlaceholder": "Code",
       "descriptionPlaceholder": "bijv. Adviesdiensten"
+    },
+    "merchantHome": {
+      "title": "Overzicht",
+      "subtitle": "Snelle samenvatting + je laatst uitgegeven facturen.",
+      "errorLoad": "Gegevens konden niet worden geladen.",
+      "ctaCreateInvoice": "Factuur maken",
+      "ctaCreateCreditNote": "Creditnota maken",
+      "ctaClients": "Klanten",
+      "kpiClients": "Klanten",
+      "kpiClientsHint": "Totaal aantal klanten in je database",
+      "kpiIssuedInvoices": "Uitgegeven facturen",
+      "kpiIssuedInvoicesHint": "Alle niet-concept facturen",
+      "kpiUnpaid": "Onbetaald",
+      "kpiUnpaidHint": "Uitgegeven facturen die nog onbetaald zijn",
+      "recentTitle": "Recente facturen",
+      "recentSubtitle": "Klik op een factuur om deze online te bekijken.",
+      "viewAll": "Alles bekijken",
+      "loading": "Laden...",
+      "empty": "Nog geen facturen.",
+      "colNo": "Factuurnr.",
+      "colClient": "Klantnaam",
+      "colIssueDate": "Factuurdatum",
+      "colTotal": "Totaal (incl. btw)",
+      "colPaid": "Betaald",
+      "colAdvance": "Voorschot betaald",
+      "colDueDate": "Vervaldatum",
+      "colStatus": "Status",
+      "colNotes": "Opmerkingen",
+      "colActions": "Acties",
+      "paid": "Ja",
+      "unpaid": "Nee",
+      "statusPaid": "Betaald",
+      "statusUnpaid": "Onbetaald",
+      "statusDraft": "Concept",
+      "statusVoid": "Geannuleerd",
+      "view": "Bekijken"
+    },
+    "invoiceView": {
+      "title": "Factuur (online)",
+      "subtitle": "Details bekijken + PDF downloaden.",
+      "loading": "Laden...",
+      "errorLoad": "De factuur kon niet worden geladen.",
+      "notFound": "Factuur niet gevonden.",
+      "back": "Terug",
+      "downloadPdf": "PDF downloaden",
+      "invoiceNo": "Factuurnummer",
+      "status": "Status",
+      "client": "Klant",
+      "issueDate": "Factuurdatum",
+      "dueDate": "Vervaldatum",
+      "subtotal": "Subtotaal (excl. btw)",
+      "vatTotal": "Btw totaal",
+      "total": "Totaal (incl. btw)",
+      "advance": "Voorschot betaald",
+      "due": "Nog te betalen",
+      "language": "Taal",
+      "notes": "Opmerkingen",
+      "linesTitle": "Factuurregels",
+      "linesMissingHint": "Regels zijn nog niet beschikbaar (activeer items op /invoices/{id}).",
+      "colCode": "Artikelnr.",
+      "colDesc": "Product/dienst",
+      "colQty": "Aantal",
+      "colVat": "Btw",
+      "colTotal": "Totaal (incl. btw)"
     }
   },
   "legal": {
@@ -348,6 +645,16 @@
     "empty": "Geen producten gevonden.",
     "cancel": "Annuleren",
     "save": "Opslaan",
-    "errorSave": "Opslaan mislukt"
+    "errorSave": "Opslaan mislukt",
+    "importCsv": "CSV importeren",
+    "csvChoose": "Kies een CSV-bestand",
+    "csvUpload": "Uploaden",
+    "csvResult": "Importresultaat",
+    "csvDownloadTemplate": "CSV-sjabloon downloaden",
+    "csvTemplateHint": "Download een Excel-vriendelijk sjabloon om snel in te vullen.",
+    "csvCreated": "Aangemaakt",
+    "csvUpdated": "Bijgewerkt",
+    "csvFailed": "Mislukt",
+    "csvRow": "Rij"
   }
 }

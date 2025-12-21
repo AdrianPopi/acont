@@ -14,16 +14,22 @@ export default function AddProductModal({ onClose, onCreated }: Props) {
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
   const [price, setPrice] = useState("");
-  const [vat, setVat] = useState("21");
+  const [vat, setVat] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const inputClass =
-    "w-full rounded-xl border border-black/20 dark:border-white/20 px-3 py-2 " +
-    "bg-white dark:bg-black text-black dark:text-white " +
+    "w-full rounded-xl border px-3 py-2 " +
+    "bg-white text-black border-black/20 " +
+    "dark:bg-neutral-900 dark:text-white dark:border-white/20 " +
     "focus:outline-none focus:ring-2 focus:ring-black/30 dark:focus:ring-white/30";
 
   async function submit() {
+    if (!name || !price) {
+      setError(t("errorSave"));
+      return;
+    }
+
     try {
       setLoading(true);
       setError("");
@@ -36,13 +42,11 @@ export default function AddProductModal({ onClose, onCreated }: Props) {
           name,
           code: code || null,
           unit_price: Number(price),
-          vat_rate: Number(vat),
+          vat_rate: vat ? Number(vat) : 21,
         }),
       });
 
-      if (!res.ok) {
-        throw new Error();
-      }
+      if (!res.ok) throw new Error();
 
       onCreated();
       onClose();
@@ -55,8 +59,10 @@ export default function AddProductModal({ onClose, onCreated }: Props) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div className="w-full max-w-md rounded-2xl bg-white dark:bg-black p-6 space-y-4">
-        <h2 className="text-lg font-semibold">{t("add")}</h2>
+      <div className="w-full max-w-md rounded-2xl bg-white dark:bg-neutral-900 p-6 space-y-4 shadow-xl">
+        <h2 className="text-lg font-semibold text-black dark:text-white">
+          {t("add")}
+        </h2>
 
         <input
           className={inputClass}
@@ -82,7 +88,7 @@ export default function AddProductModal({ onClose, onCreated }: Props) {
 
         <input
           className={inputClass}
-          placeholder={t("vat")}
+          placeholder={`${t("vat")} `}
           type="number"
           value={vat}
           onChange={(e) => setVat(e.target.value)}
@@ -93,7 +99,8 @@ export default function AddProductModal({ onClose, onCreated }: Props) {
         <div className="flex justify-end gap-2 pt-4">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-xl border border-black/20 dark:border-white/20"
+            className="px-4 py-2 rounded-xl border border-black/20 dark:border-white/20
+                       text-black dark:text-white"
           >
             {t("cancel")}
           </button>
@@ -101,7 +108,8 @@ export default function AddProductModal({ onClose, onCreated }: Props) {
           <button
             onClick={submit}
             disabled={loading}
-            className="px-4 py-2 rounded-xl bg-black text-white dark:bg-white dark:text-black disabled:opacity-50"
+            className="px-4 py-2 rounded-xl bg-black text-white
+                       dark:bg-white dark:text-black disabled:opacity-50"
           >
             {loading ? "…" : t("add")}
           </button>

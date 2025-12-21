@@ -1,72 +1,181 @@
 {
   "nav": {
     "features": "Features",
+    "compliance": "2026 Compliance",
     "how": "How it works",
     "pricing": "Pricing",
     "login": "Log in",
     "signup": "Create account"
   },
   "hero": {
-    "title": "Modern accounting, simple and secure",
-    "subtitle": "Invoices, deviz, reports, and collaboration with your accountant — all in one place.",
+    "badge": "Belgium • Peppol • EN 16931 • 2026 ready",
+    "title": "Electronic invoicing for Belgium (2026 Compliance)",
+    "subtitle": "Turn legal obligation into a competitive edge: structured B2B invoices, Peppol delivery, full automation, and real-time financial visibility.",
     "ctaPrimary": "Get started",
-    "ctaSecondary": "See demo"
+    "ctaSecondary": "See compliance",
+    "highlights": {
+      "h1": {
+        "title": "Peppol-ready",
+        "desc": "Direct Access Point connectivity and clear statuses."
+      },
+      "h2": {
+        "title": "EN 16931",
+        "desc": "Structured standard required across the EU (UBL / Peppol BIS)."
+      },
+      "h3": {
+        "title": "Legal archiving",
+        "desc": "Retention, audit trail, and enterprise-grade security."
+      }
+    }
   },
   "sections": {
-    "featuresTitle": "Everything you need, in one platform",
-    "howTitle": "How it works",
-    "ctaTitle": "Ready to get started?"
+    "featuresTitle": "Automation + compliance, in one platform",
+    "featuresSubtitle": "Built for SMEs and freelancers: fast, secure, EU-compatible.",
+    "howTitle": "Onboarding in 3 steps",
+    "howSubtitle": "Account → company → Peppol → compliant invoicing.",
+    "ctaTitle": "Ready for 2026?"
   },
-  "features": {
-    "items": [
+  "compliance": {
+    "title": "2026 compliance, explained",
+    "subtitle": "B2B e-invoicing becomes mandatory in Belgium. Non-compliant PDFs go away. EN 16931 + Peppol becomes the standard.",
+    "cta": "View pricing",
+    "blocks": [
       {
-        "title": "Invoices & Credit notes",
-        "desc": "Issue invoices, automatic numbering, PDF export, payments, credit notes."
+        "title": "Legal context",
+        "items": [
+          "B2B e-invoicing becomes mandatory.",
+          "Structured EN 16931 format is required.",
+          "Transmission happens via the Peppol network.",
+          "Non-compliant PDF invoices are phased out."
+        ]
       },
       {
-        "title": "Purchases",
-        "desc": "Upload supplier invoices, scan, email import, accountant validation."
+        "title": "Technical architecture",
+        "items": [
+          "Secure cloud application.",
+          "Direct connection to a Peppol Access Point.",
+          "Supported formats: UBL and Peppol BIS.",
+          "Guaranteed EU interoperability."
+        ]
       },
       {
-        "title": "Directory",
-        "desc": "Clients, products/services, VAT per item, history."
-      },
-      {
-        "title": "Accountant collaboration",
-        "desc": "Document flow, comments, approve/reject, exports."
-      },
-      {
-        "title": "Reports",
-        "desc": "Sales, VAT, payment status, CSV/PDF export (MVP)."
-      },
-      {
-        "title": "Security",
-        "desc": "Merchant roles, permissions, audit trail (phase)."
+        "title": "Security & archiving",
+        "items": [
+          "Secure access and data protection.",
+          "Legally compliant document archiving.",
+          "Full traceability and audit trail.",
+          "Aligned with EN 16931 and Peppol."
+        ]
       }
     ]
   },
-  "cta": {
-    "subtitle": "Start with landing + auth, then Merchant dashboard."
+  "features": {
+    "footerHint": "Built for compliance • Designed for speed",
+    "items": [
+      {
+        "title": "Smart onboarding",
+        "desc": "Create an account, add company data (BCE/VAT), auto-validation, Peppol activation."
+      },
+      {
+        "title": "Customer management",
+        "desc": "Central customer database, Peppol status detection, history, advanced search & filters."
+      },
+      {
+        "title": "Sales invoices",
+        "desc": "Automatic VAT & totals, EN 16931 structured output, secure delivery via Peppol."
+      },
+      {
+        "title": "Credit notes",
+        "desc": "Create from the original invoice, partial/full cancellation, automatic legal references."
+      },
+      {
+        "title": "PDF + structured file",
+        "desc": "Human-readable PDF plus UBL/Peppol BIS access for compliance."
+      },
+      {
+        "title": "Tracking & statuses",
+        "desc": "Clear statuses, end-to-end traceability, ready for audits."
+      },
+      {
+        "title": "Financial dashboard",
+        "desc": "Real-time revenue, paid vs unpaid, customer-level analysis."
+      },
+      {
+        "title": "Charts & analytics",
+        "desc": "Trends, monthly/yearly comparisons, exports."
+      },
+      {
+        "title": "Legal archiving",
+        "desc": "Retention, audit logs, access controls, enterprise security."
+      }
+    ]
   },
   "how": {
     "steps": [
       {
         "n": "01",
-        "title": "Create an account",
-        "desc": "Merchant. Company setup and preferences."
+        "title": "Create account & company",
+        "desc": "Add BCE/VAT details; the platform validates them automatically."
       },
       {
         "n": "02",
-        "title": "Work daily",
-        "desc": "Invoices, customers, products, deviz, document uploads."
+        "title": "Activate Peppol",
+        "desc": "Access Point connection and automatic customer Peppol checks."
       },
       {
         "n": "03",
-        "title": "Accountant validates",
-        "desc": "Comments, statuses, exports — everything centralized."
+        "title": "Issue & track",
+        "desc": "Structured invoices/credit notes, clear statuses, real-time dashboard."
       }
     ]
   },
+  "pricing": {
+    "title": "Pricing",
+    "subtitle": "Pick the plan that matches your invoicing volume. Upgrade anytime.",
+    "note": "Indicative pricing • VAT excluded",
+    "cta": "Create account",
+    "tiers": [
+      {
+        "name": "Starter",
+        "price": "€19 / month",
+        "desc": "For solo professionals.",
+        "features": [
+          "Peppol + EN 16931",
+          "Invoices & credit notes",
+          "Basic dashboard",
+          "Standard archiving"
+        ]
+      },
+      {
+        "name": "Business",
+        "price": "€49 / month",
+        "badge": "Recommended",
+        "desc": "For SMEs with steady volume.",
+        "features": [
+          "Everything in Starter",
+          "Automation + advanced statuses",
+          "Exports & reports",
+          "Priority support"
+        ]
+      },
+      {
+        "name": "Enterprise",
+        "price": "Custom",
+        "desc": "For integrations and special requirements.",
+        "features": [
+          "SLA",
+          "Advanced controls",
+          "Extended audit & retention",
+          "Dedicated integration"
+        ]
+      }
+    ]
+  },
+  "cta": {
+    "subtitle": "Be compliant early and invoice modern in Belgium.",
+    "secondary": "View pricing"
+  },
+
   "footer": {
     "rgpd": "GDPR",
     "terms": "Terms",
@@ -195,6 +304,131 @@
       "kpiIssuedInvoices": "Issued invoices",
       "kpiToValidate": "To validate"
     },
+    "invoicesNew": {
+      "title": "Create invoice",
+      "subtitleIssueNow": "Next invoice no: {no}",
+      "subtitleDraft": "Draft (no number yet)",
+      "subtitleLastIssued": "Last issued date: {date}",
+
+      "errorLoad": "Failed to load clients/products.",
+      "importClient": "Import client (JSON)",
+      "importClientError": "Invalid client JSON file. Use: { name, email, tax_id, address }",
+
+      "client": "Client",
+      "existing": "Existing",
+      "new": "New",
+      "selectClient": "Select client",
+      "choose": "— Choose —",
+      "autoFillHint": "Selecting a client auto-fills invoice fields.",
+
+      "clientName": "Client name",
+      "clientEmail": "Client email",
+      "taxId": "Tax ID",
+      "address": "Address",
+
+      "settings": "Invoice settings",
+      "issueDate": "Issue date",
+      "dueDate": "Due date",
+      "language": "Language",
+      "currency": "Currency",
+      "currencyHint": "EUR only",
+      "mustBeAfterLastIssued": "Must be ≥ last issued date: {date}",
+
+      "communication": "Communication",
+      "simple": "Simple",
+      "structured": "Structured",
+      "structuredPlaceholder": "Optional. If empty, it will be generated automatically.",
+
+      "template": "Invoice template",
+      "templateHint": "3 PDF templates",
+      "templateClassic": "Classic",
+      "templateModern": "Modern",
+      "templateMinimal": "Minimal",
+
+      "discount": "Discount (%)",
+      "advancePaid": "Advance paid",
+      "issueNow": "Issue now (assign number)",
+
+      "linesTitle": "Invoice lines",
+      "linesHint": "Article no + product/service + price + qty + VAT + total.",
+      "addLine": "Add line",
+
+      "colProduct": "Product",
+      "colArticleNo": "Article No",
+      "colDescription": "Description",
+      "colValueExclVat": "Value (excl. VAT)",
+      "colQty": "Qty",
+      "colVat": "VAT (%)",
+      "colTotalInclVat": "Total (incl. VAT)",
+      "colActions": "Actions",
+
+      "manual": "— manual —",
+      "productOrService": "Product / service",
+      "ttc": "TTC",
+      "remove": "Remove",
+
+      "totalsTitle": "Invoice totals",
+      "totalExclVat": "Total excl. VAT",
+      "discountAmount": "Discount",
+      "totalVat": "Total VAT",
+      "totalInclVat": "Total incl. VAT",
+      "advancePaidLabel": "Advance paid",
+      "totalDue": "Total payment (due)",
+
+      "save": "Save invoice",
+      "saving": "Saving..."
+    },
+    "creditNotesNew": {
+      "title": "Create credit note",
+      "subtitleIssueNow": "Next number: {no}",
+      "subtitleDraft": "Draft (no number yet)",
+      "subtitleLastIssued": "Last issued date: {date}",
+
+      "errorLoadClients": "Could not load clients.",
+      "errorLoadInvoices": "Could not load invoices for this client.",
+      "errorLoadInvoiceDetails": "Could not load invoice details.",
+      "errorCreate": "Could not create credit note.",
+
+      "client": "Client",
+      "chooseClient": "— Choose client —",
+      "clientHint": "Select a client to see issued invoices.",
+
+      "invoiceToCredit": "Invoice to credit",
+      "chooseInvoice": "— Choose invoice —",
+      "invoiceHint": "Only issued invoices are shown.",
+
+      "issueDate": "Credit note date",
+      "language": "Language",
+      "languageHint": "Default: FR",
+
+      "template": "Template",
+      "templateClassic": "Classic",
+      "templateModern": "Modern",
+      "templateMinimal": "Minimal",
+
+      "communication": "Communication",
+      "simple": "Simple",
+      "structured": "Structured",
+      "structuredPlaceholder": "Optional. If empty, it will be generated.",
+
+      "issueNow": "Issue now (assign number)",
+
+      "previewTitle": "Preview (will be credited)",
+      "previewEmpty": "Select an invoice to see details.",
+      "previewInvoice": "Invoice",
+      "previewClient": "Client",
+      "previewTotals": "Total (invoice)",
+      "previewHint": "Credit note will be generated with negative lines and totals.",
+
+      "colCode": "Code",
+      "colDescription": "Description",
+      "colQty": "Qty",
+      "colVat": "VAT (%)",
+      "colLineTotal": "Line total",
+
+      "save": "Create credit note",
+      "saving": "Saving..."
+    },
     "merchantSettings": {
       "title": "Company settings",
       "subtitle": "Customize your company details and the invoice logo.",
@@ -272,6 +506,70 @@
       "actions": "Actions",
       "codePlaceholder": "Code",
       "descriptionPlaceholder": "e.g. Consulting services"
+    },
+    "merchantHome": {
+      "title": "Overview",
+      "subtitle": "Quick summary + your latest issued invoices.",
+      "errorLoad": "Could not load data.",
+      "ctaCreateInvoice": "Create invoice",
+      "ctaCreateCreditNote": "Create credit note",
+      "ctaClients": "Clients",
+      "kpiClients": "Clients",
+      "kpiClientsHint": "Total clients in your database",
+      "kpiIssuedInvoices": "Issued invoices",
+      "kpiIssuedInvoicesHint": "All non-draft invoices",
+      "kpiUnpaid": "Unpaid",
+      "kpiUnpaidHint": "Issued invoices that are still unpaid",
+      "recentTitle": "Recent invoices",
+      "recentSubtitle": "Click an invoice to view it online.",
+      "viewAll": "View all",
+      "loading": "Loading...",
+      "empty": "No invoices yet.",
+      "colNo": "Invoice no.",
+      "colClient": "Client name",
+      "colIssueDate": "Issue date",
+      "colTotal": "Total (incl. VAT)",
+      "colPaid": "Paid",
+      "colAdvance": "Advance paid",
+      "colDueDate": "Due date",
+      "colStatus": "Status",
+      "colNotes": "Notes",
+      "colActions": "Actions",
+      "paid": "Yes",
+      "unpaid": "No",
+      "statusPaid": "Paid",
+      "statusUnpaid": "Unpaid",
+      "statusDraft": "Draft",
+      "statusVoid": "Void",
+      "view": "View"
+    },
+    "invoiceView": {
+      "title": "Invoice (online)",
+      "subtitle": "View details + download PDF.",
+      "loading": "Loading...",
+      "errorLoad": "Could not load the invoice.",
+      "notFound": "Invoice not found.",
+      "back": "Back",
+      "downloadPdf": "Download PDF",
+      "invoiceNo": "Invoice number",
+      "status": "Status",
+      "client": "Client",
+      "issueDate": "Issue date",
+      "dueDate": "Due date",
+      "subtotal": "Subtotal (excl. VAT)",
+      "vatTotal": "VAT total",
+      "total": "Total (incl. VAT)",
+      "advance": "Advance paid",
+      "due": "Amount due",
+      "language": "Language",
+      "notes": "Notes",
+      "linesTitle": "Invoice lines",
+      "linesMissingHint": "Lines are not available yet (enable items on /invoices/{id}).",
+      "colCode": "Article no.",
+      "colDesc": "Product/service",
+      "colQty": "Quantity",
+      "colVat": "VAT",
+      "colTotal": "Total (incl. VAT)"
     }
   },
   "legal": {
@@ -348,6 +646,16 @@
     "empty": "No products found.",
     "cancel": "Cancel",
     "save": "Save",
-    "errorSave": "Failed to save"
+    "errorSave": "Failed to save",
+    "importCsv": "Import CSV",
+    "csvChoose": "Choose a CSV file",
+    "csvUpload": "Upload",
+    "csvResult": "Import result",
+    "csvDownloadTemplate": "Download CSV template",
+    "csvTemplateHint": "Download an Excel-friendly template to fill in quickly.",
+    "csvCreated": "Created",
+    "csvUpdated": "Updated",
+    "csvFailed": "Failed",
+    "csvRow": "Row"
   }
 }

@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import DashboardShell from "@/components/dashboard/DashboardShell";
+import { useMerchantNav } from "../../_components/merchantNav";
 
 function errMsg(e: unknown) {
   if (e instanceof Error) return e.message;
@@ -10,37 +11,10 @@ function errMsg(e: unknown) {
 }
 
 export default function MerchantSettingsPage() {
-  const locale = useLocale();
-  const t = useTranslations("dashboard");
+  //const t = useTranslations("dashboard"); // îl poți păstra dacă îl folosești în pagină
   const ts = useTranslations("dashboard.merchantSettings");
 
-  const nav = [
-    { href: `/${locale}/dashboard/merchant`, label: t("merchant.overview") },
-    {
-      href: `/${locale}/dashboard/merchant/invoices`,
-      label: t("merchant.invoices"),
-    },
-    {
-      href: `/${locale}/dashboard/merchant/clients`,
-      label: t("merchant.clients"),
-    },
-    {
-      href: `/${locale}/dashboard/merchant/products`,
-      label: t("merchant.products"),
-    },
-    {
-      href: `/${locale}/dashboard/merchant/deviz`,
-      label: t("merchant.deviz"),
-    },
-    {
-      href: `/${locale}/dashboard/merchant/reports`,
-      label: t("merchant.reports"),
-    },
-    {
-      href: `/${locale}/dashboard/merchant/settings`,
-      label: t("merchant.settings"),
-    },
-  ];
+  const nav = useMerchantNav();
 
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
   const [err, setErr] = useState("");

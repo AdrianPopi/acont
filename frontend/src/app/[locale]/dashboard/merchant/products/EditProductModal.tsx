@@ -20,8 +20,17 @@ export default function EditProductModal({ product, onClose, onSaved }: Props) {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
+  const inputClass =
+    "w-full rounded-xl border px-3 py-2 " +
+    "bg-white text-black border-black/20 " +
+    "dark:bg-neutral-900 dark:text-white dark:border-white/20 " +
+    "focus:outline-none focus:ring-2 focus:ring-black/30 dark:focus:ring-white/30";
+
   async function save() {
-    if (!name.trim() || !unitPrice) {
+    const price = Number(unitPrice);
+    const vat = Number(vatRate);
+
+    if (!name.trim() || isNaN(price)) {
       setError("Completează câmpurile obligatorii");
       return;
     }
@@ -37,10 +46,10 @@ export default function EditProductModal({ product, onClose, onSaved }: Props) {
           credentials: "include",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            name,
-            code: code || null,
-            unit_price: Number(unitPrice),
-            vat_rate: Number(vatRate),
+            name: name.trim(),
+            code: code?.trim() || null,
+            unit_price: price,
+            vat_rate: isNaN(vat) ? 0 : vat,
           }),
         }
       );
@@ -56,9 +65,9 @@ export default function EditProductModal({ product, onClose, onSaved }: Props) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <div className="w-full max-w-md rounded-2xl bg-white dark:bg-neutral-900 p-6 space-y-4 shadow-xl">
-        <h2 className="text-lg font-semibold">
+        <h2 className="text-lg font-semibold text-black dark:text-white">
           {t("edit")} — <span className="opacity-70">{product.name}</span>
         </h2>
 
@@ -66,8 +75,7 @@ export default function EditProductModal({ product, onClose, onSaved }: Props) {
         <div>
           <label className="text-sm opacity-70">{t("name")} *</label>
           <input
-            className="w-full rounded-xl border px-3 py-2 bg-transparent
-                       border-black/20 dark:border-white/20"
+            className={inputClass}
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -77,8 +85,7 @@ export default function EditProductModal({ product, onClose, onSaved }: Props) {
         <div>
           <label className="text-sm opacity-70">{t("code")}</label>
           <input
-            className="w-full rounded-xl border px-3 py-2 bg-transparent
-                       border-black/20 dark:border-white/20"
+            className={inputClass}
             value={code}
             onChange={(e) => setCode(e.target.value)}
           />
@@ -89,8 +96,7 @@ export default function EditProductModal({ product, onClose, onSaved }: Props) {
           <label className="text-sm opacity-70">{t("price")} *</label>
           <input
             type="number"
-            className="w-full rounded-xl border px-3 py-2 bg-transparent
-                       border-black/20 dark:border-white/20"
+            className={inputClass}
             value={unitPrice}
             onChange={(e) => setUnitPrice(e.target.value)}
           />
@@ -101,8 +107,8 @@ export default function EditProductModal({ product, onClose, onSaved }: Props) {
           <label className="text-sm opacity-70">{t("vat")}</label>
           <input
             type="number"
-            className="w-full rounded-xl border px-3 py-2 bg-transparent
-                       border-black/20 dark:border-white/20"
+            placeholder={`${t("vat")} (%)`}
+            className={inputClass}
             value={vatRate}
             onChange={(e) => setVatRate(e.target.value)}
           />
@@ -113,16 +119,25 @@ export default function EditProductModal({ product, onClose, onSaved }: Props) {
         <div className="flex justify-end gap-2 pt-2">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-xl border border-black/20 dark:border-white/20"
+            className="
+              px-4 py-2 rounded-xl
+              border border-black/30 dark:border-white/30
+              bg-white text-black
+              dark:bg-neutral-900 dark:text-white
+            "
           >
-            Cancel
+            {t("cancel")}
           </button>
 
           <button
             onClick={save}
             disabled={saving}
-            className="px-4 py-2 rounded-xl bg-black text-white
-                       dark:bg-white dark:text-black disabled:opacity-50"
+            className="
+              px-4 py-2 rounded-xl
+              bg-black text-white
+              dark:bg-white dark:text-black
+              disabled:opacity-50
+            "
           >
             {saving ? "…" : t("edit")}
           </button>

@@ -1,71 +1,179 @@
 {
   "nav": {
     "features": "Fonctionnalités",
+    "compliance": "Conformité 2026",
     "how": "Comment ça marche",
     "pricing": "Tarifs",
     "login": "Connexion",
     "signup": "Créer un compte"
   },
   "hero": {
-    "title": "Comptabilité moderne, simple et sécurisée",
-    "subtitle": "Factures, dépenses, rapports et collaboration avec votre comptable — au même endroit.",
+    "badge": "Belgique • Peppol • EN 16931 • Prêt pour 2026",
+    "title": "Facturation électronique – Belgique (Conformité 2026)",
+    "subtitle": "Transformez l’obligation légale en avantage: factures B2B structurées, envoi via Peppol, automatisation complète et visibilité financière en temps réel.",
     "ctaPrimary": "Commencer",
-    "ctaSecondary": "Voir la démo"
+    "ctaSecondary": "Voir la conformité",
+    "highlights": {
+      "h1": {
+        "title": "Prêt Peppol",
+        "desc": "Connexion Access Point et statuts clairs."
+      },
+      "h2": {
+        "title": "EN 16931",
+        "desc": "Standard structuré imposé (UBL / Peppol BIS)."
+      },
+      "h3": {
+        "title": "Archivage légal",
+        "desc": "Rétention, audit et sécurité entreprise."
+      }
+    }
   },
   "sections": {
-    "featuresTitle": "Tout ce dont vous avez besoin, sur une seule plateforme",
-    "howTitle": "Comment ça marche",
-    "ctaTitle": "Prêt à commencer ?"
+    "featuresTitle": "Automatisation + conformité, sur une seule plateforme",
+    "featuresSubtitle": "Conçue pour PME et indépendants: rapide, sûre, compatible UE.",
+    "howTitle": "Onboarding en 3 étapes",
+    "howSubtitle": "Compte → entreprise → Peppol → facturation conforme.",
+    "ctaTitle": "Prêt pour 2026 ?"
   },
-  "features": {
-    "items": [
+  "compliance": {
+    "title": "Conformité 2026, clairement expliquée",
+    "subtitle": "La facturation électronique B2B devient obligatoire en Belgique. Les PDF non conformes disparaissent. EN 16931 + Peppol devient la norme.",
+    "cta": "Voir les tarifs",
+    "blocks": [
       {
-        "title": "Factures & Avoirs",
-        "desc": "Émission, numérotation automatique, PDF, paiements, avoirs (notes de crédit)."
+        "title": "Contexte législatif",
+        "items": [
+          "La facturation électronique B2B devient obligatoire.",
+          "Format structuré EN 16931 imposé.",
+          "Transmission via le réseau Peppol.",
+          "Suppression progressive des PDF non conformes."
+        ]
       },
       {
-        "title": "Achats",
-        "desc": "Import factures fournisseurs, scan, email, validation par le comptable."
+        "title": "Architecture technique",
+        "items": [
+          "Application cloud sécurisée.",
+          "Connexion directe à un Access Point Peppol.",
+          "Formats: UBL et Peppol BIS.",
+          "Interopérabilité européenne garantie."
+        ]
       },
       {
-        "title": "Répertoire",
-        "desc": "Clients, produits/services, TVA par produit, historique."
-      },
-      {
-        "title": "Collaboration comptable",
-        "desc": "Flux de documents, commentaires, validation/refus, export."
-      },
-      {
-        "title": "Rapports",
-        "desc": "Ventes, TVA, statut paiements, export CSV/PDF (MVP)."
-      },
-      {
-        "title": "Sécurité",
-        "desc": "Rôles Marchand, permissions, audit (phase)."
+        "title": "Sécurité & archivage",
+        "items": [
+          "Accès sécurisé et protection des données.",
+          "Archivage légal des documents.",
+          "Traçabilité complète et audit.",
+          "Aligné EN 16931 et Peppol."
+        ]
       }
     ]
   },
-  "cta": {
-    "subtitle": "Commencez par la landing + l’auth, puis le dashboard Marchand."
+  "features": {
+    "footerHint": "Conçu pour la conformité • Pensé pour la vitesse",
+    "items": [
+      {
+        "title": "Onboarding intelligent",
+        "desc": "Compte, BCE/TVA, validation automatique et activation Peppol."
+      },
+      {
+        "title": "Gestion clients",
+        "desc": "Base clients centralisée, détection Peppol, historique, recherche & filtres."
+      },
+      {
+        "title": "Factures de vente",
+        "desc": "TVA & totaux automatiques, sortie EN 16931, envoi sécurisé via Peppol."
+      },
+      {
+        "title": "Notes de crédit",
+        "desc": "Depuis la facture d’origine, annulation partielle/totale, références légales."
+      },
+      {
+        "title": "PDF + structuré",
+        "desc": "PDF lisible + accès UBL/Peppol BIS pour conformité."
+      },
+      {
+        "title": "Suivi & statuts",
+        "desc": "Statuts clairs, traçabilité de bout en bout."
+      },
+      {
+        "title": "Tableau de bord",
+        "desc": "CA en temps réel, payées vs impayées, analyse par client."
+      },
+      {
+        "title": "Graphiques & analyses",
+        "desc": "Tendances, comparaisons, exports."
+      },
+      {
+        "title": "Archivage légal",
+        "desc": "Rétention, audit logs, contrôles d’accès, sécurité entreprise."
+      }
+    ]
   },
   "how": {
     "steps": [
       {
         "n": "01",
-        "title": "Créer un compte",
-        "desc": "Marchand ou Comptable. Configuration de l’entreprise et préférences."
+        "title": "Compte & entreprise",
+        "desc": "Ajoutez BCE/TVA; validation automatique des données."
       },
       {
         "n": "02",
-        "title": "Travailler au quotidien",
-        "desc": "Factures, clients, produits, dépenses, import de documents."
+        "title": "Activation Peppol",
+        "desc": "Connexion Access Point et vérification automatique des clients."
       },
       {
         "n": "03",
-        "title": "Validation du comptable",
-        "desc": "Commentaires, statuts, exports — tout est centralisé."
+        "title": "Émettre & suivre",
+        "desc": "Factures/notes structurées, statuts clairs, dashboard en temps réel."
       }
     ]
+  },
+  "pricing": {
+    "title": "Tarifs",
+    "subtitle": "Choisissez le plan adapté à votre volume. Upgrade à tout moment.",
+    "note": "Tarifs indicatifs • HT",
+    "cta": "Créer un compte",
+    "tiers": [
+      {
+        "name": "Starter",
+        "price": "€19 / mois",
+        "desc": "Pour indépendants.",
+        "features": [
+          "Peppol + EN 16931",
+          "Factures & notes de crédit",
+          "Dashboard basique",
+          "Archivage standard"
+        ]
+      },
+      {
+        "name": "Business",
+        "price": "€49 / mois",
+        "badge": "Recommandé",
+        "desc": "Pour PME.",
+        "features": [
+          "Tout Starter",
+          "Automatisation + statuts avancés",
+          "Exports & rapports",
+          "Support prioritaire"
+        ]
+      },
+      {
+        "name": "Enterprise",
+        "price": "Sur devis",
+        "desc": "Intégrations et besoins spécifiques.",
+        "features": [
+          "SLA",
+          "Contrôles avancés",
+          "Audit & rétention étendue",
+          "Intégration dédiée"
+        ]
+      }
+    ]
+  },
+  "cta": {
+    "subtitle": "Soyez conforme à l’avance et facturez modernement en Belgique.",
+    "secondary": "Voir les tarifs"
   },
   "footer": {
     "rgpd": "RGPD",
@@ -195,6 +303,131 @@
       "kpiIssuedInvoices": "Factures émises",
       "kpiToValidate": "À valider"
     },
+    "invoicesNew": {
+      "title": "Créer une facture",
+      "subtitleIssueNow": "Prochain numéro : {no}",
+      "subtitleDraft": "Brouillon (pas de numéro)",
+      "subtitleLastIssued": "Dernière date d’émission : {date}",
+
+      "errorLoad": "Impossible de charger les clients/produits.",
+      "importClient": "Importer un client (JSON)",
+      "importClientError": "Fichier JSON client invalide. Utilisez : { name, email, tax_id, address }",
+
+      "client": "Client",
+      "existing": "Existant",
+      "new": "Nouveau",
+      "selectClient": "Sélectionner un client",
+      "choose": "— Choisir —",
+      "autoFillHint": "La sélection d’un client remplit automatiquement les champs.",
+
+      "clientName": "Nom du client",
+      "clientEmail": "Email du client",
+      "taxId": "N° TVA",
+      "address": "Adresse",
+
+      "settings": "Paramètres de facture",
+      "issueDate": "Date d’émission",
+      "dueDate": "Échéance",
+      "language": "Langue",
+      "currency": "Devise",
+      "currencyHint": "EUR uniquement",
+      "mustBeAfterLastIssued": "Doit être ≥ à la dernière date émise : {date}",
+
+      "communication": "Communication",
+      "simple": "Simple",
+      "structured": "Structurée",
+      "structuredPlaceholder": "Optionnel. Si vide, généré automatiquement.",
+
+      "template": "Modèle de facture",
+      "templateHint": "3 modèles PDF",
+      "templateClassic": "Classique",
+      "templateModern": "Moderne",
+      "templateMinimal": "Minimal",
+
+      "discount": "Remise (%)",
+      "advancePaid": "Acompte",
+      "issueNow": "Émettre maintenant (attribuer un numéro)",
+
+      "linesTitle": "Lignes de facture",
+      "linesHint": "N° article + produit/service + prix + qté + TVA + total.",
+      "addLine": "Ajouter une ligne",
+
+      "colProduct": "Produit",
+      "colArticleNo": "N° article",
+      "colDescription": "Description",
+      "colValueExclVat": "Valeur (HT)",
+      "colQty": "Qté",
+      "colVat": "TVA (%)",
+      "colTotalInclVat": "Total (TTC)",
+      "colActions": "Actions",
+
+      "manual": "— manuel —",
+      "productOrService": "Produit / service",
+      "ttc": "TTC",
+      "remove": "Supprimer",
+
+      "totalsTitle": "Totaux de facture",
+      "totalExclVat": "Total HT",
+      "discountAmount": "Remise",
+      "totalVat": "Total TVA",
+      "totalInclVat": "Total TTC",
+      "advancePaidLabel": "Acompte",
+      "totalDue": "À payer",
+
+      "save": "Enregistrer la facture",
+      "saving": "Enregistrement..."
+    },
+    "creditNotesNew": {
+      "title": "Créer une note de crédit",
+      "subtitleIssueNow": "Prochain numéro : {no}",
+      "subtitleDraft": "Brouillon (sans numéro)",
+      "subtitleLastIssued": "Dernière date d’émission : {date}",
+
+      "errorLoadClients": "Impossible de charger les clients.",
+      "errorLoadInvoices": "Impossible de charger les factures pour ce client.",
+      "errorLoadInvoiceDetails": "Impossible de charger les détails de la facture.",
+      "errorCreate": "Impossible de créer la note de crédit.",
+
+      "client": "Client",
+      "chooseClient": "— Choisir un client —",
+      "clientHint": "Sélectionnez un client pour voir les factures émises.",
+
+      "invoiceToCredit": "Facture à créditer",
+      "chooseInvoice": "— Choisir une facture —",
+      "invoiceHint": "Seules les factures émises sont affichées.",
+
+      "issueDate": "Date de la note de crédit",
+      "language": "Langue",
+      "languageHint": "Par défaut : FR",
+
+      "template": "Modèle",
+      "templateClassic": "Classique",
+      "templateModern": "Moderne",
+      "templateMinimal": "Minimal",
+
+      "communication": "Communication",
+      "simple": "Simple",
+      "structured": "Structurée",
+      "structuredPlaceholder": "Optionnel. Si vide, généré automatiquement.",
+
+      "issueNow": "Émettre maintenant (attribuer un numéro)",
+
+      "previewTitle": "Aperçu (sera créditée)",
+      "previewEmpty": "Sélectionnez une facture pour voir les détails.",
+      "previewInvoice": "Facture",
+      "previewClient": "Client",
+      "previewTotals": "Total (facture)",
+      "previewHint": "La note de crédit sera générée avec des lignes et des totaux négatifs.",
+
+      "colCode": "Code",
+      "colDescription": "Description",
+      "colQty": "Qté",
+      "colVat": "TVA (%)",
+      "colLineTotal": "Total ligne",
+
+      "save": "Créer une note de crédit",
+      "saving": "Enregistrement..."
+    },
     "merchantSettings": {
       "title": "Paramètres de l’entreprise",
       "subtitle": "Personnalisez les informations de l’entreprise et le logo sur la facture.",
@@ -272,6 +505,70 @@
       "actions": "Actions",
       "codePlaceholder": "Code",
       "descriptionPlaceholder": "Ex : Services de conseil"
+    },
+    "merchantHome": {
+      "title": "Aperçu",
+      "subtitle": "Résumé rapide + vos dernières factures émises.",
+      "errorLoad": "Impossible de charger les données.",
+      "ctaCreateInvoice": "Créer une facture",
+      "ctaCreateCreditNote": "Créer une note de crédit",
+      "ctaClients": "Clients",
+      "kpiClients": "Clients",
+      "kpiClientsHint": "Nombre total de clients dans votre base",
+      "kpiIssuedInvoices": "Factures émises",
+      "kpiIssuedInvoicesHint": "Toutes les factures hors brouillon",
+      "kpiUnpaid": "Impayées",
+      "kpiUnpaidHint": "Factures émises encore impayées",
+      "recentTitle": "Factures récentes",
+      "recentSubtitle": "Cliquez sur une facture pour la voir en ligne.",
+      "viewAll": "Voir tout",
+      "loading": "Chargement...",
+      "empty": "Aucune facture pour le moment.",
+      "colNo": "N° facture",
+      "colClient": "Nom client",
+      "colIssueDate": "Date d’émission",
+      "colTotal": "Total (TTC)",
+      "colPaid": "Payée",
+      "colAdvance": "Acompte versé",
+      "colDueDate": "Échéance",
+      "colStatus": "Statut",
+      "colNotes": "Remarques",
+      "colActions": "Actions",
+      "paid": "Oui",
+      "unpaid": "Non",
+      "statusPaid": "Payée",
+      "statusUnpaid": "Impayée",
+      "statusDraft": "Brouillon",
+      "statusVoid": "Annulée",
+      "view": "Voir"
+    },
+    "invoiceView": {
+      "title": "Facture (en ligne)",
+      "subtitle": "Détails + téléchargement PDF.",
+      "loading": "Chargement...",
+      "errorLoad": "Impossible de charger la facture.",
+      "notFound": "Facture introuvable.",
+      "back": "Retour",
+      "downloadPdf": "Télécharger le PDF",
+      "invoiceNo": "Numéro de facture",
+      "status": "Statut",
+      "client": "Client",
+      "issueDate": "Date d’émission",
+      "dueDate": "Échéance",
+      "subtotal": "Sous-total (HT)",
+      "vatTotal": "Total TVA",
+      "total": "Total (TTC)",
+      "advance": "Acompte versé",
+      "due": "Reste à payer",
+      "language": "Langue",
+      "notes": "Remarques",
+      "linesTitle": "Lignes de facture",
+      "linesMissingHint": "Les lignes ne sont pas encore disponibles (activez items sur /invoices/{id}).",
+      "colCode": "N° article",
+      "colDesc": "Produit/service",
+      "colQty": "Quantité",
+      "colVat": "TVA",
+      "colTotal": "Total (TTC)"
     }
   },
   "legal": {
@@ -347,6 +644,16 @@
     "empty": "Aucun produit.",
     "cancel": "Annuler",
     "save": "Enregistrer",
-    "errorSave": "Erreur lors de l’enregistrement"
+    "errorSave": "Erreur lors de l’enregistrement",
+    "importCsv": "Importer CSV",
+    "csvChoose": "Choisir un fichier CSV",
+    "csvUpload": "Téléverser",
+    "csvResult": "Résultat d’import",
+    "csvDownloadTemplate": "Télécharger le modèle CSV",
+    "csvTemplateHint": "Télécharge un modèle compatible Excel pour le remplir rapidement.",
+    "csvCreated": "Créés",
+    "csvUpdated": "Mis à jour",
+    "csvFailed": "Échoués",
+    "csvRow": "Ligne"
   }
 }

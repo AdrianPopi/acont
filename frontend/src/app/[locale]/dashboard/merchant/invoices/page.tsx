@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import DashboardShell from "@/components/dashboard/DashboardShell";
+import { useMerchantNav } from "../../_components/merchantNav";
 
 type InvoiceRow = {
   id: number;
@@ -17,37 +18,11 @@ type InvoiceRow = {
 };
 
 export default function MerchantInvoicesPage() {
-  const locale = useLocale();
-  const t = useTranslations("dashboard");
+  const locale = useLocale(); // îl păstrăm pentru link-ul către /new
+  //const t = useTranslations("dashboard");
   const ti = useTranslations("dashboard.invoices");
 
-  const nav = [
-    { href: `/${locale}/dashboard/merchant`, label: t("merchant.overview") },
-    {
-      href: `/${locale}/dashboard/merchant/invoices`,
-      label: t("merchant.invoices"),
-    },
-    {
-      href: `/${locale}/dashboard/merchant/clients`,
-      label: t("merchant.clients"),
-    },
-    {
-      href: `/${locale}/dashboard/merchant/products`,
-      label: t("merchant.products"),
-    },
-    {
-      href: `/${locale}/dashboard/merchant/deviz`,
-      label: t("merchant.deviz"),
-    },
-    {
-      href: `/${locale}/dashboard/merchant/reports`,
-      label: t("merchant.reports"),
-    },
-    {
-      href: `/${locale}/dashboard/merchant/settings`,
-      label: t("merchant.settings"),
-    },
-  ];
+  const nav = useMerchantNav();
 
   const [rows, setRows] = useState<InvoiceRow[]>([]);
   const [loading, setLoading] = useState(true);

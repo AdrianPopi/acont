@@ -1,72 +1,181 @@
 {
   "nav": {
     "features": "Funcționalități",
+    "compliance": "Conformitate 2026",
     "how": "Cum funcționează",
     "pricing": "Abonamente",
     "login": "Conectare",
     "signup": "Creare cont"
   },
   "hero": {
-    "title": "Contabilitate modernă, simplă și sigură",
-    "subtitle": "Facturi, cheltuieli, rapoarte și colaborare cu contabilul — într-un singur loc.",
+    "badge": "Belgia • Peppol • EN 16931 • Pregătit pentru 2026",
+    "title": "Aplicație de facturare electronică pentru Belgia (Conformitate 2026)",
+    "subtitle": "Transformă obligația legală într-un avantaj competitiv: facturi B2B structurate, transmitere Peppol, automatizare completă și vizibilitate financiară în timp real.",
     "ctaPrimary": "Începe acum",
-    "ctaSecondary": "Vezi demo"
+    "ctaSecondary": "Vezi conformitatea",
+    "highlights": {
+      "h1": {
+        "title": "Peppol-ready",
+        "desc": "Conectare directă la Access Point și statusuri clare."
+      },
+      "h2": {
+        "title": "EN 16931",
+        "desc": "Format structurat impus (UBL / Peppol BIS)."
+      },
+      "h3": {
+        "title": "Arhivare legală",
+        "desc": "Retenție, audit și securitate enterprise."
+      }
+    }
   },
   "sections": {
-    "featuresTitle": "Tot ce ai nevoie, într-o platformă",
-    "howTitle": "Cum funcționează",
-    "ctaTitle": "Gata să începi?"
+    "featuresTitle": "Automatizare + conformitate, într-o singură platformă",
+    "featuresSubtitle": "Pentru IMM-uri și independenți: rapid, sigur, și compatibil UE.",
+    "howTitle": "Onboarding în 3 pași",
+    "howSubtitle": "Cont → companie → Peppol → facturare la standard european.",
+    "ctaTitle": "Gata să fii conform pentru 2026?"
   },
-  "features": {
-    "items": [
+  "compliance": {
+    "title": "Conformitate 2026, explicată clar",
+    "subtitle": "Facturarea electronică B2B devine obligatorie în Belgia. PDF-urile neconforme dispar. Standardul EN 16931 și transmiterea prin Peppol devin regulă.",
+    "cta": "Vezi abonamentele",
+    "blocks": [
       {
-        "title": "Facturi & Creditare",
-        "desc": "Emitere, numerotare automată, PDF, plăți, storno (credit note)."
+        "title": "Context legislativ",
+        "items": [
+          "Facturarea electronică B2B devine obligatorie.",
+          "Format structurat EN 16931 (UE) este impus.",
+          "Transmiterea se face prin rețeaua Peppol.",
+          "Facturile PDF neconforme sunt eliminate."
+        ]
       },
       {
-        "title": "Achiziții",
-        "desc": "Upload facturi furnizori, scan, email, validare contabil."
+        "title": "Arhitectură tehnică",
+        "items": [
+          "Aplicație cloud securizată.",
+          "Conectare directă la un Access Point Peppol.",
+          "Formate acceptate: UBL și Peppol BIS.",
+          "Interoperabilitate europeană garantată."
+        ]
       },
       {
-        "title": "Nomenclator",
-        "desc": "Clienți, produse/servicii, TVA per produs, istoric."
-      },
-      {
-        "title": "Colaborare contabil",
-        "desc": "Flux documente, comentarii, aprobare/respinge, export."
-      },
-      {
-        "title": "Rapoarte",
-        "desc": "Vânzări, TVA, status plăți, export CSV/PDF (MVP)."
-      },
-      {
-        "title": "Securitate",
-        "desc": "Roluri Merchant, permisiuni, audit (phase)."
+        "title": "Securitate & arhivare",
+        "items": [
+          "Protecția datelor și acces securizat.",
+          "Arhivare legală a documentelor.",
+          "Trasabilitate completă și audit.",
+          "Conformitate cu EN 16931 și Peppol."
+        ]
       }
     ]
   },
-  "cta": {
-    "subtitle": "Începe cu landing + auth, apoi dashboard Merchant."
+  "features": {
+    "footerHint": "Built for compliance • Designed for speed",
+    "items": [
+      {
+        "title": "Onboarding inteligent",
+        "desc": "Creare cont, date companie (BCE/TVA), validare automată și activare Peppol."
+      },
+      {
+        "title": "Clienți centralizați",
+        "desc": "Bază de date clienți, detectare statut Peppol, istoric complet și filtre avansate."
+      },
+      {
+        "title": "Facturi de vânzare",
+        "desc": "TVA + totaluri automat, generare structurată (EN 16931) și trimitere Peppol."
+      },
+      {
+        "title": "Note de credit",
+        "desc": "Credit note din factura inițială, anulare totală/parțială și referințe legale automate."
+      },
+      {
+        "title": "PDF + fișier structurat",
+        "desc": "Vizualizare PDF pentru oameni + acces la UBL/Peppol BIS pentru conformitate."
+      },
+      {
+        "title": "Status & trasabilitate",
+        "desc": "Statusuri clare, urmărire completă și evidență pentru audit."
+      },
+      {
+        "title": "Dashboard financiar",
+        "desc": "Cifră de afaceri în timp real, plătite vs neplătite, analiză pe client."
+      },
+      {
+        "title": "Grafice & analize",
+        "desc": "Evoluție, comparații lunare/anuale, detectare tendințe și export."
+      },
+      {
+        "title": "Arhivare legală",
+        "desc": "Retenție, audit logs, controale de acces și securitate enterprise."
+      }
+    ]
   },
   "how": {
     "steps": [
       {
         "n": "01",
-        "title": "Creezi cont",
-        "desc": "Merchant. Setup firmă și preferințe."
+        "title": "Creezi cont & companie",
+        "desc": "Introduci BCE/TVA, iar platforma validează automat datele."
       },
       {
         "n": "02",
-        "title": "Lucrezi zilnic",
-        "desc": "Facturi, clienți, produse, cheltuieli, upload documente."
+        "title": "Activezi Peppol",
+        "desc": "Conectare la Access Point și verificare automată a clienților."
       },
       {
         "n": "03",
-        "title": "Contabilul validează",
-        "desc": "Comentarii, status, export — totul centralizat."
+        "title": "Emiți și urmărești",
+        "desc": "Facturi/credit notes structurate, statusuri clare și dashboard în timp real."
       }
     ]
   },
+  "pricing": {
+    "title": "Abonamente",
+    "subtitle": "Alege planul potrivit pentru ritmul tău de facturare. Upgrade oricând.",
+    "note": "Prețuri orientative • TVA exclus",
+    "cta": "Creează cont",
+    "tiers": [
+      {
+        "name": "Starter",
+        "price": "€19 / lună",
+        "desc": "Pentru independenți la început.",
+        "features": [
+          "Peppol + EN 16931",
+          "Facturi & note de credit",
+          "Dashboard de bază",
+          "Arhivare standard"
+        ]
+      },
+      {
+        "name": "Business",
+        "price": "€49 / lună",
+        "badge": "Recomandat",
+        "desc": "Pentru IMM-uri cu volum constant.",
+        "features": [
+          "Tot din Starter",
+          "Automatizări + statusuri avansate",
+          "Exporturi și rapoarte",
+          "Suport prioritar"
+        ]
+      },
+      {
+        "name": "Enterprise",
+        "price": "Custom",
+        "desc": "Pentru integrare și cerințe speciale.",
+        "features": [
+          "SLA",
+          "Controale avansate",
+          "Audit & retenție extinsă",
+          "Integrare dedicată"
+        ]
+      }
+    ]
+  },
+  "cta": {
+    "subtitle": "Fii conform din timp și facturează modern în Belgia.",
+    "secondary": "Vezi abonamente"
+  },
+
   "footer": {
     "rgpd": "RGPD",
     "terms": "Termeni",
@@ -194,6 +303,159 @@
       "kpiClients": "Clienți",
       "kpiIssuedInvoices": "Facturi emise",
       "kpiToValidate": "De validat"
+    },
+    "invoiceView": {
+      "title": "Factura online",
+      "subtitle": "Vizualizare detalii + descărcare PDF.",
+      "loading": "Se încarcă...",
+      "errorLoad": "Nu s-a putut încărca factura.",
+      "notFound": "Factura nu a fost găsită.",
+      "back": "Înapoi",
+      "downloadPdf": "Descarcă PDF",
+      "invoiceNo": "Număr factură",
+      "status": "Status",
+      "client": "Client",
+      "issueDate": "Data emiterii",
+      "dueDate": "Termen limită",
+      "subtotal": "Total fără TVA",
+      "vatTotal": "Total TVA",
+      "total": "Total cu TVA",
+      "advance": "Plătit în avans",
+      "due": "De plată",
+      "language": "Limbă",
+      "notes": "Observații",
+      "linesTitle": "Linii factură",
+      "linesMissingHint": "Liniile nu sunt disponibile încă (activează items în endpoint-ul /invoices/{id}).",
+      "colCode": "Nr articol",
+      "colDesc": "Denumire produs/serviciu",
+      "colQty": "Cantitate",
+      "colVat": "TVA",
+      "colTotal": "Total cu TVA"
+    },
+    "invoicesNew": {
+      "title": "Creează factură",
+      "subtitleIssueNow": "Următorul număr: {no}",
+      "subtitleDraft": "Ciornă (fără număr încă)",
+      "subtitleLastIssued": "Ultima dată emisă: {date}",
+
+      "errorLoad": "Nu s-au putut încărca clienții/produsele.",
+      "importClient": "Import client (JSON)",
+      "importClientError": "Fișier JSON invalid. Folosește: { name, email, tax_id, address }",
+
+      "client": "Client",
+      "existing": "Existent",
+      "new": "Nou",
+      "selectClient": "Selectează client",
+      "choose": "— Alege —",
+      "autoFillHint": "Selectarea clientului completează automat câmpurile.",
+
+      "clientName": "Nume client",
+      "clientEmail": "Email client",
+      "taxId": "CUI / TVA",
+      "address": "Adresă",
+
+      "settings": "Setări factură",
+      "issueDate": "Data emiterii",
+      "dueDate": "Termen limită",
+      "language": "Limbă",
+      "currency": "Monedă",
+      "currencyHint": "Doar EUR",
+      "mustBeAfterLastIssued": "Trebuie să fie ≥ ultima dată emisă: {date}",
+
+      "communication": "Comunicare",
+      "simple": "Simplă",
+      "structured": "Structurată",
+      "structuredPlaceholder": "Opțional. Dacă e gol, se generează automat.",
+
+      "template": "Template factură",
+      "templateHint": "3 template-uri PDF",
+      "templateClassic": "Clasic",
+      "templateModern": "Modern",
+      "templateMinimal": "Minimal",
+
+      "discount": "Discount (%)",
+      "advancePaid": "Plătit în avans",
+      "issueNow": "Emite acum (alocă număr)",
+
+      "linesTitle": "Linii factură",
+      "linesHint": "Nr articol + produs/serviciu + preț + cantitate + TVA + total.",
+      "addLine": "Adaugă linie",
+
+      "colProduct": "Produs",
+      "colArticleNo": "Nr articol",
+      "colDescription": "Descriere",
+      "colValueExclVat": "Valoare (fără TVA)",
+      "colQty": "Cantitate",
+      "colVat": "TVA (%)",
+      "colTotalInclVat": "Total (cu TVA)",
+      "colActions": "Acțiuni",
+
+      "manual": "— manual —",
+      "productOrService": "Produs / serviciu",
+      "ttc": "TTC",
+      "remove": "Șterge",
+
+      "totalsTitle": "Totaluri factură",
+      "totalExclVat": "Total fără TVA",
+      "discountAmount": "Discount",
+      "totalVat": "Total TVA",
+      "totalInclVat": "Total cu TVA",
+      "advancePaidLabel": "Plătit în avans",
+      "totalDue": "De plată",
+
+      "save": "Salvează factura",
+      "saving": "Se salvează..."
+    },
+    "creditNotesNew": {
+      "title": "Creează notă de credit",
+      "subtitleIssueNow": "Următorul număr: {no}",
+      "subtitleDraft": "Ciornă (fără număr încă)",
+      "subtitleLastIssued": "Ultima dată emisă: {date}",
+
+      "errorLoadClients": "Nu s-au putut încărca clienții.",
+      "errorLoadInvoices": "Nu s-au putut încărca facturile pentru client.",
+      "errorLoadInvoiceDetails": "Nu s-au putut încărca detaliile facturii.",
+      "errorCreate": "Nu s-a putut crea nota de credit.",
+
+      "client": "Client",
+      "chooseClient": "— Alege client —",
+      "clientHint": "Selectează un client ca să vezi facturile emise.",
+
+      "invoiceToCredit": "Factura de creditat",
+      "chooseInvoice": "— Alege factura —",
+      "invoiceHint": "Sunt afișate doar facturile emise.",
+
+      "issueDate": "Data notei de credit",
+      "language": "Limbă",
+      "languageHint": "Implicit: FR",
+
+      "template": "Template",
+      "templateClassic": "Clasic",
+      "templateModern": "Modern",
+      "templateMinimal": "Minimal",
+
+      "communication": "Comunicare",
+      "simple": "Simplă",
+      "structured": "Structurată",
+      "structuredPlaceholder": "Opțional. Dacă e gol, se generează automat.",
+
+      "issueNow": "Emite acum (alocă număr)",
+
+      "previewTitle": "Previzualizare (va fi creditată)",
+      "previewEmpty": "Selectează o factură ca să vezi detalii.",
+      "previewInvoice": "Factura",
+      "previewClient": "Client",
+      "previewTotals": "Total (factură)",
+      "previewHint": "Nota de credit se generează cu linii și totaluri negative.",
+
+      "colCode": "Cod",
+      "colDescription": "Descriere",
+      "colQty": "Cantitate",
+      "colVat": "TVA (%)",
+      "colLineTotal": "Total linie",
+
+      "save": "Creează notă de credit",
+      "saving": "Se salvează..."
     },
     "merchantSettings": {
       "title": "Setări firmă",
@@ -348,6 +610,16 @@
     "empty": "Nu există produse.",
     "cancel": "Anulează",
     "save": "Salvează",
-    "errorSave": "Eroare la salvare"
+    "errorSave": "Eroare la salvare",
+    "importCsv": "Import CSV",
+    "csvChoose": "Alege un fișier CSV",
+    "csvUpload": "Încarcă",
+    "csvResult": "Rezultat import",
+    "csvDownloadTemplate": "Descarcă template CSV",
+    "csvTemplateHint": "Descarci un CSV-model (compatibil Excel) ca să completezi rapid.",
+    "csvCreated": "Create",
+    "csvUpdated": "Actualizate",
+    "csvFailed": "Eșuate",
+    "csvRow": "Rând"
   }
 }

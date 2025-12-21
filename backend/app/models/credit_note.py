@@ -11,15 +11,14 @@ from sqlalchemy.sql import func
 from app.db.base import Base
 
 
-class InvoiceStatus(str, enum.Enum):
+class CreditNoteStatus(str, enum.Enum):
     draft = "draft"
     issued = "issued"
-    paid = "paid"
     void = "void"
 
 
-class Invoice(Base):
-    __tablename__ = "invoices"
+class CreditNote(Base):
+    __tablename__ = "credit_notes"
 
     id: Mapped[int] = mapped_column(primary_key=True)
 
@@ -28,48 +27,45 @@ class Invoice(Base):
         nullable=False, index=True
     )
 
-    # ✅ client existent (optional)
+    # ✅ referință către factura creditată
+    invoice_id: Mapped[int] = mapped_column(
+        Integer, ForeignKey("invoices.id", ondelete="RESTRICT"),
+        nullable=False, index=True
+    )
+
+    # ✅ client (copiat pentru PDF, plus client_id dacă vrei filtrare)
     client_id: Mapped[int | None] = mapped_column(
         Integer, ForeignKey("clients.id", ondelete="SET NULL"),
         nullable=True, index=True
     )
 
-    status: Mapped[InvoiceStatus] = mapped_column(
-        Enum(InvoiceStatus, name="invoice_status"),
+    status: Mapped[CreditNoteStatus] = mapped_column(
+        Enum(CreditNoteStatus, name="credit_note_status"),
         nullable=False,
-        default=InvoiceStatus.draft,
+        default=CreditNoteStatus.draft,
         index=True,
     )
 
     # numbering (set only on issue)
-    series: Mapped[str] = mapped_column(String(16), nullable=False, default="INV")
+    series: Mapped[str] = mapped_column(String(16), nullable=False, default="CN")
     year: Mapped[int] = mapped_column(Integer, nullable=False, index=True, default=0)
     number: Mapped[int | None] = mapped_column(Integer, nullable=True)
-
-    # ✅ cerință: număr anual în ordine: 000001..000100
-    invoice_no: Mapped[str] = mapped_column(String(64), nullable=False, default="", index=True)
+    credit_note_no: Mapped[str] = mapped_column(String(64), nullable=False, default="", index=True)
 
     issue_date: Mapped[date] = mapped_column(Date, nullable=False)
-    due_date: Mapped[date | None] = mapped_column(Date, nullable=True)
 
-    # ✅ FR/EN/NL, default FR
     language: Mapped[str] = mapped_column(String(8), nullable=False, default="FR")
     currency: Mapped[str] = mapped_column(String(8), nullable=False, default="EUR")
 
-    # ✅ comunicare simplă / structurată
     communication_mode: Mapped[str] = mapped_column(String(16), nullable=False, default="simple")
     communication_reference: Mapped[str] = mapped_column(String(64), nullable=False, default="")
 
-    # ✅ 3 șabloane PDF: classic / modern / minimal
     template: Mapped[str] = mapped_column(String(16), nullable=False, default="classic")
 
     client_name: Mapped[str] = mapped_column(String(256), nullable=False, default="")
     client_email: Mapped[str] = mapped_column(String(256), nullable=False, default="")
     client_tax_id: Mapped[str] = mapped_column(String(64), nullable=False, default="")
     client_address: Mapped[str] = mapped_column(String(512), nullable=False, default="")
-
-    discount_percent: Mapped[float] = mapped_column(Numeric(6, 2), nullable=False, default=0)
-    advance_paid: Mapped[float] = mapped_column(Numeric(12, 2), nullable=False, default=0)
 
     subtotal_net: Mapped[float] = mapped_column(Numeric(12, 2), nullable=False, default=0)
     vat_total: Mapped[float] = mapped_column(Numeric(12, 2), nullable=False, default=0)
@@ -78,13 +74,12 @@ class Invoice(Base):
     notes: Mapped[str] = mapped_column(String(1024), nullable=False, default="")
 
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
-    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
     issued_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
-    items = relationship("InvoiceItem", back_populates="invoice", cascade="all, delete-orphan")
+    items = relationship("CreditNoteItem", back_populates="credit_note", cascade="all, delete-orphan")
 
     __table_args__ = (
-        Index("ix_invoices_merchant_status", "merchant_id", "status"),
-        Index("ix_invoices_merchant_issue_date", "merchant_id", "issue_date"),
-        Index("ix_invoices_merchant_year_number", "merchant_id", "year", "number"),
+        Index("ix_credit_notes_merchant_status", "merchant_id", "status"),
+        Index("ix_credit_notes_merchant_issue_date", "merchant_id", "issue_date"),
+        Index("ix_credit_notes_merchant_year_number", "merchant_id", "year", "number"),
     )

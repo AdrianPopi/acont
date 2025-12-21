@@ -7,6 +7,7 @@ from app.api.routes.invoices import router as invoices_router
 from app.api.routes.merchant_logo import router as merchant_logo_router
 from app.api.routes.clients import router as clients_router  # ✅
 from app.api.routes.products import router as products_router 
+from app.api.routes.credit_notes import router as credit_notes_router
 
 api_router = APIRouter()
 
@@ -17,3 +18,4 @@ api_router.include_router(invoices_router)
 api_router.include_router(merchant_logo_router)
 api_router.include_router(clients_router)  # ✅
 api_router.include_router(products_router) 
+api_router.include_router(credit_notes_router)
