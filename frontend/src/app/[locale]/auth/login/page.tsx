@@ -34,11 +34,7 @@ export default function LoginPage() {
     let mounted = true;
 
     (async () => {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) {
-        if (mounted) setChecking(false);
-        return;
-      }
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       try {
         const res = await fetch(`${base}/auth/me`, {
@@ -80,8 +76,7 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const res = await fetch(`${base}/auth/login`, {
         method: "POST",

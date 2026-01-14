@@ -1,7 +1,7 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL;
+// Use /api proxy in production (empty NEXT_PUBLIC_API_URL), or direct URL for local dev
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 function requireApiBase() {
-  if (!API_BASE) throw new Error("NEXT_PUBLIC_API_URL is missing");
   return API_BASE;
 }
 
