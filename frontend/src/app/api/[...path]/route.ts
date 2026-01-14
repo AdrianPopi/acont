@@ -19,6 +19,35 @@ function rewriteSetCookie(cookie: string): string {
   );
 }
 
+/**
+ * Extract all Set-Cookie headers from a Response.
+ * Uses multiple methods for compatibility across environments.
+ */
+function extractSetCookieHeaders(res: Response): string[] {
+  const cookies: string[] = [];
+
+  // Method 1: getSetCookie() (modern browsers/Node 18+)
+  if (typeof res.headers.getSetCookie === "function") {
+    const fromMethod = res.headers.getSetCookie();
+    if (fromMethod && fromMethod.length > 0) {
+      cookies.push(...fromMethod);
+    }
+  }
+
+  // Method 2: Fallback - get raw header (may be comma-joined)
+  if (cookies.length === 0) {
+    const raw = res.headers.get("set-cookie");
+    if (raw) {
+      // Split carefully - cookies can contain commas in dates
+      // Pattern: split on comma followed by space and cookie name=
+      const parts = raw.split(/,(?=\s*[^=;]+=[^;]*)/);
+      cookies.push(...parts.map((c) => c.trim()));
+    }
+  }
+
+  return cookies;
+}
+
 export async function handler(req: NextRequest) {
   const path = req.nextUrl.pathname.replace(/^\/api/, "");
   const url = `${BACKEND_URL}${path}${req.nextUrl.search}`;
@@ -82,9 +111,14 @@ export async function handler(req: NextRequest) {
     });
 
     // Forward and REWRITE Set-Cookie headers for first-party
-    const setCookies = backendRes.headers.getSetCookie?.() || [];
+    const setCookies = extractSetCookieHeaders(backendRes);
+    console.log(
+      `[API Proxy] ${req.method} ${path} -> ${backendRes.status}, cookies: ${setCookies.length}`
+    );
+
     for (const cookie of setCookies) {
       const rewritten = rewriteSetCookie(cookie);
+      console.log(`[API Proxy] Set-Cookie: ${rewritten.substring(0, 80)}...`);
       response.headers.append("set-cookie", rewritten);
     }
 
