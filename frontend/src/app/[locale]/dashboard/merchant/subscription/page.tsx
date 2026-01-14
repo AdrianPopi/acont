@@ -198,7 +198,7 @@ export default function SubscriptionPage() {
 
   if (loading) {
     return (
-      <DashboardShell nav={nav}>
+      <DashboardShell titleKey="merchant.title" nav={nav}>
         <div className="flex items-center justify-center h-64">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 dark:border-white"></div>
         </div>
@@ -207,7 +207,7 @@ export default function SubscriptionPage() {
   }
 
   return (
-    <DashboardShell nav={nav}>
+    <DashboardShell titleKey="merchant.title" nav={nav}>
       <div className="max-w-6xl mx-auto space-y-8">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">

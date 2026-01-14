@@ -30,10 +30,18 @@ export default async function LocaleLayout({
   const messages = (await import(`../../messages/${locale}.json`)).default;
 
   return (
-    <ThemeProvider>
-      <NextIntlClientProvider key={locale} locale={locale} messages={messages}>
-        {children}
-      </NextIntlClientProvider>
-    </ThemeProvider>
+    <html lang={locale} suppressHydrationWarning>
+      <body className="min-h-screen antialiased">
+        <ThemeProvider>
+          <NextIntlClientProvider
+            key={locale}
+            locale={locale}
+            messages={messages}
+          >
+            {children}
+          </NextIntlClientProvider>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }
