@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from app.db.session import get_db
 from app.core.security import decode_access_token
 from app.models.user import User, UserRole
+from app.models.merchant import Merchant
 
 bearer = HTTPBearer(auto_error=False)
 ACCESS_COOKIE = "acont_access"
@@ -32,6 +33,15 @@ def get_current_user(
     if not user or not user.is_active:
         raise HTTPException(status_code=401, detail="User not found")
     return user
+
+def get_current_merchant(
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+) -> Merchant:
+    merchant = db.query(Merchant).filter(Merchant.owner_user_id == user.id).first()
+    if not merchant:
+        raise HTTPException(status_code=404, detail="Merchant not found")
+    return merchant
 
 def require_role(*roles: UserRole):
     def _dep(user: User = Depends(get_current_user)) -> User:

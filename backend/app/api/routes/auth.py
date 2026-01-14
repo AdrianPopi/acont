@@ -11,7 +11,8 @@ from app.models.legal_document import LegalDocument
 from sqlalchemy import desc
 from sqlalchemy.dialects.postgresql import insert as pg_insert
 from fastapi import Request
-
+from pydantic import BaseModel
+import json
 
 
 from app.db.session import get_db
@@ -158,6 +159,8 @@ def me(user: User = Depends(get_current_user), db: Session = Depends(get_db)):
     return {
         "id": user.id,
         "email": user.email,
+        "first_name": user.first_name,
+        "last_name": user.last_name,
         "role": user.role.value,
         "is_active": user.is_active,
         "is_email_verified": user.is_email_verified,
@@ -249,7 +252,7 @@ def login(payload: LoginIn, response: Response, db: Session = Depends(get_db)):
         user_id=user.id,
         kind="refresh",
         token_hash=hash_token(refresh),
-        expires_at=datetime.now(timezone.utc) + timedelta(days=settings.REFRESH_TOKEN_DAYS),
+        expires_at=datetime.utcnow() + timedelta(days=settings.REFRESH_TOKEN_DAYS),
         revoked=False,
     ))
     db.commit()
@@ -274,7 +277,7 @@ def refresh(request: Request, response: Response, db: Session = Depends(get_db))
         Token.revoked == False,  # noqa
     ).first()
 
-    if not tok or tok.expires_at < datetime.now(timezone.utc):
+    if not tok or tok.expires_at < datetime.utcnow():
         raise HTTPException(401, "Invalid refresh token")
 
     user = db.query(User).filter(User.id == tok.user_id).first()
@@ -288,7 +291,7 @@ def refresh(request: Request, response: Response, db: Session = Depends(get_db))
         user_id=user.id,
         kind="refresh",
         token_hash=hash_token(new_refresh),
-        expires_at=datetime.now(timezone.utc) + timedelta(days=settings.REFRESH_TOKEN_DAYS),
+        expires_at=datetime.utcnow() + timedelta(days=settings.REFRESH_TOKEN_DAYS),
         revoked=False,
     ))
     db.commit()
@@ -316,3 +319,82 @@ def logout(request: Request, response: Response, db: Session = Depends(get_db)):
 
     _clear_cookies(response)
     return {"ok": True}
+
+
+# ==================== PASSWORD CHANGE ====================
+class PasswordChangeRequest(BaseModel):
+    current_password: str
+    new_password: str
+
+
+@router.post("/me/password")
+def change_password(
+    req: PasswordChangeRequest,
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Change user password"""
+    from app.core.security import verify_password, hash_password
+    
+    # Verify current password
+    if not verify_password(req.current_password, user.password_hash):
+        raise HTTPException(status_code=401, detail="Current password is incorrect")
+    
+    # Update password
+    user.password_hash = hash_password(req.new_password)
+    db.add(user)
+    db.commit()
+    
+    return {"ok": True}
+
+
+# ==================== USER DATA ====================
+import json
+from fastapi import Response as FastAPIResponse
+
+
+@router.get("/me/data")
+def download_user_data(
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Download all user data as JSON"""
+    merchant = db.query(Merchant).filter(Merchant.owner_user_id == user.id).first()
+    
+    data = {
+        "user": {
+            "id": user.id,
+            "email": user.email,
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "created_at": str(user.created_at),
+        }
+    }
+    
+    if merchant:
+        data["merchant"] = {
+            "id": merchant.id,
+            "company_name": merchant.company_name,
+            "cui": merchant.cui,
+        }
+    
+    return FastAPIResponse(
+        content=json.dumps(data, indent=2),
+        media_type="application/json",
+        headers={"Content-Disposition": "attachment; filename=my-data.json"}
+    )
+
+
+@router.delete("/me")
+def delete_account(
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Delete user account (marked for deletion, 30 day recovery period)"""
+    # In production, you'd mark for deletion and set a deletion date
+    # For now, we'll mark is_active as False
+    user.is_active = False
+    db.add(user)
+    db.commit()
+    
+    return {"ok": True, "message": "Account marked for deletion"}

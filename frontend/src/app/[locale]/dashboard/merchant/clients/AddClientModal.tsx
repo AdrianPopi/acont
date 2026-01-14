@@ -13,6 +13,7 @@ export default function AddClientModal({ onClose, onCreated }: Props) {
     email: "",
     tax_id: "",
     address: "",
+    peppol_id: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -75,6 +76,16 @@ export default function AddClientModal({ onClose, onCreated }: Props) {
           value={form.address}
           onChange={(e) => setForm({ ...form, address: e.target.value })}
         />
+
+        <input
+          placeholder="PEPPOL ID (optional)"
+          className="w-full rounded border px-3 py-2"
+          value={form.peppol_id}
+          onChange={(e) => setForm({ ...form, peppol_id: e.target.value })}
+        />
+        <p className="text-xs text-gray-500">
+          Format: 0208:BE0123456789 (if client has PEPPOL)
+        </p>
 
         {error && <div className="text-sm text-red-500">{error}</div>}
 

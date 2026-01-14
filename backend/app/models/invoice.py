@@ -67,6 +67,14 @@ class Invoice(Base):
     client_email: Mapped[str] = mapped_column(String(256), nullable=False, default="")
     client_tax_id: Mapped[str] = mapped_column(String(64), nullable=False, default="")
     client_address: Mapped[str] = mapped_column(String(512), nullable=False, default="")
+    client_peppol_id: Mapped[str] = mapped_column(String(100), nullable=False, default="")
+    
+    # Transmission tracking
+    transmission_method: Mapped[str] = mapped_column(String(20), nullable=False, default="email")  # email / peppol
+    sent_via_email: Mapped[bool] = mapped_column(nullable=False, default=False)
+    sent_via_peppol: Mapped[bool] = mapped_column(nullable=False, default=False)
+    peppol_sent_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    email_sent_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
     discount_percent: Mapped[float] = mapped_column(Numeric(6, 2), nullable=False, default=0)
     advance_paid: Mapped[float] = mapped_column(Numeric(12, 2), nullable=False, default=0)

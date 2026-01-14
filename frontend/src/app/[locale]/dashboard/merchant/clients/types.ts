@@ -4,5 +4,6 @@ export type Client = {
   email?: string;
   tax_id?: string;
   address?: string;
+  peppol_id?: string;
   created_at: string;
 };

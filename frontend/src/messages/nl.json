@@ -8,11 +8,16 @@
     "signup": "Account maken"
   },
   "hero": {
-    "badge": "België • Peppol • EN 16931 • Klaar voor 2026",
-    "title": "Elektronische facturatie voor België (Compliance 2026)",
+    "badge": "BelgiÃ« â€¢ Peppol â€¢ EN 16931 â€¢ Klaar voor 2026",
+    "title": "Elektronische facturatie voor BelgiÃ« (Compliance 2026)",
     "subtitle": "Maak van de wettelijke verplichting een voordeel: gestructureerde B2B-facturen, verzending via Peppol, volledige automatisering en realtime financieel inzicht.",
     "ctaPrimary": "Start nu",
     "ctaSecondary": "Bekijk compliance",
+    "stats": {
+      "legal": "Wettelijke compliance",
+      "transport": "Beveiligd transport",
+      "format": "Gestructureerd formaat"
+    },
     "highlights": {
       "h1": {
         "title": "Peppol-ready",
@@ -29,15 +34,15 @@
     }
   },
   "sections": {
-    "featuresTitle": "Automatisering + compliance in één platform",
-    "featuresSubtitle": "Voor kmo’s en zelfstandigen: snel, veilig en EU-compatibel.",
+    "featuresTitle": "Automatisering + compliance in Ã©Ã©n platform",
+    "featuresSubtitle": "Voor kmoâ€™s en zelfstandigen: snel, veilig en EU-compatibel.",
     "howTitle": "Onboarding in 3 stappen",
-    "howSubtitle": "Account → bedrijf → Peppol → compliant factureren.",
+    "howSubtitle": "Account â†’ bedrijf â†’ Peppol â†’ compliant factureren.",
     "ctaTitle": "Klaar voor 2026?"
   },
   "compliance": {
     "title": "Compliance 2026, helder uitgelegd",
-    "subtitle": "B2B e-facturatie wordt verplicht in België. Niet-conforme PDF’s verdwijnen. EN 16931 + Peppol wordt de norm.",
+    "subtitle": "B2B e-facturatie wordt verplicht in BelgiÃ«. Niet-conforme PDFâ€™s verdwijnen. EN 16931 + Peppol wordt de norm.",
     "cta": "Bekijk prijzen",
     "blocks": [
       {
@@ -70,7 +75,7 @@
     ]
   },
   "features": {
-    "footerHint": "Gebouwd voor compliance • Ontworpen voor snelheid",
+    "footerHint": "Gebouwd voor compliance â€¢ Ontworpen voor snelheid",
     "items": [
       {
         "title": "Slimme onboarding",
@@ -85,7 +90,7 @@
         "desc": "Automatische btw & totalen, EN 16931-output en veilige Peppol-verzending."
       },
       {
-        "title": "Creditnota’s",
+        "title": "Creditnotaâ€™s",
         "desc": "Vanuit de originele factuur, gedeeltelijk/volledig, automatische juridische referenties."
       },
       {
@@ -125,51 +130,105 @@
       {
         "n": "03",
         "title": "Uitgeven & opvolgen",
-        "desc": "Gestructureerde facturen/creditnota’s, duidelijke statussen, realtime dashboard."
+        "desc": "Gestructureerde facturen/creditnotaâ€™s, duidelijke statussen, realtime dashboard."
       }
     ]
   },
   "pricing": {
     "title": "Prijzen",
     "subtitle": "Kies het plan dat past bij jouw factuurvolume. Upgrade wanneer je wilt.",
-    "note": "Indicatieve prijzen • excl. btw",
-    "cta": "Account maken",
-    "tiers": [
-      {
+    "note": "Alle prijzen inclusief btw. Altijd opzegbaar.",
+    "cta": "Start gratis proefperiode",
+    "monthly": "Maandelijks",
+    "yearly": "Jaarlijks",
+    "perMonth": "maand",
+    "billedYearly": "jaarlijks gefactureerd",
+    "vatIncluded": "Btw inbegrepen",
+    "trialBadge": "1 maand gratis proefperiode voor alle plannen",
+    "savePercent": "Bespaar tot 17%",
+    "popular": "Meest populair",
+    "plans": {
+      "starter": {
         "name": "Starter",
-        "price": "€19 / maand",
-        "desc": "Voor zelfstandigen.",
-        "features": [
-          "Peppol + EN 16931",
-          "Facturen & creditnota’s",
-          "Basis dashboard",
-          "Standaard archivering"
-        ]
+        "features": {
+          "invoices": "25 facturen/maand",
+          "extra": "Extra factuur: 0.50",
+          "pdf": "PDF + gestructureerd formaat",
+          "support": "E-mail support"
+        }
       },
-      {
-        "name": "Business",
-        "price": "€49 / maand",
-        "badge": "Aanbevolen",
-        "desc": "Voor kmo’s.",
-        "features": [
-          "Alles van Starter",
-          "Automatisering + advanced status",
-          "Exports & rapporten",
-          "Prioritaire support"
-        ]
+      "pro": {
+        "name": "Pro",
+        "features": {
+          "invoices": "500 facturen/maand",
+          "extra": "Extra factuur: 0.25",
+          "pdf": "PDF + gestructureerd formaat",
+          "support": "Prioritaire support",
+          "peppol": "Peppol integratie"
+        }
       },
-      {
+      "enterprise": {
         "name": "Enterprise",
-        "price": "Custom",
-        "desc": "Voor integraties en speciale vereisten.",
-        "features": [
-          "SLA",
-          "Geavanceerde controles",
-          "Uitgebreide audit & retentie",
-          "Dedicated integratie"
-        ]
+        "features": {
+          "invoices": "1000 facturen/maand",
+          "extra": "Extra factuur: €0.15",
+          "pdf": "PDF + gestructureerd formaat",
+          "support": "Dedicated support",
+          "peppol": "Peppol integratie",
+          "api": "API toegang",
+          "manager": "Dedicated accountmanager"
+        }
       }
-    ]
+    }
+  },
+  "subscription": {
+    "title": "Abonnement",
+    "subtitle": "Beheer je abonnement en facturatie",
+    "currentPlan": "Huidig Plan",
+    "plan": "Plan",
+    "status": "Status",
+    "billingCycle": "Factuurcyclus",
+    "trialEnds": "Proefperiode Eindigt",
+    "renewsOn": "Verlengt op",
+    "cancelAtPeriodEnd": "Je abonnement wordt aan het einde van de huidige periode geannuleerd",
+    "manageSubscription": "Abonnement Beheren",
+    "choosePlan": "Kies een Plan",
+    "changePlan": "Wijzig Plan",
+    "selectPlan": "Selecteer",
+    "currentPlanBadge": "Huidig Plan",
+    "processing": "Verwerken...",
+    "popular": "Meest Populair",
+    "perMonth": "maand",
+    "billedYearly": "jaarlijks gefactureerd",
+    "savePercent": "Bespaar tot 17%",
+    "plans": {
+      "freeTrial": "Proefperiode",
+      "starter": "Starter",
+      "pro": "Pro",
+      "enterprise": "Enterprise"
+    },
+    "statuses": {
+      "trialing": "Proef",
+      "active": "Actief",
+      "past_due": "Betaling Achterstallig",
+      "canceled": "Geannuleerd",
+      "unpaid": "Onbetaald",
+      "incomplete": "Onvolledig",
+      "incomplete_expired": "Verlopen"
+    },
+    "billing": {
+      "monthly": "Maandelijks",
+      "yearly": "Jaarlijks"
+    },
+    "usage": {
+      "title": "Gebruik Deze Maand",
+      "invoicesUsed": "Gebruikte Facturen",
+      "remaining": "Resterend",
+      "extraInvoices": "Extra Facturen",
+      "extraCost": "Extra Kosten",
+      "progress": "Gebruiksvoortgang",
+      "resetsIn": "Reset over {days} dagen"
+    }
   },
   "cta": {
     "subtitle": "Wees op tijd compliant en factureer modern in België.",
@@ -208,10 +267,10 @@
       "countryPlaceholder": "Selecteer een land",
       "countryLoading": "Bezig met laden...",
       "countries": {
-        "RO": "Roemenië",
+        "RO": "RoemeniÃ«",
         "NL": "Nederland",
         "FR": "Frankrijk",
-        "BE": "België"
+        "BE": "BelgiÃ«"
       },
       "phone": "Telefoon",
       "acceptTerms": "Ik accepteer de Voorwaarden + AVG",
@@ -253,7 +312,9 @@
     "role": "Rol",
     "logout": "Uitloggen",
     "loading": "Laden...",
-    "errors": { "generic": "Er ging iets mis" },
+    "errors": {
+      "generic": "Er ging iets mis"
+    },
     "overview": {
       "whatCanYouDoTitle": "Wat een Admin kan doen",
       "item1": "Toegang en rollen beheren (platform_admin).",
@@ -293,65 +354,124 @@
       "title": "Merchant",
       "overview": "Overzicht",
       "invoices": "Facturen",
-      "creditNotes": "Creditnota’s",
+      "creditNotes": "Creditnotaâ€™s",
+      "calendar": "Kalender",
       "clients": "Klanten",
       "products": "Producten",
       "deviz": "Offertes",
       "reports": "Rapporten",
+      "subscription": "Abonnement",
       "settings": "Instellingen",
       "kpiClients": "Klanten",
       "kpiIssuedInvoices": "Uitgeschreven facturen",
-      "kpiToValidate": "Te valideren"
+      "kpiToValidate": "Te valideren",
+      "suppliers": "Leveranciers"
+    },
+    "calendar": {
+      "title": "Kalender evenementen",
+      "addEvent": "Evenement toevoegen",
+      "editEvent": "Evenement bewerken",
+      "deleteEvent": "Evenement verwijderen",
+      "today": "Vandaag",
+      "month": "Maand",
+      "week": "Week",
+      "loading": "Laden...",
+      "noEvents": "Geen evenementen",
+      "more": "meer",
+      "january": "Januari",
+      "february": "Februari",
+      "march": "Maart",
+      "april": "April",
+      "may": "Mei",
+      "june": "Juni",
+      "july": "Juli",
+      "august": "Augustus",
+      "september": "September",
+      "october": "Oktober",
+      "november": "November",
+      "december": "December",
+      "sun": "Zo",
+      "mon": "Ma",
+      "tue": "Di",
+      "wed": "Wo",
+      "thu": "Do",
+      "fri": "Vr",
+      "sat": "Za",
+      "eventTitle": "Evenementtitel",
+      "eventDescription": "Beschrijving",
+      "eventType": "Evenementtype",
+      "startDate": "Startdatum",
+      "startTime": "Starttijd",
+      "endDate": "Einddatum",
+      "endTime": "Eindtijd",
+      "allDay": "Hele dag",
+      "completed": "Voltooid",
+      "linkClient": "Gekoppelde klant",
+      "linkInvoice": "Gekoppelde factuur",
+      "typeMeeting": "Vergadering",
+      "typeDeadline": "Deadline",
+      "typeReminder": "Herinnering",
+      "typeInvoiceDue": "Factuurvervaldatum",
+      "typePayment": "Betaling",
+      "typeOther": "Overig",
+      "save": "Opslaan",
+      "saving": "Opslaan...",
+      "cancel": "Annuleren",
+      "delete": "Verwijderen",
+      "confirmDelete": "Weet u zeker dat u dit evenement wilt verwijderen?",
+      "errorTitleRequired": "Titel is verplicht"
     },
     "invoicesNew": {
       "title": "Factuur aanmaken",
       "subtitleIssueNow": "Volgend factuurnummer: {no}",
       "subtitleDraft": "Concept (nog geen nummer)",
       "subtitleLastIssued": "Laatst uitgegeven datum: {date}",
-
       "errorLoad": "Kan klanten/producten niet laden.",
       "importClient": "Klant importeren (JSON)",
       "importClientError": "Ongeldig klant-JSON-bestand. Gebruik: { name, email, tax_id, address }",
-
       "client": "Klant",
       "existing": "Bestaand",
       "new": "Nieuw",
       "selectClient": "Selecteer klant",
-      "choose": "— Kies —",
+      "choose": "â€” Kies â€”",
       "autoFillHint": "Een klant selecteren vult de velden automatisch in.",
-
       "clientName": "Klantnaam",
       "clientEmail": "Klant e-mail",
       "taxId": "BTW-nummer",
       "address": "Adres",
-
       "settings": "Factuurinstellingen",
       "issueDate": "Factuurdatum",
       "dueDate": "Vervaldatum",
       "language": "Taal",
       "currency": "Valuta",
       "currencyHint": "Alleen EUR",
-      "mustBeAfterLastIssued": "Moet ≥ laatst uitgegeven datum: {date}",
-
+      "mustBeAfterLastIssued": "Moet â‰¥ laatst uitgegeven datum: {date}",
       "communication": "Communicatie",
       "simple": "Eenvoudig",
       "structured": "Gestructureerd",
       "structuredPlaceholder": "Optioneel. Leeg = automatisch gegenereerd.",
-
       "template": "Factuursjabloon",
       "templateHint": "3 PDF-sjablonen",
       "templateClassic": "Klassiek",
       "templateModern": "Modern",
       "templateMinimal": "Minimal",
-
+      "selectTemplate": "Kies factuursjabloon",
+      "selectTemplateDescription": "Selecteer de visuele stijl voor uw factuur-PDF",
+      "templateClassicDesc": "Traditionele professionele factuurindeling",
+      "templateModernDesc": "Strak eigentijds ontwerp met gedurfde accenten",
+      "templateMinimalDesc": "Eenvoudige elegante indeling met focus op inhoud",
+      "cancel": "Annuleren",
+      "confirm": "Bevestigen",
+      "senderEmail": "Afzender e-mail",
+      "senderEmailHint": "De factuur wordt vanaf dit e-mailadres naar de klant verzonden",
+      "clientInvoicesEmailOption": "E-mail klantfacturen",
+      "communicationEmailOption": "Communicatie e-mail",
       "discount": "Korting (%)",
       "advancePaid": "Voorschot betaald",
       "issueNow": "Nu uitgeven (nummer toekennen)",
-
       "linesTitle": "Factuurregels",
       "linesHint": "Artikel nr + product/dienst + prijs + qty + BTW + totaal.",
       "addLine": "Regel toevoegen",
-
       "colProduct": "Product",
       "colArticleNo": "Artikel nr",
       "colDescription": "Omschrijving",
@@ -360,12 +480,10 @@
       "colVat": "BTW (%)",
       "colTotalInclVat": "Totaal (incl. BTW)",
       "colActions": "Acties",
-
-      "manual": "— handmatig —",
+      "manual": "â€” handmatig â€”",
       "productOrService": "Product / dienst",
       "ttc": "TTC",
       "remove": "Verwijderen",
-
       "totalsTitle": "Factuurtotalen",
       "totalExclVat": "Totaal excl. BTW",
       "discountAmount": "Korting",
@@ -373,7 +491,6 @@
       "totalInclVat": "Totaal incl. BTW",
       "advancePaidLabel": "Voorschot betaald",
       "totalDue": "Te betalen",
-
       "save": "Factuur opslaan",
       "saving": "Opslaan..."
     },
@@ -382,49 +499,46 @@
       "subtitleIssueNow": "Volgend nummer: {no}",
       "subtitleDraft": "Concept (nog geen nummer)",
       "subtitleLastIssued": "Laatste uitgiftdatum: {date}",
-
       "errorLoadClients": "Kon klanten niet laden.",
       "errorLoadInvoices": "Kon facturen voor deze klant niet laden.",
       "errorLoadInvoiceDetails": "Kon factuurdetails niet laden.",
       "errorCreate": "Kon creditnota niet aanmaken.",
-
       "client": "Klant",
-      "chooseClient": "— Kies klant —",
+      "chooseClient": "â€” Kies klant â€”",
       "clientHint": "Selecteer een klant om uitgegeven facturen te zien.",
-
       "invoiceToCredit": "Factuur om te crediteren",
-      "chooseInvoice": "— Kies factuur —",
+      "chooseInvoice": "â€” Kies factuur â€”",
       "invoiceHint": "Alleen uitgegeven facturen worden getoond.",
-
       "issueDate": "Datum creditnota",
       "language": "Taal",
       "languageHint": "Standaard: FR",
-
       "template": "Template",
       "templateClassic": "Klassiek",
       "templateModern": "Modern",
       "templateMinimal": "Minimaal",
-
+      "selectTemplate": "Kies factuursjabloon",
+      "selectTemplateDescription": "Selecteer de visuele stijl voor uw factuur PDF",
+      "templateClassicDesc": "Traditionele professionele factuurindeling",
+      "templateModernDesc": "Strak eigentijds ontwerp met gedurfde accenten",
+      "templateMinimalDesc": "Eenvoudige elegante indeling met focus op inhoud",
+      "cancel": "Annuleren",
+      "confirm": "Bevestigen",
       "communication": "Communicatie",
       "simple": "Eenvoudig",
       "structured": "Gestructureerd",
       "structuredPlaceholder": "Optioneel. Als leeg, wordt automatisch gegenereerd.",
-
       "issueNow": "Nu uitgeven (nummer toekennen)",
-
       "previewTitle": "Voorbeeld (wordt gecrediteerd)",
       "previewEmpty": "Selecteer een factuur om details te zien.",
       "previewInvoice": "Factuur",
       "previewClient": "Klant",
       "previewTotals": "Totaal (factuur)",
       "previewHint": "De creditnota wordt gemaakt met negatieve regels en totalen.",
-
       "colCode": "Code",
       "colDescription": "Omschrijving",
       "colQty": "Aantal",
       "colVat": "BTW (%)",
       "colLineTotal": "Regeltotaal",
-
       "save": "Creditnota aanmaken",
       "saving": "Opslaan..."
     },
@@ -442,18 +556,33 @@
       "create": "Factuur maken",
       "createTitle": "Factuur maken",
       "createSubtitle": "Vul de basisgegevens en factuurregels in. Valuta: EUR.",
-
       "loading": "Laden...",
       "empty": "Nog geen facturen.",
-
       "colNo": "Factuurnr.",
       "colClient": "Klant",
       "colIssueDate": "Factuurdatum",
       "colTotal": "Totaal",
       "colStatus": "Status",
+      "colMethod": "Verzending",
       "colActions": "Acties",
       "downloadPdf": "PDF downloaden",
-
+      "previewTitle": "Factuurvoorbeeld",
+      "previewSubtitle": "Klik op de downloadknop om de factuur op te slaan",
+      "loadingPdf": "Factuur laden...",
+      "sendEmail": "Verstuur per e-mail",
+      "sendEmailTitle": "Factuur versturen per e-mail",
+      "fromEmail": "Van (afzender e-mail)",
+      "selectEmail": "Selecteer afzender e-mail",
+      "clientInvoicesEmailOption": "E-mail klantfacturen",
+      "communicationEmailOption": "Communicatie e-mail",
+      "fromEmailHelp": "Selecteer het e-mailadres waarmee de factuur wordt verzonden",
+      "toEmail": "Aan (ontvanger e-mail)",
+      "toEmailPlaceholder": "bijv: klant@bedrijf.nl",
+      "toEmailHelp": "E-mailadres van de klant",
+      "cancel": "Annuleren",
+      "send": "Versturen",
+      "sending": "Bezig met verzenden...",
+      "emailSentSuccess": "Factuur succesvol verzonden!",
       "clientName": "Klantnaam",
       "clientEmail": "E-mailadres klant",
       "issueDate": "Factuurdatum",
@@ -472,36 +601,26 @@
       "remove": "Verwijderen",
       "save": "Opslaan",
       "saving": "Opslaan...",
-
       "clientNameLabel": "Klantnaam",
       "clientNamePlaceholder": "bijv. Voorbeeld BV",
       "clientNameHelp": "De klantnaam die op de factuur verschijnt.",
-
       "clientEmailLabel": "E-mailadres klant",
       "clientEmailPlaceholder": "bijv. administratie@klant.nl",
       "clientEmailHelp": "Optioneel. Handig om later te verzenden.",
-
       "issueDateLabel": "Factuurdatum",
       "issueDateHelp": "Standaard: vandaag. Je kunt dit handmatig instellen.",
-
       "dueDateLabel": "Vervaldatum",
       "dueDateHelp": "Vervaldatum (optioneel).",
-
       "languageLabel": "Documenttaal",
       "languageHelp": "Taal waarin de factuur/PDF wordt gegenereerd.",
-
       "discountLabel": "Korting (%)",
       "discountHelp": "Korting toegepast op het totaal (MVP).",
-
       "advancePaidLabel": "Voorschot betaald",
       "advancePaidHelp": "Bedrag vooraf betaald (MVP).",
-
       "issueNowLabel": "Nu uitgeven",
-      "issueNowHelp": "Indien aangevinkt, wordt de factuur “uitgegeven”.",
-
+      "issueNowHelp": "Indien aangevinkt, wordt de factuur â€œuitgegevenâ€.",
       "linesTitle": "Factuurregels",
       "linesHelp": "Voeg producten/diensten toe met prijs, aantal en BTW.",
-
       "actions": "Acties",
       "codePlaceholder": "Code",
       "descriptionPlaceholder": "bijv. Adviesdiensten"
@@ -569,6 +688,68 @@
       "colQty": "Aantal",
       "colVat": "Btw",
       "colTotal": "Totaal (incl. btw)"
+    },
+    "suppliers": {
+      "title": "Leveranciers",
+      "subtitle": "Beheer leveranciers en facturen ontvangen via PEPPOL of handmatig geupload.",
+      "tabInvoices": "Ontvangen facturen",
+      "tabSuppliers": "Leveranciers",
+      "fetchPeppol": "Ophalen via PEPPOL",
+      "fetchingPeppol": "Ophalen...",
+      "uploadInvoice": "Factuur/bon uploaden",
+      "uploadInvoiceHint": "Upload een PDF-factuur of bon die niet via PEPPOL is ontvangen.",
+      "addSupplier": "Leverancier toevoegen",
+      "editSupplier": "Leverancier bewerken",
+      "totalInvoices": "Totaal facturen",
+      "peppolInvoices": "PEPPOL facturen",
+      "totalAmount": "Totaalbedrag",
+      "loading": "Laden...",
+      "noInvoices": "Nog geen leveranciersfacturen.",
+      "noSuppliers": "Nog geen leveranciers.",
+      "colInvoiceNo": "Factuurnr.",
+      "colSupplier": "Leverancier",
+      "colIssueDate": "Uitgiftedatum",
+      "colTotal": "Totaal",
+      "colSource": "Bron",
+      "colStatus": "Status",
+      "colActions": "Acties",
+      "unknownSupplier": "Onbekende leverancier",
+      "manual": "Handmatig",
+      "status_received": "Ontvangen",
+      "status_validated": "Gevalideerd",
+      "status_paid": "Betaald",
+      "status_disputed": "Betwist",
+      "downloadPdf": "PDF downloaden",
+      "delete": "Verwijderen",
+      "confirmDelete": "Weet je zeker dat je deze leverancier wilt verwijderen?",
+      "confirmDeleteInvoice": "Weet je zeker dat je deze factuur wilt verwijderen?",
+      "supplierName": "Leveranciersnaam",
+      "email": "E-mail",
+      "phone": "Telefoon",
+      "taxId": "BTW / Fiscaal nr.",
+      "peppolId": "PEPPOL ID",
+      "address": "Adres",
+      "contactPerson": "Contactpersoon",
+      "cancel": "Annuleren",
+      "save": "Opslaan",
+      "saving": "Opslaan...",
+      "pdfFile": "PDF-bestand",
+      "selectPdf": "Selecteer PDF-bestand",
+      "supplier": "Leverancier",
+      "selectSupplier": "- Selecteer leverancier (optioneel) -",
+      "invoiceNo": "Factuurnummer",
+      "issueDate": "Uitgiftedatum",
+      "totalNet": "Totaal excl. BTW",
+      "totalVat": "Totaal BTW",
+      "totalGross": "Totaal incl. BTW",
+      "description": "Beschrijving",
+      "upload": "Uploaden",
+      "uploading": "Uploaden...",
+      "uploadSuccess": "Factuur succesvol geupload!",
+      "errorNameRequired": "Leveranciersnaam is verplicht.",
+      "errorFileRequired": "Selecteer een PDF-bestand.",
+      "errorInvoiceNoRequired": "Factuurnummer is verplicht.",
+      "errorTotalRequired": "Factuurtotaal is verplicht."
     }
   },
   "legal": {
@@ -616,7 +797,6 @@
       "footerNote": "Neem contact op als je vragen hebt over verwerking van persoonsgegevens."
     }
   },
-
   "clients": {
     "title": "Klanten",
     "add": "Klant toevoegen",
@@ -629,6 +809,213 @@
     "edit": "Bewerken",
     "delete": "Verwijderen",
     "confirmDelete": "Weet je zeker dat je deze klant wilt verwijderen?"
+  },
+  "preferences": {
+    "title": "Instellingen",
+    "subtitle": "Beheer uw account en voorkeuren",
+    "tabs": {
+      "account": "Mijn Account",
+      "bank": "Bankgegevens",
+      "tax": "Belastingtarieven",
+      "template": "Factuursjabloon",
+      "subscription": "Abonnement",
+      "emails": "E-mailaccounts",
+      "peppol": "PEPPOL-integratie",
+      "password": "Wachtwoord",
+      "data": "Accountgegevens",
+      "archive": "Archief"
+    },
+    "account": {
+      "title": "Mijn Account",
+      "firstName": "Voornaam",
+      "lastName": "Achternaam",
+      "email": "Email",
+      "phone": "Telefoonnummer",
+      "companyName": "Bedrijfsnaam",
+      "cui": "CUI/BTW-nummer",
+      "address": "Adres",
+      "city": "Plaats",
+      "zipCode": "Postcode",
+      "country": "Land",
+      "language": "Documenttaal",
+      "currency": "Valuta",
+      "communicationEmail": "Communicatie-e-mail (verschijnt op facturen)",
+      "clientInvoicesEmail": "E-mail Klantfacturen",
+      "clientInvoicesEmailPlaceholder": "bijv: facturen@bedrijf.nl",
+      "clientInvoicesEmailHelp": "E-mail gebruikt voor het versturen van facturen naar klanten",
+      "supplierInvoicesEmail": "E-mail Leveranciersfacturen",
+      "supplierInvoicesEmailPlaceholder": "bijv: inkoop@bedrijf.nl",
+      "supplierInvoicesEmailHelp": "E-mail waar u facturen van leveranciers ontvangt",
+      "fontSize": "Tekengrootte Factuur",
+      "fontSizeSmall": "14",
+      "fontSizeMedium": "16",
+      "fontSizeLarge": "18",
+      "saved": "Accountgegevens succesvol opgeslagen",
+      "error": "Fout bij opslaan van accountgegevens"
+    },
+    "bank": {
+      "title": "Bankgegevens",
+      "description": "Uw bankgegevens verschijnen op facturen",
+      "bankName": "Banknaam",
+      "accountNumber": "Rekeningnummer",
+      "bicCode": "BIC-code",
+      "saved": "Bankgegevens succesvol opgeslagen",
+      "error": "Fout bij opslaan van bankgegevens"
+    },
+    "tax": {
+      "title": "Belastingtarieven",
+      "description": "Definieer aangepaste btw/belastingtarieven voor uw facturen",
+      "percentage": "Belastingpercentage (%)",
+      "setAsDefault": "Als standaard instellen",
+      "addNew": "Nieuw Belastingtarief Toevoegen",
+      "noRates": "Nog geen belastingtarieven gedefinieerd",
+      "saved": "Belastingtarief succesvol opgeslagen",
+      "deleted": "Belastingtarief succesvol verwijderd",
+      "error": "Fout bij beheer van belastingtarieven",
+      "presets": "Snelle presets",
+      "none": "Geen (0%)",
+      "low": "Laag (6%)",
+      "medium": "Standaard (12%)",
+      "high": "Hoog (21%)",
+      "custom": "Aangepast tarief"
+    },
+    "template": {
+      "title": "Factuursjabloon",
+      "logo": "Bedrijfslogo",
+      "logoUpload": "Logo uploaden",
+      "logoPreview": "Logo voorvertoning",
+      "background": "Factuurachtergrond",
+      "backgroundNone": "Geen achtergrond",
+      "backgroundDefault1": "Standaard 1",
+      "backgroundDefault2": "Standaard 2",
+      "backgroundDefault3": "Standaard 3",
+      "backgroundCustom": "Aangepaste achtergrond",
+      "backgroundUpload": "Achtergrond uploaden",
+      "fontSize": "Tekengrootte",
+      "style": "Sjabloonstijl",
+      "styleClassic": "Klassiek",
+      "styleModern": "Modern",
+      "styleMinimal": "Minimaal",
+      "styleHint": "Deze sjabloon wordt vooraf geselecteerd bij het maken van nieuwe facturen",
+      "preview": "Voorbeeld",
+      "saved": "Sjabloon succesvol opgeslagen",
+      "error": "Fout bij opslaan van sjabloon"
+    },
+    "subscription": {
+      "title": "Abonnement",
+      "currentPlan": "Huidige Plan",
+      "planName": "Plannaam",
+      "planType": "Plantype",
+      "validFrom": "Geldig vanaf",
+      "validUntil": "Geldig tot",
+      "isActive": "Actief",
+      "maxInvoices": "Maximale Facturen",
+      "maxClients": "Maximale Klanten",
+      "maxProducts": "Maximale Producten",
+      "unlimited": "Onbeperkt",
+      "upgrade": "Plan Upgraden",
+      "features": "Functies",
+      "upgrade_cta": "Upgrade naar Pro",
+      "downgrade_warning": "Deze actie kan niet ongedaan worden gemaakt"
+    },
+    "emails": {
+      "title": "E-mailaccounts",
+      "description": "Voeg e-mailaccounts toe om automatisch leveranciersfacturen in te verzamelen",
+      "email": "E-mailadres",
+      "password": "E-mailwachtwoord",
+      "imapHost": "IMAP-host",
+      "imapPort": "IMAP-poort",
+      "addNew": "E-mailaccount Toevoegen",
+      "isActive": "Actief",
+      "noEmails": "Nog geen e-mailaccounts toegevoegd",
+      "saved": "E-mailaccount succesvol opgeslagen",
+      "deleted": "E-mailaccount succesvol verwijderd",
+      "error": "Fout bij beheer van e-mailaccounts",
+      "testConnection": "Verbinding Testen",
+      "connecting": "Verbinding wordt getest...",
+      "connectionSuccess": "Verbinding geslaagd!",
+      "connectionFailed": "Verbinding mislukt",
+      "common": "Veelgebruikte e-mailproviders",
+      "gmail": "Gmail (IMAP)",
+      "outlook": "Outlook/Office 365 (IMAP)",
+      "yahoo": "Yahoo Mail (IMAP)"
+    },
+    "peppol": {
+      "title": "PEPPOL Integratie",
+      "description": "Integreer met PEPPOL om conforme elektronische facturen te versturen",
+      "whatIs": "Wat is PEPPOL?",
+      "whatIsDescription": "PEPPOL is het Europese netwerk voor B2B elektronische factuuruitwisseling. Het wordt verplicht in BelgiÃ« vanaf 2026.",
+      "step1": "Verkrijg een PEPPOL-ID van uw Access Point-provider",
+      "step2": "Voer hier uw PEPPOL-ID in (formaat: 0208:BE0123456789)",
+      "step3": "Na activering stuurt u facturen direct via het PEPPOL-netwerk",
+      "status": "Integratiestatus",
+      "statusNotStarted": "Niet gestart",
+      "statusPending": "In behandeling",
+      "statusActive": "Actief",
+      "statusFailed": "Mislukt",
+      "currentId": "Huidig ID",
+      "peppolId": "PEPPOL Identificatie",
+      "idFormat": "Formaat: 0208:BE + uw BTW-nummer (bijv. 0208:BE0123456789)",
+      "hasId": "U heeft een PEPPOL-ID",
+      "noId": "Nog geen PEPPOL-ID toegewezen",
+      "getNewId": "PEPPOL-ID Verkrijgen",
+      "enterManual": "Handmatig invoeren",
+      "startIntegration": "PEPPOL-ID opslaan",
+      "integrationDate": "Integratiedatum",
+      "errorMessage": "Foutbericht",
+      "saved": "PEPPOL-instellingen succesvol opgeslagen",
+      "integrated": "PEPPOL-integratie succesvol voltooid",
+      "error": "Fout bij het configureren van PEPPOL-integratie",
+      "learn": "Meer informatie over PEPPOL"
+    },
+    "password": {
+      "title": "Wachtwoord Wijzigen",
+      "current": "Huidig Wachtwoord",
+      "new": "Nieuw Wachtwoord",
+      "newConfirm": "Bevestig Nieuw Wachtwoord",
+      "requirements": "Wachtwoord moet minimaal 8 tekens zijn",
+      "changed": "Wachtwoord succesvol gewijzigd",
+      "error": "Fout bij wijzigen van wachtwoord",
+      "invalid": "Huidig wachtwoord is onjuist"
+    },
+    "data": {
+      "title": "Accountgegevens",
+      "description": "Overeenkomstig de GDPR (24 mei 2018) hebt u de mogelijkheid om uw account op ACONT.COM te verwijderen. Als u uw account wilt verwijderen, is de herstelperiode 30 dagen. Na deze periode is herstel onmogelijk. U ontvangt bevestiging per e-mail.",
+      "gdprCompliance": "GDPR-naleving",
+      "download": "Mijn Gegevens Downloaden",
+      "delete": "Account Verwijderen",
+      "deleteWarning": "Deze actie kan niet ongedaan worden gemaakt",
+      "deleteConfirm": "Weet u zeker dat u uw account wilt verwijderen? Dit is onomkeerbaar na 30 dagen.",
+      "downloaded": "Uw gegevens worden binnenkort gedownload",
+      "deleted": "Account is gemarkeerd voor verwijdering. U hebt 30 dagen om het in te stellen.",
+      "error": "Fout bij verwerken van aanvraag",
+      "recoveryPeriod": "Herstelperiode: 30 dagen"
+    },
+    "archive": {
+      "title": "Archief",
+      "description": "Uw facturen worden minstens 10 jaar gearchiveerd conform wettelijke vereisten",
+      "invoices": "Facturen",
+      "creditNotes": "Creditnota's",
+      "startDate": "Begindatum",
+      "endDate": "Einddatum",
+      "search": "Zoeken",
+      "noResults": "Geen facturen gevonden",
+      "download": "Downloaden",
+      "retention": "Bewaartermijn: 10 jaar"
+    },
+    "common": {
+      "save": "Opslaan",
+      "cancel": "Annuleren",
+      "delete": "Verwijderen",
+      "edit": "Bewerken",
+      "add": "Toevoegen",
+      "back": "Terug",
+      "close": "Sluiten",
+      "loading": "Bezig met laden...",
+      "required": "Dit veld is verplicht",
+      "optional": "Optioneel",
+      "unsavedChanges": "U hebt niet-opgeslagen wijzigingen"
+    }
   },
   "products": {
     "title": "Producten / Diensten",
@@ -656,5 +1043,66 @@
     "csvUpdated": "Bijgewerkt",
     "csvFailed": "Mislukt",
     "csvRow": "Rij"
+  },
+  "reports": {
+    "title": "Rapporten & Analyses",
+    "subtitle": "Bedrijfsinzichten en financiÃ«le rapporten",
+    "loading": "Laden...",
+    "tabs": {
+      "dashboard": "Dashboard",
+      "revenue": "Omzet",
+      "invoices": "Facturen",
+      "clients": "Klanten",
+      "tax": "Belastingoverzicht"
+    },
+    "dashboard": {
+      "revenue30d": "Omzet (Laatste 30 dagen)",
+      "totalInvoices": "Totaal facturen",
+      "totalClients": "Totaal klanten",
+      "pendingInvoices": "Openstaande facturen",
+      "overdueInvoices": "Achterstallige facturen"
+    },
+    "revenue": {
+      "title": "Omzetrapport",
+      "groupBy": "Groeperen op",
+      "day": "Dag",
+      "week": "Week",
+      "month": "Maand",
+      "year": "Jaar",
+      "startDate": "Startdatum",
+      "endDate": "Einddatum",
+      "generate": "Rapport genereren",
+      "period": "Periode",
+      "totalRevenue": "Totale omzet",
+      "invoiceCount": "Aantal facturen",
+      "avgInvoice": "Gem. factuur"
+    },
+    "invoices": {
+      "title": "Factuursamenvatting",
+      "startDate": "Startdatum",
+      "endDate": "Einddatum",
+      "generate": "Rapport genereren",
+      "total": "Totaal",
+      "paid": "Betaald",
+      "pending": "Openstaand",
+      "overdue": "Achterstallig"
+    },
+    "clients": {
+      "title": "Klantenanalyse",
+      "totalClients": "Totaal klanten",
+      "topClients": "Top 10 klanten naar omzet",
+      "clientName": "Klantnaam",
+      "invoiceCount": "Facturen",
+      "totalRevenue": "Totale omzet"
+    },
+    "tax": {
+      "title": "Belastingoverzicht (BTW)",
+      "startDate": "Startdatum",
+      "endDate": "Einddatum",
+      "generate": "Rapport genereren",
+      "totalSubtotal": "Subtotaal (Excl. BTW)",
+      "totalTaxCollected": "Totale BTW geÃ¯nd",
+      "totalWithTax": "Totaal (Incl. BTW)"
+    }
   }
 }

@@ -18,6 +18,14 @@ export function useMerchantNav() {
       label: t("creditNotes"),
     },
     {
+      href: `/${locale}/dashboard/merchant/suppliers`,
+      label: t("suppliers"),
+    },
+    {
+      href: `/${locale}/dashboard/merchant/calendar`,
+      label: t("calendar"),
+    },
+    {
       href: `/${locale}/dashboard/merchant/clients`,
       label: t("clients"),
     },
@@ -32,6 +40,10 @@ export function useMerchantNav() {
     {
       href: `/${locale}/dashboard/merchant/reports`,
       label: t("reports"),
+    },
+    {
+      href: `/${locale}/dashboard/merchant/subscription`,
+      label: t("subscription"),
     },
     {
       href: `/${locale}/dashboard/merchant/settings`,

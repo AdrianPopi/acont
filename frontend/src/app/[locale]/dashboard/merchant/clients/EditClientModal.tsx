@@ -3,13 +3,19 @@
 import { useState } from "react";
 import { Client } from "./types";
 
-type EditableClientField = "name" | "email" | "tax_id" | "address";
+type EditableClientField =
+  | "name"
+  | "email"
+  | "tax_id"
+  | "address"
+  | "peppol_id";
 
 type ClientForm = {
   name: string;
   email: string;
   tax_id: string;
   address: string;
+  peppol_id: string;
 };
 
 export default function EditClientModal({
@@ -26,6 +32,7 @@ export default function EditClientModal({
     email: client.email ?? "",
     tax_id: client.tax_id ?? "",
     address: client.address ?? "",
+    peppol_id: client.peppol_id ?? "",
   });
 
   async function submit() {
@@ -45,22 +52,28 @@ export default function EditClientModal({
       <div className="bg-white dark:bg-black rounded-2xl p-6 w-[400px]">
         <h2 className="text-lg font-semibold mb-4">Edit client</h2>
 
-        {(["name", "email", "tax_id", "address"] as EditableClientField[]).map(
-          (field) => (
-            <input
-              key={field}
-              placeholder={field}
-              className="w-full mb-2 px-3 py-2 rounded border"
-              value={form[field]}
-              onChange={(e) =>
-                setForm({
-                  ...form,
-                  [field]: e.target.value,
-                })
-              }
-            />
-          )
-        )}
+        {(
+          [
+            "name",
+            "email",
+            "tax_id",
+            "address",
+            "peppol_id",
+          ] as EditableClientField[]
+        ).map((field) => (
+          <input
+            key={field}
+            placeholder={field}
+            className="w-full mb-2 px-3 py-2 rounded border"
+            value={form[field]}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                [field]: e.target.value,
+              })
+            }
+          />
+        ))}
 
         <div className="flex justify-end gap-2 mt-4">
           <button onClick={onClose}>Cancel</button>

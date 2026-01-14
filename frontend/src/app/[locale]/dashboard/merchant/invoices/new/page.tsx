@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import DashboardShell from "@/components/dashboard/DashboardShell";
 import { useMerchantNav } from "../../../_components/merchantNav";
+import TemplateSelector from "@/components/dashboard/TemplateSelector";
 
 type ClientOut = {
   id: number;
@@ -93,6 +94,13 @@ export default function NewInvoicePage() {
   const [discount, setDiscount] = useState("0");
   const [advance, setAdvance] = useState("0");
 
+  // merchant emails for sending
+  const [merchantEmails, setMerchantEmails] = useState<{
+    communication_email: string;
+    client_invoices_email: string;
+  }>({ communication_email: "", client_invoices_email: "" });
+  const [senderEmail, setSenderEmail] = useState("");
+
   // products
   const [products, setProducts] = useState<ProductOut[]>([]);
   const [items, setItems] = useState<Item[]>([
@@ -109,18 +117,27 @@ export default function NewInvoicePage() {
   // ui
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showTemplateModal, setShowTemplateModal] = useState(false);
 
   const loadBasics = useCallback(async () => {
     setErr("");
     try {
       if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
 
-      const [cRes, pRes] = await Promise.all([
+      const [cRes, pRes, tplRes, accRes] = await Promise.all([
         fetch(`${base}/clients/`, {
           credentials: "include",
           cache: "no-store",
         }),
         fetch(`${base}/products/`, {
+          credentials: "include",
+          cache: "no-store",
+        }),
+        fetch(`${base}/preferences/invoice-template`, {
+          credentials: "include",
+          cache: "no-store",
+        }),
+        fetch(`${base}/preferences/account`, {
           credentials: "include",
           cache: "no-store",
         }),
@@ -133,6 +150,27 @@ export default function NewInvoicePage() {
       const pTxt = await pRes.text();
       if (!pRes.ok) throw new Error(pTxt);
       setProducts(JSON.parse(pTxt) as ProductOut[]);
+
+      // Load preferred template
+      if (tplRes.ok) {
+        const tplData = await tplRes.json();
+        if (tplData.template_style) {
+          setTemplate(tplData.template_style as Template);
+        }
+      }
+
+      // Load merchant emails
+      if (accRes.ok) {
+        const accData = await accRes.json();
+        setMerchantEmails({
+          communication_email: accData.communication_email || "",
+          client_invoices_email: accData.client_invoices_email || "",
+        });
+        // Default to client invoices email if available
+        setSenderEmail(
+          accData.client_invoices_email || accData.communication_email || ""
+        );
+      }
     } catch (e: unknown) {
       setErr(errMsg(e, t("errorLoad")));
     }
@@ -606,18 +644,52 @@ export default function NewInvoicePage() {
               <label className="block text-sm opacity-80 mb-1">
                 {t("template")}
               </label>
-              <select
-                className="w-full rounded-xl border border-black/10 dark:border-white/10 bg-[rgb(var(--card))] px-3 py-2"
-                value={template}
-                onChange={(e) => setTemplate(e.target.value as Template)}
+              <button
+                type="button"
+                onClick={() => setShowTemplateModal(true)}
+                className="w-full rounded-xl border border-black/10 dark:border-white/10 bg-[rgb(var(--card))] px-3 py-2 text-left flex items-center justify-between hover:border-blue-500 transition"
               >
-                <option value="classic">{t("templateClassic")}</option>
-                <option value="modern">{t("templateModern")}</option>
-                <option value="minimal">{t("templateMinimal")}</option>
-              </select>
+                <span>
+                  {template === "classic" && t("templateClassic")}
+                  {template === "modern" && t("templateModern")}
+                  {template === "minimal" && t("templateMinimal")}
+                </span>
+                <span className="text-blue-500">🎨</span>
+              </button>
               <div className="mt-1 text-xs opacity-60">{t("templateHint")}</div>
             </div>
           </div>
+
+          {/* Sender Email Selection */}
+          {(merchantEmails.client_invoices_email ||
+            merchantEmails.communication_email) && (
+            <div>
+              <label className="block text-sm opacity-80 mb-1">
+                {t("senderEmail")}
+              </label>
+              <select
+                className="w-full rounded-xl border border-black/10 dark:border-white/10 bg-[rgb(var(--card))] px-3 py-2"
+                value={senderEmail}
+                onChange={(e) => setSenderEmail(e.target.value)}
+              >
+                {merchantEmails.client_invoices_email && (
+                  <option value={merchantEmails.client_invoices_email}>
+                    {t("clientInvoicesEmailOption")} -{" "}
+                    {merchantEmails.client_invoices_email}
+                  </option>
+                )}
+                {merchantEmails.communication_email && (
+                  <option value={merchantEmails.communication_email}>
+                    {t("communicationEmailOption")} -{" "}
+                    {merchantEmails.communication_email}
+                  </option>
+                )}
+              </select>
+              <div className="mt-1 text-xs opacity-60">
+                {t("senderEmailHint")}
+              </div>
+            </div>
+          )}
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
@@ -838,6 +910,14 @@ export default function NewInvoicePage() {
           {loading ? t("saving") : t("save")}
         </button>
       </form>
+
+      {showTemplateModal && (
+        <TemplateSelector
+          selected={template}
+          onSelect={setTemplate}
+          onClose={() => setShowTemplateModal(false)}
+        />
+      )}
     </DashboardShell>
   );
 }

@@ -4,6 +4,7 @@ import { FormEvent, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
+import { refreshAccessToken } from "../../../../lib/api";
 
 type Versions = { terms_version: string; privacy_version: string };
 
@@ -83,10 +84,9 @@ export default function LegalAcceptPage() {
       const base = process.env.NEXT_PUBLIC_API_URL;
       if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
 
-      const token = getToken();
-
       // helper: încearcă o dată; dacă e 401, încearcă refresh și repetă
       async function doAccept(): Promise<Response> {
+        const token = getToken();
         return fetch(`${base}/auth/legal-accept`, {
           method: "POST",
           credentials: "include",
@@ -105,10 +105,11 @@ export default function LegalAcceptPage() {
 
       // dacă cookie/token a expirat și backend folosește refresh cookie
       if (res.status === 401) {
-        await fetch(`${base}/auth/refresh`, {
-          method: "POST",
-          credentials: "include",
-        });
+        try {
+          await refreshAccessToken();
+        } catch {
+          // refresh failed; proceed to throw below
+        }
         res = await doAccept();
       }
 

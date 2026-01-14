@@ -6,6 +6,7 @@ class ClientBase(BaseModel):
     email: Optional[str] = None
     tax_id: Optional[str] = None
     address: Optional[str] = None
+    peppol_id: Optional[str] = None
 
 class ClientCreate(ClientBase):
     pass

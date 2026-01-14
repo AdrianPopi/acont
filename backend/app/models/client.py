@@ -11,3 +11,4 @@ class Client(Base):
     email = Column(String(320), nullable=True)
     tax_id = Column(String(50), nullable=True)
     address = Column(String(500), nullable=True)
+    peppol_id = Column(String(100), nullable=True)  # PEPPOL ID pentru client

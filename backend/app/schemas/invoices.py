@@ -66,9 +66,13 @@ class InvoiceListOut(BaseModel):
     issue_date: date
     due_date: Optional[date] = None
     client_name: str
+    client_email: str = ""
     total_gross: float
     advance_paid: float
-    notes: str = ""   # ✅ ADD
+    notes: str = ""
+    transmission_method: str = "email"  # email / peppol
+    sent_via_email: bool = False
+    sent_via_peppol: bool = False
 
 class InvoiceItemOut(BaseModel):
     item_code: str

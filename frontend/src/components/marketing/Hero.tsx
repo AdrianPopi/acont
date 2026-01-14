@@ -41,7 +41,7 @@ export default function Hero() {
           <Reveal>
             <p className="inline-flex items-center gap-2 rounded-full border border-black/10 dark:border-white/10 bg-[rgb(var(--card))]/70 px-4 py-2 text-sm backdrop-blur">
               <span className="h-2 w-2 rounded-full bg-brand-gradient shadow-glow" />
-              Belgium • Peppol • EN 16931 • 2026 Ready
+              {t("hero.badge")}
             </p>
           </Reveal>
 
@@ -86,9 +86,9 @@ export default function Hero() {
             }}
           >
             {[
-              { label: "Conformitate legală", value: "2026" },
-              { label: "Transport securizat", value: "Peppol" },
-              { label: "Format structurat", value: "EN 16931" },
+              { label: t("hero.stats.legal"), value: "2026" },
+              { label: t("hero.stats.transport"), value: "Peppol" },
+              { label: t("hero.stats.format"), value: "EN 16931" },
             ].map((s) => (
               <motion.div
                 key={s.label}

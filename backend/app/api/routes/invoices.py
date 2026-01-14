@@ -163,6 +163,7 @@ def list_invoices(user: User = Depends(get_current_user), db: Session = Depends(
             issue_date=r.issue_date,
             due_date=r.due_date,
             client_name=r.client_name,
+            client_email=r.client_email or "",
             total_gross=float(r.total_gross),
             advance_paid=float(r.advance_paid),
             notes=(r.notes or ""),  # ✅ ADD
@@ -207,6 +208,7 @@ def create_invoice(payload: InvoiceCreateIn, user: User = Depends(get_current_us
     client_email = (payload.client_email or "").strip()
     client_tax_id = (payload.client_tax_id or "").strip()
     client_address = (payload.client_address or "").strip()
+    client_peppol_id = ""  # Initialize PEPPOL ID
 
     client_id = getattr(payload, "client_id", None)
     if client_id:
@@ -221,6 +223,11 @@ def create_invoice(payload: InvoiceCreateIn, user: User = Depends(get_current_us
             client_tax_id = c.tax_id or ""
         if not client_address:
             client_address = c.address or ""
+        # Load PEPPOL ID from client
+        client_peppol_id = (c.peppol_id or "").strip()
+    
+    # Determine transmission method based on PEPPOL availability
+    transmission_method = "peppol" if client_peppol_id else "email"
 
     # ✅ item dropdown product_id -> autofill (doar dacă lipsesc în payload)
     normalized_items: list[dict] = []
@@ -298,6 +305,11 @@ def create_invoice(payload: InvoiceCreateIn, user: User = Depends(get_current_us
         client_email=client_email[:256],
         client_tax_id=client_tax_id[:64],
         client_address=client_address[:512],
+        client_peppol_id=client_peppol_id[:100],
+        
+        transmission_method=transmission_method,
+        sent_via_email=False,
+        sent_via_peppol=False,
 
         discount_percent=float(payload.discount_percent or 0),
         advance_paid=float(payload.advance_paid or 0),
@@ -465,3 +477,66 @@ def download_invoice_pdf(invoice_id: int, user: User = Depends(get_current_user)
         media_type="application/pdf",
         headers={"Content-Disposition": f'attachment; filename="{filename}"'},
     )
+
+
+from pydantic import BaseModel, EmailStr
+
+class SendEmailRequest(BaseModel):
+    from_email: EmailStr
+    to_email: EmailStr
+
+
+@router.post("/{invoice_id}/send-email")
+def send_invoice_email(
+    invoice_id: int,
+    req: SendEmailRequest,
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """
+    Send invoice PDF via email.
+    For now, this is a placeholder that validates the request and updates the invoice status.
+    In production, integrate with SMTP or email service (SendGrid, SES, etc.)
+    """
+    m = _current_merchant(db, user)
+    inv = db.query(Invoice).filter(Invoice.id == invoice_id, Invoice.merchant_id == m.id).first()
+    if not inv:
+        raise HTTPException(404, "Invoice not found")
+
+    # Validate that the from_email belongs to this merchant
+    valid_emails = [
+        m.communication_email,
+        m.client_invoices_email,
+        m.supplier_invoices_email,
+    ]
+    valid_emails = [e for e in valid_emails if e]  # filter empty
+    
+    if req.from_email not in valid_emails:
+        raise HTTPException(400, "Invalid sender email. Please configure your email in Settings.")
+
+    # TODO: Implement actual email sending here
+    # For now, we just mark the invoice as sent via email
+    # Example integration points:
+    # - SMTP: smtplib.SMTP(host, port)
+    # - SendGrid: sendgrid.SendGridAPIClient(api_key)
+    # - AWS SES: boto3.client('ses')
+    
+    # Generate PDF
+    pdf = build_invoice_pdf(inv, merchant_logo_url=m.logo_url)
+    filename = (inv.invoice_no or f"invoice-{inv.id}").replace("/", "-") + ".pdf"
+    
+    # Mark invoice as sent via email
+    inv.sent_via_email = True
+    db.commit()
+    
+    # Log the email attempt (for audit)
+    # In production: actually send the email
+    
+    return {
+        "success": True,
+        "message": f"Invoice {inv.invoice_no} queued for sending to {req.to_email}",
+        "from_email": req.from_email,
+        "to_email": req.to_email,
+        "invoice_no": inv.invoice_no,
+    }
+
