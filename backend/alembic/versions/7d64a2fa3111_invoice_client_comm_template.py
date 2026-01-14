@@ -1,7 +1,7 @@
 """invoice client comm template
 
 Revision ID: 7d64a2fa3111
-Revises: XXXXXXXX
+Revises: 63d4430f5b7d
 Create Date: 2025-12-21 18:43:09.382141
 
 """
@@ -13,7 +13,7 @@ import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
 revision: str = '7d64a2fa3111'
-down_revision: Union[str, Sequence[str], None] = 'XXXXXXXX'
+down_revision: Union[str, Sequence[str], None] = '63d4430f5b7d'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 

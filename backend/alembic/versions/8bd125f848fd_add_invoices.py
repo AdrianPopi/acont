@@ -19,7 +19,7 @@ depends_on: Union[str, Sequence[str], None] = None
 
 def upgrade() -> None:
     """Upgrade schema."""
-    # Reuse existing Postgres enum (it already exists from old merchant_accountant_links)
+    # Create the linkstatus enum type first (only if not exists)
     linkstatus = postgresql.ENUM(
         "pending",
         "active",
@@ -27,6 +27,11 @@ def upgrade() -> None:
         name="linkstatus",
         create_type=False,
     )
+    # Try to create the type, ignore if exists
+    try:
+        linkstatus.create(op.get_bind(), checkfirst=True)
+    except Exception:
+        pass  # Type already exists
 
     op.create_table(
         "invoice_sequences",
@@ -142,12 +147,12 @@ def upgrade() -> None:
     )
     op.create_index("ix_invoice_items_invoice_id", "invoice_items", ["invoice_id"], unique=False)
 
-    # drop old accountant tables
-    op.drop_index(op.f("ix_merchant_accountant_links_accountant_id"), table_name="merchant_accountant_links")
-    op.drop_index(op.f("ix_merchant_accountant_links_merchant_id"), table_name="merchant_accountant_links")
-    op.drop_table("merchant_accountant_links")
-    op.drop_index(op.f("ix_accountants_user_id"), table_name="accountants")
-    op.drop_table("accountants")
+    # drop old accountant tables (using raw SQL with IF EXISTS)
+    op.execute("DROP INDEX IF EXISTS ix_merchant_accountant_links_accountant_id")
+    op.execute("DROP INDEX IF EXISTS ix_merchant_accountant_links_merchant_id")
+    op.execute("DROP TABLE IF EXISTS merchant_accountant_links")
+    op.execute("DROP INDEX IF EXISTS ix_accountants_user_id")
+    op.execute("DROP TABLE IF EXISTS accountants")
 
     op.create_index(op.f("ix_legal_documents_version"), "legal_documents", ["version"], unique=False)
 
