@@ -95,6 +95,11 @@ export default function LoginPage() {
 
       const auth = JSON.parse(text) as LoginRes;
 
+      // ✅ Save token to sessionStorage for apiFetch
+      if (auth.access_token) {
+        sessionStorage.setItem("access_token", auth.access_token);
+      }
+
       if (auth.role === "merchant_admin")
         router.push(`/${locale}/dashboard/merchant`);
       else router.push(`/${locale}/admin`);
