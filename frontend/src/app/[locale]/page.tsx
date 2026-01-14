@@ -1,11 +1,11 @@
 // src/app/[locale]/page.tsx
-import Header from "@/components/marketing/header";
-import Hero from "@/components/marketing/hero";
+import Header from "@/components/marketing/Header";
+import Hero from "@/components/marketing/Hero";
 import Compliance from "@/components/marketing/compliance";
-import Features from "@/components/marketing/features";
-import HowItWorks from "@/components/marketing/howitworks";
+import Features from "@/components/marketing/Features";
+import HowItWorks from "@/components/marketing/HowItWorks";
 import Pricing from "@/components/marketing/pricing";
-import CTA from "@/components/marketing/cta";
+import CTA from "@/components/marketing/CTA";
 import Footer from "@/components/marketing/Footer";
 
 export default function LocaleHomePage() {
