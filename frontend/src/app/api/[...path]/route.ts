@@ -3,6 +3,22 @@ import { NextRequest, NextResponse } from "next/server";
 const BACKEND_URL =
   process.env.BACKEND_URL || "https://acont-production.up.railway.app";
 
+/**
+ * Rewrite Set-Cookie headers from backend to work with the frontend domain:
+ * - Remove Domain= attribute so cookie is set for current domain
+ * - Change SameSite=None to SameSite=Lax (now first-party)
+ * - Keep Secure for HTTPS
+ */
+function rewriteSetCookie(cookie: string): string {
+  return (
+    cookie
+      // Remove Domain attribute entirely
+      .replace(/;\s*Domain=[^;]*/gi, "")
+      // Change SameSite=None to Lax (first-party now)
+      .replace(/;\s*SameSite=None/gi, "; SameSite=Lax")
+  );
+}
+
 export async function handler(req: NextRequest) {
   const path = req.nextUrl.pathname.replace(/^\/api/, "");
   const url = `${BACKEND_URL}${path}${req.nextUrl.search}`;
@@ -10,7 +26,7 @@ export async function handler(req: NextRequest) {
   const headers = new Headers();
 
   // Forward relevant headers
-  const forwardHeaders = ["content-type", "accept", "authorization", "cookie"];
+  const forwardHeaders = ["content-type", "accept", "authorization"];
 
   for (const name of forwardHeaders) {
     const value = req.headers.get(name);
@@ -26,7 +42,6 @@ export async function handler(req: NextRequest) {
   const fetchOptions: RequestInit = {
     method: req.method,
     headers,
-    credentials: "include",
   };
 
   // Forward body for non-GET requests
@@ -52,22 +67,25 @@ export async function handler(req: NextRequest) {
       statusText: backendRes.statusText,
     });
 
-    // Forward response headers
+    // Forward response headers (skip certain headers)
     const skipHeaders = new Set([
       "content-encoding",
       "transfer-encoding",
       "connection",
+      "set-cookie", // Handle separately
     ]);
+
     backendRes.headers.forEach((value, key) => {
       if (!skipHeaders.has(key.toLowerCase())) {
         response.headers.set(key, value);
       }
     });
 
-    // Forward Set-Cookie headers (important!)
+    // Forward and REWRITE Set-Cookie headers for first-party
     const setCookies = backendRes.headers.getSetCookie?.() || [];
     for (const cookie of setCookies) {
-      response.headers.append("set-cookie", cookie);
+      const rewritten = rewriteSetCookie(cookie);
+      response.headers.append("set-cookie", rewritten);
     }
 
     return response;
