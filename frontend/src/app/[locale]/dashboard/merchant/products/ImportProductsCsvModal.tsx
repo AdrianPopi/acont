@@ -98,14 +98,12 @@ export default function ImportProductsCsvModal({ onClose, onImported }: Props) {
       const form = new FormData();
       form.append("file", file);
 
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/products/upload-csv`,
-        {
-          method: "POST",
-          credentials: "include",
-          body: form,
-        }
-      );
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
+      const res = await fetch(`${base}/products/upload-csv`, {
+        method: "POST",
+        credentials: "include",
+        body: form,
+      });
 
       const text = await res.text();
 

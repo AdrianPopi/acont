@@ -20,7 +20,8 @@ export default function ProductsTable({ products, onChanged }: Props) {
 
     try {
       setLoadingId(id);
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`, {
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
+      await fetch(`${base}/products/${id}`, {
         method: "DELETE",
         credentials: "include",
       });

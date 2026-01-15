@@ -34,7 +34,8 @@ export default function AddProductModal({ onClose, onCreated }: Props) {
       setLoading(true);
       setError("");
 
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/`, {
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
+      const res = await fetch(`${base}/products/`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

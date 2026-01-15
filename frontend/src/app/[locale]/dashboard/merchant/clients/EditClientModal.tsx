@@ -36,7 +36,8 @@ export default function EditClientModal({
   });
 
   async function submit() {
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/clients/${client.id}`, {
+    const base = process.env.NEXT_PUBLIC_API_URL || "/api";
+    await fetch(`${base}/clients/${client.id}`, {
       method: "PUT",
       credentials: "include",
       headers: { "Content-Type": "application/json" },

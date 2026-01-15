@@ -10,7 +10,8 @@ export default function ClientsTable({ clients }: { clients: Client[] }) {
   async function remove(id: number) {
     if (!confirm("Delete client?")) return;
 
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/clients/${id}`, {
+    const base = process.env.NEXT_PUBLIC_API_URL || "/api";
+    await fetch(`${base}/clients/${id}`, {
       method: "DELETE",
       credentials: "include",
     });

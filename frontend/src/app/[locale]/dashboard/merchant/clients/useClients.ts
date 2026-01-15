@@ -11,7 +11,8 @@ export function useClients() {
   const load = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/clients/`, {
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
+      const res = await fetch(`${base}/clients/`, {
         credentials: "include",
       });
 

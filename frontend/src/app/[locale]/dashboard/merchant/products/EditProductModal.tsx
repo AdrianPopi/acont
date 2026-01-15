@@ -39,20 +39,18 @@ export default function EditProductModal({ product, onClose, onSaved }: Props) {
       setSaving(true);
       setError("");
 
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/products/${product.id}`,
-        {
-          method: "PUT",
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: name.trim(),
-            code: code?.trim() || null,
-            unit_price: price,
-            vat_rate: isNaN(vat) ? 0 : vat,
-          }),
-        }
-      );
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
+      const res = await fetch(`${base}/products/${product.id}`, {
+        method: "PUT",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          code: code?.trim() || null,
+          unit_price: price,
+          vat_rate: isNaN(vat) ? 0 : vat,
+        }),
+      });
 
       if (!res.ok) throw new Error();
 

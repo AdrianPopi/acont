@@ -11,7 +11,8 @@ export function useProducts() {
   const load = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/`, {
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
+      const res = await fetch(`${base}/products/`, {
         credentials: "include",
       });
       if (!res.ok) throw new Error("Failed to load products");

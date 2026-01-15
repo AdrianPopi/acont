@@ -24,7 +24,8 @@ export default function AddClientModal({ onClose, onCreated }: Props) {
     setError("");
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/clients/`, {
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
+      const res = await fetch(`${base}/clients/`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
