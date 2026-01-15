@@ -82,12 +82,8 @@ export async function handler(req: NextRequest) {
 
   // Add trailing slash if not present and not a file request
   // This prevents 307 redirects which can lose Authorization headers
-  if (!path.endsWith("/") && !path.includes(".")) {
-    path = path + "/";
-  }
-
-  const url = `${BACKEND_URL}${path}${req.nextUrl.search}`;
-
+  // BUT: exclude /auth/ routes which are defined without trailing slash in FastAPI
+  if (!path.endsWith("/") && !path.includes(".") && !path.startsWith("/auth/")) {
   console.log(`[Proxy] ${req.method} ${path}`);
 
   const headers = new Headers();
