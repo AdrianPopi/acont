@@ -94,7 +94,7 @@ export default function InvoiceViewPage() {
   }, [inv]);
 
   async function downloadPdf() {
-    if (!inv || !base) return;
+    if (!inv) return;
     const res = await fetch(`${base}/invoices/${inv.id}/pdf`, {
       credentials: "include",
     });

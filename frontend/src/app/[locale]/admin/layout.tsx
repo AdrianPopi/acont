@@ -5,8 +5,7 @@ import ThemeToggle from "@/components/ui/ThemeToggle";
 import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 
 async function getMe() {
-  const base = process.env.NEXT_PUBLIC_API_URL;
-  if (!base) return null;
+  const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
   // ✅ Next 15/16: cookies() is async
   const cookieStore = await cookies();

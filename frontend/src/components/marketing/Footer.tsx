@@ -10,7 +10,7 @@ type Versions = { terms_version: string; privacy_version: string };
 export default function Footer() {
   const t = useTranslations();
   const locale = useLocale();
-  const base = process.env.NEXT_PUBLIC_API_URL;
+  const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
   const [v, setV] = useState<Versions | null>(null);
 
@@ -18,7 +18,6 @@ export default function Footer() {
     let mounted = true;
 
     async function load() {
-      if (!base) return;
       const res = await fetch(`${base}/auth/legal-versions?locale=${locale}`, {
         cache: "no-store",
       });

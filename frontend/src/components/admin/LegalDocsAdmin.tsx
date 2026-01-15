@@ -37,7 +37,7 @@ function toErrorMessage(e: unknown) {
 }
 
 export default function LegalDocsAdmin() {
-  const base = process.env.NEXT_PUBLIC_API_URL;
+  const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
   const [docType, setDocType] = useState<DocType>("terms");
   const [locale, setLocale] = useState<"en" | "ro" | "fr" | "nl">("en");
@@ -49,7 +49,6 @@ export default function LegalDocsAdmin() {
   const [err, setErr] = useState("");
 
   async function loadList(nextDocType = docType, nextLocale = locale) {
-    if (!base) return;
     const res = await fetch(
       `${base}/admin/legal-documents?doc_type=${encodeURIComponent(
         nextDocType
@@ -83,7 +82,6 @@ export default function LegalDocsAdmin() {
   }, [docType, locale]);
 
   async function openDoc(id: number) {
-    if (!base) return;
     setErr("");
     setLoading(true);
     try {
@@ -109,7 +107,6 @@ export default function LegalDocsAdmin() {
   }
 
   async function publish() {
-    if (!base) return;
     setLoading(true);
     setErr("");
     try {

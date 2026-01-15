@@ -12,8 +12,7 @@ type PublicDoc = {
 };
 
 async function getDoc(locale: string, docType: "terms" | "privacy") {
-  const base = process.env.NEXT_PUBLIC_API_URL;
-  if (!base) return null;
+  const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
   const res = await fetch(
     `${base}/legal/public/${docType}?locale=${encodeURIComponent(locale)}`,

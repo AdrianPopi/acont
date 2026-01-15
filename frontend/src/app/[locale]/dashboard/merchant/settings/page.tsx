@@ -273,8 +273,7 @@ function AccountTabContent({
   useEffect(() => {
     async function loadAccountData() {
       try {
-        const base = process.env.NEXT_PUBLIC_API_URL;
-        if (!base) return;
+        const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
         // Load from preferences/account endpoint
         const res = await fetch(`${base}/preferences/account`, {
@@ -462,8 +461,7 @@ function BankTabContent({
   useEffect(() => {
     async function loadBankData() {
       try {
-        const base = process.env.NEXT_PUBLIC_API_URL;
-        if (!base) return;
+        const base = process.env.NEXT_PUBLIC_API_URL || "/api";
         const res = await fetch(`${base}/preferences/bank`, {
           credentials: "include",
         });
@@ -724,8 +722,7 @@ function TemplateTabContent({
   useEffect(() => {
     async function loadTemplateData() {
       try {
-        const base = process.env.NEXT_PUBLIC_API_URL;
-        if (!base) return;
+        const base = process.env.NEXT_PUBLIC_API_URL || "/api";
         const res = await fetch(`${base}/preferences/invoice-template`, {
           credentials: "include",
         });

@@ -89,8 +89,7 @@ export default function SignupPage() {
     async function loadCountries() {
       try {
         setCountriesLoading(true);
-        const base = process.env.NEXT_PUBLIC_API_URL;
-        if (!base) return;
+        const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
         const res = await fetch(`${base}/auth/countries`, {
           method: "GET",

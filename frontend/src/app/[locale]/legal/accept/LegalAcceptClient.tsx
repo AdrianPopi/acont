@@ -45,8 +45,7 @@ export default function LegalAcceptPage() {
     let mounted = true;
 
     async function load() {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) return;
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const token = getToken();
 

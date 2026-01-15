@@ -177,8 +177,6 @@ export default function NewInvoicePage() {
   const loadMeta = useCallback(
     async (d: string) => {
       try {
-        if (!base) return;
-
         const res = await fetch(
           `${base}/invoices/meta?issue_date=${encodeURIComponent(d)}`,
           {

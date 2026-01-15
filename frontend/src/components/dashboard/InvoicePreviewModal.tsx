@@ -74,8 +74,7 @@ export default function InvoicePreviewModal({
 
     async function loadMerchantEmails() {
       try {
-        const base = process.env.NEXT_PUBLIC_API_URL;
-        if (!base) return;
+        const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
         const res = await fetch(`${base}/preferences/account`, {
           credentials: "include",

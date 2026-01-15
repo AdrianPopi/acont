@@ -97,7 +97,6 @@ export default function SubscriptionPage() {
   }, []);
 
   async function handleCheckout(planKey: string) {
-    if (!base) return;
     setCheckoutLoading(planKey);
     try {
       const billingInterval = isYearly ? "yearly" : "monthly";
@@ -133,7 +132,6 @@ export default function SubscriptionPage() {
   }
 
   async function handleManageSubscription() {
-    if (!base) return;
     try {
       const returnUrl = `${window.location.origin}/${locale}/dashboard/merchant/subscription`;
 
