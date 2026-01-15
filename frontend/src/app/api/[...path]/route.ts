@@ -86,22 +86,35 @@ export async function handler(req: NextRequest) {
   const headers = new Headers();
 
   // Forward relevant headers
-  const forwardHeaders = ["content-type", "accept", "authorization"];
+  const forwardHeaders = ["content-type", "accept"];
 
   for (const name of forwardHeaders) {
     const value = req.headers.get(name);
     if (value) headers.set(name, value);
   }
 
-  // Forward cookies from request
+  // Forward cookies AND extract token for Authorization header
   const cookieHeader = req.headers.get("cookie");
+  let accessToken: string | null = null;
+
   if (cookieHeader) {
     headers.set("cookie", cookieHeader);
-    console.log(
-      `[Proxy] Forwarding cookies: ${cookieHeader.substring(0, 100)}...`
-    );
-  } else {
-    console.log(`[Proxy] No cookies to forward`);
+
+    // Extract acont_access token from cookies
+    const match = cookieHeader.match(/acont_access=([^;]+)/);
+    if (match) {
+      accessToken = match[1];
+    }
+  }
+
+  // If we have Authorization header from client, use it
+  const authHeader = req.headers.get("authorization");
+  if (authHeader) {
+    headers.set("authorization", authHeader);
+  } else if (accessToken) {
+    // Otherwise, use token from cookie as Bearer token
+    headers.set("authorization", `Bearer ${accessToken}`);
+    console.log(`[Proxy] Added Authorization from cookie`);
   }
 
   const fetchOptions: RequestInit = {
