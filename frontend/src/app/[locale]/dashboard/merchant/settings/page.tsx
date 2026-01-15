@@ -948,6 +948,7 @@ interface EmailAccount {
   [key: string]: unknown;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function EmailTabContent({
   t,
   onToast,

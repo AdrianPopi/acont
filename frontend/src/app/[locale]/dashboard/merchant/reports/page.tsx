@@ -298,6 +298,8 @@ export default function ReportsPage() {
   );
 }
 
+type TranslationFn = (key: string) => string;
+
 // Dashboard Tab
 function DashboardTab({
   t,
@@ -305,7 +307,7 @@ function DashboardTab({
   loading,
   onRefresh,
 }: {
-  t: any;
+  t: TranslationFn;
   data: DashboardSummary | null;
   loading: boolean;
   onRefresh: () => void;
@@ -383,7 +385,18 @@ function RevenueTab({
   endDate,
   setEndDate,
   onLoad,
-}: any) {
+}: {
+  t: TranslationFn;
+  data: RevenueData[];
+  loading: boolean;
+  groupBy: string;
+  setGroupBy: (v: string) => void;
+  startDate: string;
+  setStartDate: (v: string) => void;
+  endDate: string;
+  setEndDate: (v: string) => void;
+  onLoad: () => void;
+}) {
   const formatPeriod = (row: RevenueData) => {
     if (row.period) return row.period;
     if (groupBy === "week") return `${row.year}-W${row.week}`;
@@ -493,7 +506,16 @@ function InvoicesTab({
   endDate,
   setEndDate,
   onLoad,
-}: any) {
+}: {
+  t: TranslationFn;
+  data: InvoicesSummary | null;
+  loading: boolean;
+  startDate: string;
+  setStartDate: (v: string) => void;
+  endDate: string;
+  setEndDate: (v: string) => void;
+  onLoad: () => void;
+}) {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
       <h2 className="text-2xl font-bold mb-6">{t("invoices.title")}</h2>
@@ -583,7 +605,17 @@ function InvoicesTab({
 }
 
 // Clients Tab
-function ClientsTab({ t, data, loading, onLoad }: any) {
+function ClientsTab({
+  t,
+  data,
+  loading,
+  onLoad,
+}: {
+  t: TranslationFn;
+  data: ClientsSummary | null;
+  loading: boolean;
+  onLoad: () => void;
+}) {
   useEffect(() => {
     if (!data) onLoad();
   }, [data, onLoad]);
@@ -622,7 +654,7 @@ function ClientsTab({ t, data, loading, onLoad }: any) {
                 </tr>
               </thead>
               <tbody>
-                {data.top_clients.map((client: any, i: number) => (
+                {data.top_clients.map((client, i) => (
                   <tr
                     key={i}
                     className="border-b border-black/10 dark:border-white/10"
@@ -655,7 +687,16 @@ function TaxTab({
   endDate,
   setEndDate,
   onLoad,
-}: any) {
+}: {
+  t: TranslationFn;
+  data: TaxSummary | null;
+  loading: boolean;
+  startDate: string;
+  setStartDate: (v: string) => void;
+  endDate: string;
+  setEndDate: (v: string) => void;
+  onLoad: () => void;
+}) {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
       <h2 className="text-2xl font-bold mb-6">{t("tax.title")}</h2>
