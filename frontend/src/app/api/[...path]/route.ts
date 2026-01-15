@@ -80,9 +80,14 @@ function extractSetCookieHeaders(res: Response): string[] {
 export async function handler(req: NextRequest) {
   let path = req.nextUrl.pathname.replace(/^\/api/, "");
 
-  // Ensure trailing slash for API endpoints to avoid 307 redirects
-  // which lose the Authorization header
-  if (path && !path.endsWith("/") && !path.includes(".")) {
+  // Ensure trailing slash for GET requests to avoid 307 redirects
+  // which lose the Authorization header. POST/PUT/DELETE don't need this.
+  if (
+    req.method === "GET" &&
+    path &&
+    !path.endsWith("/") &&
+    !path.includes(".")
+  ) {
     path = path + "/";
   }
 
