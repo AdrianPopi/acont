@@ -57,7 +57,7 @@ export default function InvoiceViewPage() {
   const params = useParams<{ id: string }>();
 
   const id = Number(params?.id);
-  const base = process.env.NEXT_PUBLIC_API_URL || "";
+  const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
   const [inv, setInv] = useState<InvoiceOut | null>(null);
   const [loading, setLoading] = useState(true);
@@ -67,7 +67,6 @@ export default function InvoiceViewPage() {
     setErr("");
     setLoading(true);
     try {
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
       if (!Number.isFinite(id)) throw new Error("Invalid invoice id");
 
       const res = await fetch(`${base}/invoices/${id}`, {

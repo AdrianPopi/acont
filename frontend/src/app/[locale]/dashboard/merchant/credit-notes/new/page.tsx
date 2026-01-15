@@ -91,7 +91,7 @@ export default function NewCreditNotePage() {
   const nav = useMerchantNav();
   const t = useTranslations("dashboard.creditNotesNew");
 
-  const base = process.env.NEXT_PUBLIC_API_URL || "";
+  const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
   const [clients, setClients] = useState<ClientOut[]>([]);
   const [clientId, setClientId] = useState<number | null>(null);

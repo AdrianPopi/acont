@@ -62,8 +62,7 @@ export default function MerchantSettingsPage() {
   async function load() {
     setErr("");
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
       const res = await fetch(`${base}/merchants/me`, {
         credentials: "include",
         cache: "no-store",
@@ -81,8 +80,7 @@ export default function MerchantSettingsPage() {
     setLoading(true);
     setErr("");
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
       const res = await fetch(`${base}/preferences/`, {
         credentials: "include",
         cache: "no-store",
@@ -101,8 +99,7 @@ export default function MerchantSettingsPage() {
     setErr("");
     setLoading(true);
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const fd = new FormData();
       fd.append("file", file);
@@ -137,7 +134,7 @@ export default function MerchantSettingsPage() {
     loadPreferences();
   }, []);
 
-  const base = process.env.NEXT_PUBLIC_API_URL || "";
+  const base = process.env.NEXT_PUBLIC_API_URL || "/api";
   const absoluteLogo = logoUrl
     ? logoUrl.startsWith("http")
       ? logoUrl
@@ -309,8 +306,7 @@ function AccountTabContent({
     setLoading(true);
 
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const res = await fetch(`${base}/preferences/account`, {
         method: "POST",
@@ -489,8 +485,7 @@ function BankTabContent({
     setLoading(true);
 
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const res = await fetch(`${base}/preferences/bank`, {
         method: "PUT",
@@ -575,8 +570,7 @@ function TaxTabContent({
 
   const loadTaxRates = useCallback(async () => {
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const res = await fetch(`${base}/preferences/tax-rates`, {
         credentials: "include",
@@ -604,8 +598,7 @@ function TaxTabContent({
 
     setLoading(true);
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const res = await fetch(`${base}/preferences/tax-rates`, {
         method: "POST",
@@ -638,8 +631,7 @@ function TaxTabContent({
 
   async function deleteTaxRate(id: string) {
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const res = await fetch(`${base}/preferences/tax-rates/${id}`, {
         method: "DELETE",
@@ -755,8 +747,7 @@ function TemplateTabContent({
     setLoading(true);
 
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const res = await fetch(`${base}/preferences/invoice-template`, {
         method: "PUT",
@@ -891,8 +882,7 @@ function SubscriptionTabContent({ t }: TabContentProps) {
 
   async function loadSubscription() {
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const res = await fetch(`${base}/preferences/subscription`, {
         credentials: "include",
@@ -976,8 +966,7 @@ function EmailTabContent({
 
   const loadEmails = useCallback(async () => {
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const res = await fetch(`${base}/preferences/email-expenses`, {
         credentials: "include",
@@ -1005,8 +994,7 @@ function EmailTabContent({
 
     setLoading(true);
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const res = await fetch(`${base}/preferences/email-expenses`, {
         method: "POST",
@@ -1043,8 +1031,7 @@ function EmailTabContent({
 
   async function deleteEmail(id: string) {
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const res = await fetch(`${base}/preferences/email-expenses/${id}`, {
         method: "DELETE",
@@ -1157,8 +1144,7 @@ function PeppolTabContent({
 
   const loadPeppol = useCallback(async () => {
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const res = await fetch(`${base}/preferences/peppol`, {
         credentials: "include",
@@ -1186,8 +1172,7 @@ function PeppolTabContent({
     setLoading(true);
 
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const res = await fetch(`${base}/preferences/peppol`, {
         method: "PUT",
@@ -1336,8 +1321,7 @@ function PasswordTabContent({
 
     setLoading(true);
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const res = await fetch(`${base}/auth/me/password`, {
         method: "POST",
@@ -1419,8 +1403,7 @@ function DataTabContent({
   async function downloadData() {
     setLoading(true);
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const res = await fetch(`${base}/auth/me/data`, {
         credentials: "include",
@@ -1455,8 +1438,7 @@ function DataTabContent({
 
     setLoading(true);
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const res = await fetch(`${base}/auth/me`, {
         method: "DELETE",

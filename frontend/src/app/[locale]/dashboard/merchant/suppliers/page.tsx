@@ -32,7 +32,7 @@ type SupplierInvoice = {
 export default function SuppliersPage() {
   const t = useTranslations("dashboard.suppliers");
   const nav = useMerchantNav();
-  const base = process.env.NEXT_PUBLIC_API_URL || "";
+  const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
   // Tab state
   const [activeTab, setActiveTab] = useState<"suppliers" | "invoices">(

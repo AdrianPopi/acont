@@ -4,24 +4,54 @@ const BACKEND_URL =
   process.env.BACKEND_URL || "https://acont-production.up.railway.app";
 
 /**
- * Rewrite Set-Cookie headers from backend to work with the frontend domain:
- * - Remove Domain= attribute so cookie is set for current domain
- * - Change SameSite=None to SameSite=Lax (now first-party)
- * - Keep Secure for HTTPS
+ * Parse a Set-Cookie header string into its components
  */
-function rewriteSetCookie(cookie: string): string {
-  return (
-    cookie
-      // Remove Domain attribute entirely
-      .replace(/;\s*Domain=[^;]*/gi, "")
-      // Change SameSite=None to Lax (first-party now)
-      .replace(/;\s*SameSite=None/gi, "; SameSite=Lax")
-  );
+function parseCookie(cookieStr: string): {
+  name: string;
+  value: string;
+  options: Record<string, string | boolean | number>;
+} | null {
+  const parts = cookieStr.split(";").map((p) => p.trim());
+  if (parts.length === 0) return null;
+
+  const [nameValue, ...attrs] = parts;
+  const eqIndex = nameValue.indexOf("=");
+  if (eqIndex === -1) return null;
+
+  const name = nameValue.substring(0, eqIndex);
+  const value = nameValue.substring(eqIndex + 1);
+
+  const options: Record<string, string | boolean | number> = {};
+
+  for (const attr of attrs) {
+    const attrEq = attr.indexOf("=");
+    if (attrEq === -1) {
+      // Boolean attribute like HttpOnly, Secure
+      const key = attr.toLowerCase();
+      if (key === "httponly") options.httpOnly = true;
+      else if (key === "secure") options.secure = true;
+    } else {
+      const key = attr.substring(0, attrEq).toLowerCase();
+      const val = attr.substring(attrEq + 1);
+
+      if (key === "max-age") options.maxAge = parseInt(val, 10);
+      else if (key === "path") options.path = val;
+      else if (key === "samesite") {
+        // Force Lax for first-party
+        options.sameSite = "lax";
+      }
+      // Skip Domain - we want it to default to current domain
+    }
+  }
+
+  // Default to Lax if not set
+  if (!options.sameSite) options.sameSite = "lax";
+
+  return { name, value, options };
 }
 
 /**
  * Extract all Set-Cookie headers from a Response.
- * Uses multiple methods for compatibility across environments.
  */
 function extractSetCookieHeaders(res: Response): string[] {
   const cookies: string[] = [];
@@ -34,13 +64,12 @@ function extractSetCookieHeaders(res: Response): string[] {
     }
   }
 
-  // Method 2: Fallback - get raw header (may be comma-joined)
+  // Method 2: Fallback - get raw header
   if (cookies.length === 0) {
     const raw = res.headers.get("set-cookie");
     if (raw) {
       // Split carefully - cookies can contain commas in dates
-      // Pattern: split on comma followed by space and cookie name=
-      const parts = raw.split(/,(?=\s*[^=;]+=[^;]*)/);
+      const parts = raw.split(/,(?=\s*[a-zA-Z_][a-zA-Z0-9_]*=)/);
       cookies.push(...parts.map((c) => c.trim()));
     }
   }
@@ -101,7 +130,7 @@ export async function handler(req: NextRequest) {
       "content-encoding",
       "transfer-encoding",
       "connection",
-      "set-cookie", // Handle separately
+      "set-cookie",
     ]);
 
     backendRes.headers.forEach((value, key) => {
@@ -110,16 +139,25 @@ export async function handler(req: NextRequest) {
       }
     });
 
-    // Forward and REWRITE Set-Cookie headers for first-party
+    // Extract and set cookies using Next.js cookies API
     const setCookies = extractSetCookieHeaders(backendRes);
     console.log(
-      `[API Proxy] ${req.method} ${path} -> ${backendRes.status}, cookies: ${setCookies.length}`
+      `[Proxy] ${req.method} ${path} -> ${backendRes.status}, found ${setCookies.length} cookies`
     );
 
-    for (const cookie of setCookies) {
-      const rewritten = rewriteSetCookie(cookie);
-      console.log(`[API Proxy] Set-Cookie: ${rewritten.substring(0, 80)}...`);
-      response.headers.append("set-cookie", rewritten);
+    for (const cookieStr of setCookies) {
+      const parsed = parseCookie(cookieStr);
+      if (parsed) {
+        console.log(`[Proxy] Setting cookie: ${parsed.name}`);
+        response.cookies.set(parsed.name, parsed.value, {
+          path: (parsed.options.path as string) || "/",
+          httpOnly: parsed.options.httpOnly as boolean,
+          secure: parsed.options.secure as boolean,
+          sameSite:
+            (parsed.options.sameSite as "lax" | "strict" | "none") || "lax",
+          maxAge: parsed.options.maxAge as number | undefined,
+        });
+      }
     }
 
     return response;

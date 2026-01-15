@@ -62,7 +62,7 @@ export default function MerchantDashboard() {
   const tDash = useTranslations("dashboard");
   const tInvoices = useTranslations("dashboard.invoices");
 
-  const base = process.env.NEXT_PUBLIC_API_URL || "";
+  const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
   const [clients, setClients] = useState<ClientOut[]>([]);
   const [invoices, setInvoices] = useState<InvoiceRow[]>([]);
@@ -74,8 +74,6 @@ export default function MerchantDashboard() {
     setLoading(true);
 
     try {
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
-
       const [cRes, iRes] = await Promise.all([
         fetch(`${base}/clients/`, {
           credentials: "include",

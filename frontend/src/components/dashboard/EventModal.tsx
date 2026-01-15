@@ -30,7 +30,7 @@ export default function EventModal({
   onSave,
 }: EventModalProps) {
   const t = useTranslations("dashboard.calendar");
-  const base = process.env.NEXT_PUBLIC_API_URL || "";
+  const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");

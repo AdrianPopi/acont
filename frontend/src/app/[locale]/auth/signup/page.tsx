@@ -187,8 +187,7 @@ export default function SignupPage() {
 
     setLoading(true);
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const url = `${base}/auth/signup/merchant`;
 

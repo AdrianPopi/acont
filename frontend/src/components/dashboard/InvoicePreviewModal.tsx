@@ -41,8 +41,7 @@ export default function InvoicePreviewModal({
   useEffect(() => {
     async function loadPdf() {
       try {
-        const base = process.env.NEXT_PUBLIC_API_URL;
-        if (!base) throw new Error("API URL missing");
+        const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
         const res = await fetch(`${base}/invoices/${invoiceId}/pdf`, {
           credentials: "include",
@@ -109,8 +108,7 @@ export default function InvoicePreviewModal({
     setSendError("");
 
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("API URL missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const res = await fetch(`${base}/invoices/${invoiceId}/send-email`, {
         method: "POST",

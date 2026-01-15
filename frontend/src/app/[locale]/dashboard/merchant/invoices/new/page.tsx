@@ -62,7 +62,7 @@ export default function NewInvoicePage() {
   const nav = useMerchantNav();
   const t = useTranslations("dashboard.invoicesNew");
 
-  const base = process.env.NEXT_PUBLIC_API_URL || "";
+  const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
   // date + meta
   const [issueDate, setIssueDate] = useState(todayISO());
@@ -122,8 +122,6 @@ export default function NewInvoicePage() {
   const loadBasics = useCallback(async () => {
     setErr("");
     try {
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
-
       const [cRes, pRes, tplRes, accRes] = await Promise.all([
         fetch(`${base}/clients/`, {
           credentials: "include",
@@ -346,8 +344,6 @@ export default function NewInvoicePage() {
     setLoading(true);
 
     try {
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
-
       const payload = {
         client_id: clientMode === "existing" ? clientId : null,
         client_name: clientName,

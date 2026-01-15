@@ -81,8 +81,7 @@ export default function LegalAcceptPage() {
     setLoading(true);
 
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       // helper: încearcă o dată; dacă e 401, încearcă refresh și repetă
       async function doAccept(): Promise<Response> {

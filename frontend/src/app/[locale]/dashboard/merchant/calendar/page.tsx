@@ -44,7 +44,7 @@ export default function CalendarPage() {
     null
   );
 
-  const base = process.env.NEXT_PUBLIC_API_URL || "";
+  const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
   // Get current month/year
   const currentMonth = currentDate.getMonth();
@@ -54,8 +54,6 @@ export default function CalendarPage() {
     setLoading(true);
     setError("");
     try {
-      if (!base) throw new Error("API URL missing");
-
       const res = await fetch(
         `${base}/calendar?year=${currentYear}&month=${currentMonth + 1}`,
         {

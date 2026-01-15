@@ -42,8 +42,7 @@ export default function MerchantInvoicesPage() {
     setErr("");
     setLoading(true);
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const res = await fetch(`${base}/invoices`, {
         credentials: "include",

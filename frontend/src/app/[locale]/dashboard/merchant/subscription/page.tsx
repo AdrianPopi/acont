@@ -62,14 +62,12 @@ export default function SubscriptionPage() {
   const [isYearly, setIsYearly] = useState(false);
   const [checkoutLoading, setCheckoutLoading] = useState<string | null>(null);
 
-  const base = process.env.NEXT_PUBLIC_API_URL;
+  const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
   async function loadData() {
     setLoading(true);
     setError("");
     try {
-      if (!base) throw new Error("API URL not configured");
-
       const [subRes, plansRes, usageRes] = await Promise.all([
         fetch(`${base}/subscriptions/current`, { credentials: "include" }),
         fetch(`${base}/subscriptions/plans`, { credentials: "include" }),

@@ -49,7 +49,7 @@ export default function AdminDashboardClient() {
   const locale = useLocale();
   const router = useRouter();
 
-  const base = process.env.NEXT_PUBLIC_API_URL;
+  const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
   const [me, setMe] = useState<Me | null>(null);
   const [loading, setLoading] = useState(true);
@@ -92,8 +92,6 @@ export default function AdminDashboardClient() {
       setErr("");
       setLoading(true);
       try {
-        if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
-
         const res = await fetch(`${base}/auth/me`, {
           method: "GET",
           credentials: "include",
@@ -123,7 +121,6 @@ export default function AdminDashboardClient() {
 
   async function logout() {
     try {
-      if (!base) throw new Error("NEXT_PUBLIC_API_URL is missing");
       await fetch(`${base}/auth/logout`, {
         method: "POST",
         credentials: "include",

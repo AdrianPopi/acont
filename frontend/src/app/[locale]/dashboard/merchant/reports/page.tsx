@@ -89,8 +89,7 @@ export default function ReportsPage() {
     setLoading(true);
     setError("");
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("API URL missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const res = await fetch(`${base}/reports/dashboard`, {
         credentials: "include",
@@ -110,8 +109,7 @@ export default function ReportsPage() {
     setLoading(true);
     setError("");
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("API URL missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const params = new URLSearchParams({
         group_by: revenueGroupBy,
@@ -137,8 +135,7 @@ export default function ReportsPage() {
     setLoading(true);
     setError("");
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("API URL missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const params = new URLSearchParams();
       if (invoicesStartDate) params.append("start_date", invoicesStartDate);
@@ -162,8 +159,7 @@ export default function ReportsPage() {
     setLoading(true);
     setError("");
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("API URL missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const res = await fetch(`${base}/reports/clients-summary`, {
         credentials: "include",
@@ -183,8 +179,7 @@ export default function ReportsPage() {
     setLoading(true);
     setError("");
     try {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) throw new Error("API URL missing");
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       const params = new URLSearchParams();
       if (taxStartDate) params.append("start_date", taxStartDate);
