@@ -150,7 +150,7 @@ def _set_refresh_cookie(res: Response, refresh_token: str):
 
 def _clear_cookies(res: Response):
     res.delete_cookie(key=ACCESS_COOKIE, domain=settings.COOKIE_DOMAIN, path="/")
-    res.delete_cookie(key=REFRESH_COOKIE, domain=settings.COOKIE_DOMAIN, path="/auth")
+    res.delete_cookie(key=REFRESH_COOKIE, domain=settings.COOKIE_DOMAIN, path="/")
 
 @router.get("/me")
 def me(user: User = Depends(get_current_user), db: Session = Depends(get_db)):
