@@ -15,11 +15,7 @@ export default function RequireLegal() {
     let mounted = true;
 
     async function run() {
-      const base = process.env.NEXT_PUBLIC_API_URL;
-      if (!base) {
-        setChecked(true);
-        return;
-      }
+      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
 
       try {
         const res = await fetch(
