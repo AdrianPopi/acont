@@ -78,58 +78,45 @@ function extractSetCookieHeaders(res: Response): string[] {
 }
 
 export async function handler(req: NextRequest) {
+  // Folosește BACKEND_URL global definit mai sus
   let path = req.nextUrl.pathname.replace(/^\/api/, "");
-
-  // Add trailing slash if not present and not a file request
-  // This prevents 307 redirects which can lose Authorization headers
-  // BUT: exclude /auth/ routes which are defined without trailing slash in FastAPI
-  if (!path.endsWith("/") && !path.includes(".") && !path.startsWith("/auth/")) {
-  console.log(`[Proxy] ${req.method} ${path}`);
+  // Adaugă trailing slash dacă nu e prezent, nu e fișier și nu e /auth/
+  if (
+    !path.endsWith("/") &&
+    !path.includes(".") &&
+    !path.startsWith("/auth/")
+  ) {
+    path = path + "/";
+  }
+  const url = `${BACKEND_URL}${path}${req.nextUrl.search}`;
 
   const headers = new Headers();
-
-  // Forward relevant headers
   const forwardHeaders = ["content-type", "accept"];
-
   for (const name of forwardHeaders) {
     const value = req.headers.get(name);
     if (value) headers.set(name, value);
   }
-
-  // Forward cookies AND extract token for Authorization header
+  // Forward cookies și Authorization
   const cookieHeader = req.headers.get("cookie");
   let accessToken: string | null = null;
-
   if (cookieHeader) {
     headers.set("cookie", cookieHeader);
-
-    // Extract acont_access token from cookies
     const match = cookieHeader.match(/acont_access=([^;]+)/);
-    if (match) {
-      accessToken = match[1];
-    }
+    if (match) accessToken = match[1];
   }
-
-  // If we have Authorization header from client, use it
   const authHeader = req.headers.get("authorization");
   if (authHeader) {
     headers.set("authorization", authHeader);
   } else if (accessToken) {
-    // Otherwise, use token from cookie as Bearer token
     headers.set("authorization", `Bearer ${accessToken}`);
-    console.log(`[Proxy] Added Authorization from cookie`);
   }
-
   const fetchOptions: RequestInit = {
     method: req.method,
     headers,
-    redirect: "manual", // Handle redirects manually to preserve Authorization header
+    redirect: "manual",
   };
-
-  // Forward body for non-GET requests
   if (req.method !== "GET" && req.method !== "HEAD") {
     const contentType = req.headers.get("content-type") || "";
-
     if (contentType.includes("application/json")) {
       fetchOptions.body = await req.text();
     } else if (contentType.includes("multipart/form-data")) {
@@ -138,24 +125,18 @@ export async function handler(req: NextRequest) {
       fetchOptions.body = await req.text();
     }
   }
-
   try {
     let backendRes = await fetch(url, fetchOptions);
-
-    // Handle redirects manually - follow them with Authorization header preserved
+    // Redirect manual pentru 307/308
     if (backendRes.status === 307 || backendRes.status === 308) {
       const redirectUrl = backendRes.headers.get("location");
       if (redirectUrl) {
-        console.log(`[Proxy] Following redirect to: ${redirectUrl}`);
-        // For 307/308, method and body must be preserved
         const redirectOptions: RequestInit = {
           method: req.method,
           headers,
           redirect: "manual",
         };
-        if (fetchOptions.body) {
-          redirectOptions.body = fetchOptions.body;
-        }
+        if (fetchOptions.body) redirectOptions.body = fetchOptions.body;
         backendRes = await fetch(
           redirectUrl.startsWith("http")
             ? redirectUrl
@@ -164,50 +145,27 @@ export async function handler(req: NextRequest) {
         );
       }
     }
-
-    console.log(
-      `[Proxy] Backend response: ${backendRes.status} ${backendRes.statusText}`
-    );
-
-    // Create response with backend body
     const responseBody = await backendRes.arrayBuffer();
     const response = new NextResponse(responseBody, {
       status: backendRes.status,
       statusText: backendRes.statusText,
     });
-
-    // Forward response headers (skip certain headers)
-    const skipHeaders = new Set([
-      "content-encoding",
-      "transfer-encoding",
-      "connection",
-      "set-cookie",
-    ]);
-
-    backendRes.headers.forEach((value, key) => {
-      if (!skipHeaders.has(key.toLowerCase())) {
-        response.headers.set(key, value);
-      }
-    });
-
-    // Extract and set cookies using Next.js cookies API
+    // Forward Set-Cookie headers using the parser so we can set them as first-party
     const setCookies = extractSetCookieHeaders(backendRes);
-    console.log(
-      `[Proxy] ${req.method} ${path} -> ${backendRes.status}, found ${setCookies.length} cookies`
-    );
-
     for (const cookieStr of setCookies) {
       const parsed = parseCookie(cookieStr);
       if (parsed) {
-        console.log(`[Proxy] Setting cookie: ${parsed.name}`);
         response.cookies.set(parsed.name, parsed.value, {
-          path: "/", // Always use root path for proxy compatibility
-          httpOnly: parsed.options.httpOnly as boolean,
-          secure: parsed.options.secure as boolean,
+          path: (parsed.options.path as string) || "/",
+          httpOnly: Boolean(parsed.options.httpOnly),
+          secure: Boolean(parsed.options.secure),
           sameSite:
             (parsed.options.sameSite as "lax" | "strict" | "none") || "lax",
           maxAge: parsed.options.maxAge as number | undefined,
         });
+      } else {
+        // Fallback: append raw Set-Cookie header
+        response.headers.append("set-cookie", cookieStr);
       }
     }
 
