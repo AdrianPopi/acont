@@ -78,7 +78,14 @@ function extractSetCookieHeaders(res: Response): string[] {
 }
 
 export async function handler(req: NextRequest) {
-  const path = req.nextUrl.pathname.replace(/^\/api/, "");
+  let path = req.nextUrl.pathname.replace(/^\/api/, "");
+
+  // Ensure trailing slash for API endpoints to avoid 307 redirects
+  // which lose the Authorization header
+  if (path && !path.endsWith("/") && !path.includes(".")) {
+    path = path + "/";
+  }
+
   const url = `${BACKEND_URL}${path}${req.nextUrl.search}`;
 
   console.log(`[Proxy] ${req.method} ${path}`);
