@@ -143,7 +143,7 @@ def _set_refresh_cookie(res: Response, refresh_token: str):
     res.set_cookie(
         key=REFRESH_COOKIE,
         value=refresh_token,
-        path="/auth",
+        path="/",  # Changed from /auth to / for proxy compatibility
         max_age=settings.REFRESH_TOKEN_DAYS * 24 * 3600,
         **_cookie_common(),
     )

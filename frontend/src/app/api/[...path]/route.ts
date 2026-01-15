@@ -198,7 +198,7 @@ export async function handler(req: NextRequest) {
       if (parsed) {
         console.log(`[Proxy] Setting cookie: ${parsed.name}`);
         response.cookies.set(parsed.name, parsed.value, {
-          path: (parsed.options.path as string) || "/",
+          path: "/", // Always use root path for proxy compatibility
           httpOnly: parsed.options.httpOnly as boolean,
           secure: parsed.options.secure as boolean,
           sameSite:
