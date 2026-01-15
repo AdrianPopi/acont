@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Client } from "./types";
+import { apiFetch } from "@/lib/api";
 
 export function useClients() {
   const [data, setData] = useState<Client[]>([]);
@@ -11,16 +12,8 @@ export function useClients() {
   const load = async () => {
     try {
       setLoading(true);
-      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
-      const res = await fetch(`${base}/clients/`, {
-        credentials: "include",
-      });
-
-      if (!res.ok) {
-        throw new Error("Failed to load clients");
-      }
-
-      setData(await res.json());
+      const clients = await apiFetch<Client[]>("/clients/");
+      setData(clients);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Unknown error");
     } finally {

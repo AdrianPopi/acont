@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Product } from "./types";
+import { apiFetch } from "@/lib/api";
 
 export function useProducts() {
   const [data, setData] = useState<Product[]>([]);
@@ -11,12 +12,8 @@ export function useProducts() {
   const load = async () => {
     try {
       setLoading(true);
-      const base = process.env.NEXT_PUBLIC_API_URL || "/api";
-      const res = await fetch(`${base}/products/`, {
-        credentials: "include",
-      });
-      if (!res.ok) throw new Error("Failed to load products");
-      setData(await res.json());
+      const products = await apiFetch<Product[]>("/products/");
+      setData(products);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Error");
     } finally {
