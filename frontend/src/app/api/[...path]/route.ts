@@ -118,7 +118,16 @@ async function fetchWithManualRedirect(
 }
 
 export async function handler(req: NextRequest) {
-  const path = req.nextUrl.pathname.replace(/^\/api/, "");
+  let path = req.nextUrl.pathname.replace(/^\/api/, "");
+
+  // Pentru FastAPI (și multe backends): POST/PUT/PATCH/DELETE pe rute fără slash -> 307/308/301 către varianta cu slash
+  // Ca să evităm redirect la POST, forțăm slash la final pentru non-GET/HEAD (dar nu pentru fișiere).
+  if (req.method !== "GET" && req.method !== "HEAD") {
+    if (!path.endsWith("/") && !path.includes(".")) {
+      path += "/";
+    }
+  }
+
   const url = `${BACKEND_URL}${path}${req.nextUrl.search}`;
 
   const headers = new Headers();
