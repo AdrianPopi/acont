@@ -9,6 +9,9 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
 from reportlab.lib import colors
 import requests
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+from pathlib import Path as _Path
 
 from app.models.invoice import Invoice
 
@@ -183,6 +186,24 @@ def build_invoice_pdf(inv: Invoice, merchant_logo_url: str | None = None) -> byt
     c = canvas.Canvas(buf, pagesize=A4)
     w, h = A4
 
+    # Register a Unicode TrueType font when available (DejaVu Sans common on Linux)
+    # Fallback to built-in Helvetica if not present.
+    _deja_path = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
+    _deja_bold = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+    FONT_REGULAR = "Helvetica"
+    FONT_BOLD = "Helvetica-Bold"
+    try:
+        if _Path(_deja_path).exists():
+            pdfmetrics.registerFont(TTFont("DejaVuSans", _deja_path))
+            FONT_REGULAR = "DejaVuSans"
+        if _Path(_deja_bold).exists():
+            pdfmetrics.registerFont(TTFont("DejaVuSans-Bold", _deja_bold))
+            FONT_BOLD = "DejaVuSans-Bold"
+    except Exception:
+        # keep Helvetica if registration fails
+        FONT_REGULAR = "Helvetica"
+        FONT_BOLD = "Helvetica-Bold"
+
     lang = (inv.language or "FR").strip().upper()
     tpl = (getattr(inv, "template", "classic") or "classic").strip().lower()
 
@@ -194,7 +215,7 @@ def build_invoice_pdf(inv: Invoice, merchant_logo_url: str | None = None) -> byt
         c.setFillColor(colors.white)
 
         draw_logo(c, merchant_logo_url, x=30, y=h - 55, w=110, h=35)
-        c.setFont("Helvetica-Bold", 18)
+        c.setFont(FONT_BOLD, 18)
         c.drawRightString(w - 30, h - 45, "ACONT")
         c.setFillColor(colors.black)
 
@@ -203,7 +224,7 @@ def build_invoice_pdf(inv: Invoice, merchant_logo_url: str | None = None) -> byt
     elif tpl == "minimal":
         # minimal: very clean
         logo_drawn = draw_logo(c, merchant_logo_url, x=40, y=h - 60, w=110, h=35)
-        c.setFont("Helvetica-Bold", 14)
+        c.setFont(FONT_BOLD, 14)
         title_x = 160 if logo_drawn else 50
         c.drawString(title_x, h - 50, "ACONT")
         y = h - 80
@@ -211,17 +232,17 @@ def build_invoice_pdf(inv: Invoice, merchant_logo_url: str | None = None) -> byt
     else:
         # classic (existing style)
         logo_drawn = draw_logo(c, merchant_logo_url, x=40, y=h - 60, w=110, h=35)
-        c.setFont("Helvetica-Bold", 16)
+        c.setFont(FONT_BOLD, 16)
         title_x = 160 if logo_drawn else 50
         c.drawString(title_x, h - 50, "ACONT")
         y = h - 85
 
     # Title
-    c.setFont("Helvetica-Bold", 12)
+    c.setFont(FONT_BOLD, 12)
     c.drawString(50, y, f"{tr(lang,'invoice')}: {inv.invoice_no or tr(lang,'draft')}")
     y -= 18
 
-    c.setFont("Helvetica", 10)
+    c.setFont(FONT_REGULAR, 10)
     c.drawString(50, y, f"{tr(lang,'issue_date')}: {inv.issue_date.isoformat()}")
     y -= 14
     if inv.due_date:
@@ -229,10 +250,10 @@ def build_invoice_pdf(inv: Invoice, merchant_logo_url: str | None = None) -> byt
         y -= 14
 
     y -= 10
-    c.setFont("Helvetica-Bold", 11)
+    c.setFont(FONT_BOLD, 11)
     c.drawString(50, y, f"{tr(lang,'bill_to')}:")
     y -= 14
-    c.setFont("Helvetica", 10)
+    c.setFont(FONT_REGULAR, 10)
     c.drawString(50, y, inv.client_name or "-")
     y -= 12
     if inv.client_address:
@@ -245,7 +266,7 @@ def build_invoice_pdf(inv: Invoice, merchant_logo_url: str | None = None) -> byt
     y -= 18
 
     # Table header
-    c.setFont("Helvetica-Bold", 10)
+    c.setFont(FONT_BOLD, 10)
     c.drawString(50, y, tr(lang, "code"))
     c.drawString(140, y, tr(lang, "description"))
     c.drawRightString(420, y, tr(lang, "net"))
@@ -255,12 +276,12 @@ def build_invoice_pdf(inv: Invoice, merchant_logo_url: str | None = None) -> byt
     c.line(50, y, 545, y)
     y -= 14
 
-    c.setFont("Helvetica", 9)
+    c.setFont(FONT_REGULAR, 9)
     for it in inv.items:
         if y < 120:
             c.showPage()
             y = h - 80
-            c.setFont("Helvetica", 9)
+            c.setFont(FONT_REGULAR, 9)
 
         c.drawString(50, y, (it.item_code or "")[:12])
         c.drawString(140, y, (it.description or "")[:45])

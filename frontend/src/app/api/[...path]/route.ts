@@ -78,16 +78,7 @@ function extractSetCookieHeaders(res: Response): string[] {
 }
 
 export async function handler(req: NextRequest) {
-  // Folosește BACKEND_URL global definit mai sus
-  let path = req.nextUrl.pathname.replace(/^\/api/, "");
-  // Adaugă trailing slash dacă nu e prezent, nu e fișier și nu e /auth/
-  if (
-    !path.endsWith("/") &&
-    !path.includes(".") &&
-    !path.startsWith("/auth/")
-  ) {
-    path = path + "/";
-  }
+  const path = req.nextUrl.pathname.replace(/^\/api/, "");
   const url = `${BACKEND_URL}${path}${req.nextUrl.search}`;
 
   const headers = new Headers();
