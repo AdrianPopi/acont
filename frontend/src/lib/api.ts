@@ -1,5 +1,11 @@
 // Use /api proxy in production (empty NEXT_PUBLIC_API_URL), or direct URL for local dev
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "/api";
+let API_BASE = process.env.NEXT_PUBLIC_API_URL || "/api";
+
+// Safety: if someone set NEXT_PUBLIC_API_URL to the production backend URL (e.g. on Vercel),
+// prefer the first-party proxy `/api` so cookies and auth flow work correctly.
+if (typeof API_BASE === "string" && API_BASE.includes("railway.app")) {
+  API_BASE = "/api";
+}
 
 function requireApiBase() {
   return API_BASE;
