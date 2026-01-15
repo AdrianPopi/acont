@@ -81,6 +81,8 @@ export async function handler(req: NextRequest) {
   const path = req.nextUrl.pathname.replace(/^\/api/, "");
   const url = `${BACKEND_URL}${path}${req.nextUrl.search}`;
 
+  console.log(`[Proxy] ${req.method} ${path}`);
+
   const headers = new Headers();
 
   // Forward relevant headers
@@ -95,6 +97,11 @@ export async function handler(req: NextRequest) {
   const cookieHeader = req.headers.get("cookie");
   if (cookieHeader) {
     headers.set("cookie", cookieHeader);
+    console.log(
+      `[Proxy] Forwarding cookies: ${cookieHeader.substring(0, 100)}...`
+    );
+  } else {
+    console.log(`[Proxy] No cookies to forward`);
   }
 
   const fetchOptions: RequestInit = {
@@ -117,6 +124,10 @@ export async function handler(req: NextRequest) {
 
   try {
     const backendRes = await fetch(url, fetchOptions);
+
+    console.log(
+      `[Proxy] Backend response: ${backendRes.status} ${backendRes.statusText}`
+    );
 
     // Create response with backend body
     const responseBody = await backendRes.arrayBuffer();
