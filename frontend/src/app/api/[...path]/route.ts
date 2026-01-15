@@ -26,7 +26,6 @@ function parseCookie(cookieStr: string): {
   for (const attr of attrs) {
     const attrEq = attr.indexOf("=");
     if (attrEq === -1) {
-      // Boolean attribute like HttpOnly, Secure
       const key = attr.toLowerCase();
       if (key === "httponly") options.httpOnly = true;
       else if (key === "secure") options.secure = true;
@@ -40,13 +39,10 @@ function parseCookie(cookieStr: string): {
         // Force Lax for first-party
         options.sameSite = "lax";
       }
-      // Skip Domain - we want it to default to current domain
     }
   }
 
-  // Default to Lax if not set
   if (!options.sameSite) options.sameSite = "lax";
-
   return { name, value, options };
 }
 
@@ -56,20 +52,18 @@ function parseCookie(cookieStr: string): {
 function extractSetCookieHeaders(res: Response): string[] {
   const cookies: string[] = [];
 
-  // Method 1: getSetCookie() (modern browsers/Node 18+)
-  const headersWithGetSetCookie = res.headers as Headers & { getSetCookie?: () => string[] };
+  // Method 1: getSetCookie() (Node 18+)
+  type HeadersWithGetSetCookie = Headers & { getSetCookie?: () => string[] };
+  const headersWithGetSetCookie = res.headers as HeadersWithGetSetCookie;
   if (typeof headersWithGetSetCookie.getSetCookie === "function") {
     const fromMethod = headersWithGetSetCookie.getSetCookie();
-    if (fromMethod && fromMethod.length > 0) {
-      cookies.push(...fromMethod);
-    }
+    if (fromMethod && fromMethod.length > 0) cookies.push(...fromMethod);
   }
 
-  // Method 2: Fallback - get raw header
+  // Method 2: raw header fallback
   if (cookies.length === 0) {
     const raw = res.headers.get("set-cookie");
     if (raw) {
-      // Split carefully - cookies can contain commas in dates
       const parts = raw.split(/,(?=\s*[a-zA-Z_][a-zA-Z0-9_]*=)/);
       cookies.push(...parts.map((c) => c.trim()));
     }
@@ -78,25 +72,70 @@ function extractSetCookieHeaders(res: Response): string[] {
   return cookies;
 }
 
+async function fetchWithManualRedirect(
+  initialUrl: string,
+  initialOptions: RequestInit,
+  req: NextRequest
+) {
+  const url = initialUrl;
+  let res = await fetch(url, initialOptions);
+
+  // Follow up to a few redirects to be safe (avoid loops)
+  for (let i = 0; i < 5; i++) {
+    const status = res.status;
+    const isRedirect = [301, 302, 303, 307, 308].includes(status);
+    if (!isRedirect) break;
+
+    const location = res.headers.get("location");
+    if (!location) break;
+
+    const target = location.startsWith("http")
+      ? location
+      : `${BACKEND_URL}${location}`;
+
+    // 301/302/303: only follow automatically for GET/HEAD
+    if ([301, 302, 303].includes(status)) {
+      if (req.method !== "GET" && req.method !== "HEAD") break;
+
+      res = await fetch(target, {
+        method: req.method,
+        headers: initialOptions.headers,
+        redirect: "manual",
+      });
+      continue;
+    }
+
+    // 307/308: repeat same method + body
+    res = await fetch(target, {
+      method: req.method,
+      headers: initialOptions.headers,
+      redirect: "manual",
+      body: (initialOptions as { body?: BodyInit | null }).body,
+    });
+  }
+
+  return res;
+}
+
 export async function handler(req: NextRequest) {
   const path = req.nextUrl.pathname.replace(/^\/api/, "");
   const url = `${BACKEND_URL}${path}${req.nextUrl.search}`;
 
   const headers = new Headers();
 
-  // Forward basic headers
+  // Forward minimal headers
   const forwardHeaders = ["content-type", "accept"];
   for (const name of forwardHeaders) {
     const value = req.headers.get(name);
     if (value) headers.set(name, value);
   }
 
-  // Optional: help some backends avoid scheme/host redirects
+  // Help backend avoid proto/host redirects (optional but useful)
   headers.set("x-forwarded-proto", "https");
   const host = req.headers.get("host");
   if (host) headers.set("x-forwarded-host", host);
 
-  // Forward cookies și Authorization
+  // Forward cookies + auth
   const cookieHeader = req.headers.get("cookie");
   let accessToken: string | null = null;
   if (cookieHeader) {
@@ -106,11 +145,8 @@ export async function handler(req: NextRequest) {
   }
 
   const authHeader = req.headers.get("authorization");
-  if (authHeader) {
-    headers.set("authorization", authHeader);
-  } else if (accessToken) {
-    headers.set("authorization", `Bearer ${accessToken}`);
-  }
+  if (authHeader) headers.set("authorization", authHeader);
+  else if (accessToken) headers.set("authorization", `Bearer ${accessToken}`);
 
   const fetchOptions: RequestInit = {
     method: req.method,
@@ -130,38 +166,7 @@ export async function handler(req: NextRequest) {
   }
 
   try {
-    let backendRes = await fetch(url, fetchOptions);
-
-    // Follow redirects manually:
-    // - 301/302/303 only for GET/HEAD (avoid changing POST semantics)
-    // - 307/308 for any method (keeps method/body)
-    const redirectStatuses = [301, 302, 303, 307, 308];
-    if (redirectStatuses.includes(backendRes.status)) {
-      const location = backendRes.headers.get("location");
-      if (location) {
-        const target = location.startsWith("http")
-          ? location
-          : `${BACKEND_URL}${location}`;
-
-        if ([301, 302, 303].includes(backendRes.status)) {
-          if (req.method === "GET" || req.method === "HEAD") {
-            backendRes = await fetch(target, {
-              method: req.method,
-              headers,
-              redirect: "manual",
-            });
-          }
-        } else {
-          // 307/308
-          backendRes = await fetch(target, {
-            method: req.method,
-            headers,
-            redirect: "manual",
-            body: fetchOptions.body,
-          });
-        }
-      }
-    }
+    const backendRes = await fetchWithManualRedirect(url, fetchOptions, req);
 
     const responseBody = await backendRes.arrayBuffer();
     const response = new NextResponse(responseBody, {
@@ -169,11 +174,11 @@ export async function handler(req: NextRequest) {
       statusText: backendRes.statusText,
     });
 
-    // Forward content-type so browser parses JSON properly
+    // Preserve content-type
     const ct = backendRes.headers.get("content-type");
     if (ct) response.headers.set("content-type", ct);
 
-    // Forward Set-Cookie headers as first-party cookies
+    // Forward Set-Cookie as first-party
     const setCookies = extractSetCookieHeaders(backendRes);
     for (const cookieStr of setCookies) {
       const parsed = parseCookie(cookieStr);
