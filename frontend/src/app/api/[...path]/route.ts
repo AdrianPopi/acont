@@ -78,19 +78,7 @@ function extractSetCookieHeaders(res: Response): string[] {
 }
 
 export async function handler(req: NextRequest) {
-  let path = req.nextUrl.pathname.replace(/^\/api/, "");
-
-  // Ensure trailing slash for GET requests to avoid 307 redirects
-  // which lose the Authorization header. POST/PUT/DELETE don't need this.
-  if (
-    req.method === "GET" &&
-    path &&
-    !path.endsWith("/") &&
-    !path.includes(".")
-  ) {
-    path = path + "/";
-  }
-
+  const path = req.nextUrl.pathname.replace(/^\/api/, "");
   const url = `${BACKEND_URL}${path}${req.nextUrl.search}`;
 
   console.log(`[Proxy] ${req.method} ${path}`);
@@ -132,6 +120,7 @@ export async function handler(req: NextRequest) {
   const fetchOptions: RequestInit = {
     method: req.method,
     headers,
+    redirect: "manual", // Handle redirects manually to preserve Authorization header
   };
 
   // Forward body for non-GET requests
@@ -148,7 +137,30 @@ export async function handler(req: NextRequest) {
   }
 
   try {
-    const backendRes = await fetch(url, fetchOptions);
+    let backendRes = await fetch(url, fetchOptions);
+
+    // Handle redirects manually - follow them with Authorization header preserved
+    if (backendRes.status === 307 || backendRes.status === 308) {
+      const redirectUrl = backendRes.headers.get("location");
+      if (redirectUrl) {
+        console.log(`[Proxy] Following redirect to: ${redirectUrl}`);
+        // For 307/308, method and body must be preserved
+        const redirectOptions: RequestInit = {
+          method: req.method,
+          headers,
+          redirect: "manual",
+        };
+        if (fetchOptions.body) {
+          redirectOptions.body = fetchOptions.body;
+        }
+        backendRes = await fetch(
+          redirectUrl.startsWith("http")
+            ? redirectUrl
+            : `${BACKEND_URL}${redirectUrl}`,
+          redirectOptions
+        );
+      }
+    }
 
     console.log(
       `[Proxy] Backend response: ${backendRes.status} ${backendRes.statusText}`
