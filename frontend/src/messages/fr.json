@@ -136,7 +136,7 @@
   },
   "pricing": {
     "title": "Tarifs",
-    "subtitle": "Choisissez le plan adapté à votre volume. Upgrade à tout moment.",
+    "subtitle": "Choisissez le plan adapté à votre volume. Gérez vos factures d'achat et de vente, export PDF et intégration Peppol.",
     "note": "Tous les prix incluent la TVA. Annulez à tout moment.",
     "cta": "Démarrer l'essai gratuit",
     "monthly": "Mensuel",
@@ -151,32 +151,31 @@
       "starter": {
         "name": "Starter",
         "features": {
-          "invoices": "25 factures/mois",
-          "extra": "Facture supplémentaire: €0.50",
-          "pdf": "PDF + format structuré",
-          "support": "Support email"
+          "invoices": "25 documents/mois (achats & ventes)",
+          "extra": "Document supplémentaire: €0.50",
+          "pdf": "Export PDF + format structuré",
+          "support": "Support email",
+          "peppol": "Intégration Peppol"
         }
       },
       "pro": {
         "name": "Pro",
         "features": {
-          "invoices": "500 factures/mois",
-          "extra": "Facture supplémentaire: €0.25",
-          "pdf": "PDF + format structuré",
-          "support": "Support prioritaire",
+          "invoices": "500 documents/mois (achats & ventes)",
+          "extra": "Document supplémentaire: €0.25",
+          "pdf": "Export PDF + format structuré",
+          "support": "Support email",
           "peppol": "Intégration Peppol"
         }
       },
       "enterprise": {
         "name": "Enterprise",
         "features": {
-          "invoices": "1000 factures/mois",
-          "extra": "Facture supplémentaire: €0.15",
-          "pdf": "PDF + format structuré",
-          "support": "Support dédié",
-          "peppol": "Intégration Peppol",
-          "api": "Accès API",
-          "manager": "Gestionnaire de compte dédié"
+          "invoices": "1000 documents/mois (achats & ventes)",
+          "extra": "Document supplémentaire: €0.15",
+          "pdf": "Export PDF + format structuré",
+          "support": "Support email",
+          "peppol": "Intégration Peppol"
         }
       }
     }
@@ -192,6 +191,14 @@
     "renewsOn": "Renouvellement le",
     "cancelAtPeriodEnd": "Votre abonnement sera annulé à la fin de la période en cours",
     "manageSubscription": "Gérer l'Abonnement",
+    "cancelSubscription": "Annuler l'Abonnement",
+    "cancelConfirm": "Êtes-vous sûr de vouloir annuler votre abonnement ? Vous perdrez l'accès aux fonctionnalités premium à la fin de votre période de facturation.",
+    "cancelConfirmTitle": "Annuler l'Abonnement",
+    "cancelConfirmMessage": "Êtes-vous sûr de vouloir annuler votre abonnement ? Vous continuerez à avoir accès jusqu'à la fin de votre période de facturation actuelle.",
+    "keepSubscription": "Garder l'Abonnement",
+    "confirmCancel": "Oui, Annuler",
+    "cancelSuccess": "Abonnement annulé avec succès",
+    "reactivate": "Réactiver l'Abonnement",
     "choosePlan": "Choisir un Plan",
     "changePlan": "Changer de Plan",
     "selectPlan": "Sélectionner",
@@ -227,7 +234,14 @@
       "extraInvoices": "Factures Supplémentaires",
       "extraCost": "Coût Supplémentaire",
       "progress": "Progression d'Utilisation",
-      "resetsIn": "Réinitialisation dans {days} jours"
+      "resetsIn": "Réinitialisation dans {days} jours",
+      "warnings": {
+        "approaching": "Vous approchez de votre limite mensuelle ({used}/{limit}). Les documents supplémentaires seront facturés à €{extraPrice}/document.",
+        "atLimit": "Vous avez atteint votre limite mensuelle. Les documents supplémentaires seront facturés à €{extraPrice}/document.",
+        "overLimit": "Vous avez dépassé votre limite. {extraCount} documents supplémentaires ce mois = €{extraCost} sur votre prochaine facture."
+      },
+      "confirmExtra": "Ce document sera facturé en supplément (€{price}). Continuer ?",
+      "upgradeHint": "Envisagez de passer à un plan supérieur pour plus de documents."
     }
   },
   "cta": {
@@ -250,7 +264,35 @@
       "signingIn": "Connexion...",
       "showPassword": "Afficher le mot de passe",
       "hidePassword": "Masquer le mot de passe",
-      "errorGeneric": "Échec de la connexion"
+      "errorGeneric": "Échec de la connexion",
+      "forgotPassword": "Mot de passe oublié ?",
+      "noAccount": "Pas encore de compte ?",
+      "signUpLink": "S'inscrire"
+    },
+    "forgotPassword": {
+      "title": "Mot de passe oublié",
+      "description": "Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "Adresse e-mail",
+      "submit": "Envoyer le lien",
+      "submitting": "Envoi...",
+      "success": "Si l'e-mail existe, un lien de réinitialisation a été envoyé. Vérifiez votre boîte de réception.",
+      "backToLogin": "Retour à la connexion",
+      "errorGeneric": "Une erreur s'est produite. Veuillez réessayer."
+    },
+    "resetPassword": {
+      "title": "Réinitialiser le mot de passe",
+      "description": "Entrez votre nouveau mot de passe ci-dessous.",
+      "passwordLabel": "Nouveau mot de passe",
+      "passwordPlaceholder": "Nouveau mot de passe (min 8 caractères)",
+      "confirmLabel": "Confirmer le mot de passe",
+      "confirmPlaceholder": "Confirmer le nouveau mot de passe",
+      "submit": "Réinitialiser",
+      "submitting": "Réinitialisation...",
+      "success": "Le mot de passe a été réinitialisé avec succès ! Vous pouvez maintenant vous connecter.",
+      "errorGeneric": "Une erreur s'est produite. Le lien a peut-être expiré.",
+      "passwordMismatch": "Les mots de passe ne correspondent pas",
+      "loginLink": "Aller à la connexion"
     },
     "signup": {
       "title": "Créer un compte",
@@ -833,6 +875,7 @@
   },
   "clients": {
     "title": "Clients",
+    "list": "Liste des clients",
     "add": "Ajouter un client",
     "loading": "Chargement...",
     "name": "Nom",

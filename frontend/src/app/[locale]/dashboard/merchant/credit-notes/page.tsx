@@ -71,7 +71,7 @@ export default function CreditNotesPage() {
 
   const content = useMemo(() => {
     if (loading) return <div className="text-sm opacity-70">Loading...</div>;
-    if (err) return <div className="text-sm text-red-500">{err}</div>;
+    if (err) return <div className="text-sm text-rose-500">{err}</div>;
     if (!rows.length)
       return <div className="text-sm opacity-70">No credit notes yet.</div>;
 

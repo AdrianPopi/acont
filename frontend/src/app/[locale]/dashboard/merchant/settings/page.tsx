@@ -34,10 +34,13 @@ function Toast({
     return () => clearTimeout(timer);
   }, [onClose]);
 
-  const bgColor = type === "success" ? "bg-green-500" : "bg-red-500";
+  const bgColor =
+    type === "success"
+      ? "bg-gradient-to-r from-brand-1 to-brand-5 text-slate-900"
+      : "bg-rose-500 text-white";
   return (
     <div
-      className={`fixed bottom-4 right-4 ${bgColor} text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-in fade-in slide-in-from-bottom-4`}
+      className={`fixed bottom-4 right-4 ${bgColor} px-6 py-3 rounded-xl shadow-lg z-50 animate-in fade-in slide-in-from-bottom-4`}
     >
       {message}
     </div>

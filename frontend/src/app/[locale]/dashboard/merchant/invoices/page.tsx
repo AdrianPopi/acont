@@ -85,7 +85,7 @@ export default function MerchantInvoicesPage() {
   const content = useMemo(() => {
     if (loading)
       return <div className="text-sm opacity-70">{ti("loading")}</div>;
-    if (err) return <div className="text-sm text-red-500">{err}</div>;
+    if (err) return <div className="text-sm text-rose-500">{err}</div>;
     if (!rows.length)
       return <div className="text-sm opacity-70">{ti("empty")}</div>;
 
@@ -123,12 +123,12 @@ export default function MerchantInvoicesPage() {
                 <td className="py-3">{r.status}</td>
                 <td className="py-3">
                   {r.transmission_method === "peppol" ? (
-                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs">
+                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-brand-3/20 dark:bg-brand-3/20 text-brand-5 dark:text-brand-3 text-xs border border-brand-3/30">
                       <span className="font-bold">P</span> PEPPOL
                       {r.sent_via_peppol && " ✓"}
                     </span>
                   ) : (
-                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs">
+                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs border border-blue-200 dark:border-blue-800/50">
                       @ Email
                       {r.sent_via_email && " ✓"}
                     </span>

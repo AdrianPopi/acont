@@ -3,7 +3,7 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations, useMessages } from "next-intl";
-import { Eye, EyeOff, CheckCircle2, XCircle } from "lucide-react";
+import { Eye, EyeOff, CheckCircle2, XCircle, ChevronDown } from "lucide-react";
 import Link from "next/link";
 
 type CountriesResponse = { countries: string[] };
@@ -20,6 +20,23 @@ function getNested(obj: unknown, path: string[]): unknown {
   }
   return cur;
 }
+
+// Phone country codes with flags
+const PHONE_COUNTRIES = [
+  { code: "BE", dialCode: "+32", flag: "🇧🇪", name: "Belgium" },
+  { code: "NL", dialCode: "+31", flag: "🇳🇱", name: "Netherlands" },
+  { code: "FR", dialCode: "+33", flag: "🇫🇷", name: "France" },
+  { code: "RO", dialCode: "+40", flag: "🇷🇴", name: "Romania" },
+  { code: "DE", dialCode: "+49", flag: "🇩🇪", name: "Germany" },
+  { code: "LU", dialCode: "+352", flag: "🇱🇺", name: "Luxembourg" },
+  { code: "GB", dialCode: "+44", flag: "🇬🇧", name: "United Kingdom" },
+  { code: "ES", dialCode: "+34", flag: "🇪🇸", name: "Spain" },
+  { code: "IT", dialCode: "+39", flag: "🇮🇹", name: "Italy" },
+  { code: "PT", dialCode: "+351", flag: "🇵🇹", name: "Portugal" },
+  { code: "AT", dialCode: "+43", flag: "🇦🇹", name: "Austria" },
+  { code: "CH", dialCode: "+41", flag: "🇨🇭", name: "Switzerland" },
+  { code: "PL", dialCode: "+48", flag: "🇵🇱", name: "Poland" },
+];
 
 function parseErrorText(text: string) {
   try {
@@ -61,8 +78,10 @@ export default function SignupPage() {
   // merchant
   const [companyName, setCompanyName] = useState("");
   const [countryCode, setCountryCode] = useState<string>("");
-  const [phone, setPhone] = useState("");
+  const [phoneDialCode, setPhoneDialCode] = useState("+32"); // Belgium default
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [acceptTerms, setAcceptTerms] = useState(false);
+  const [showPhoneDropdown, setShowPhoneDropdown] = useState(false);
 
   // touched (ca să nu afișăm erori din prima)
   const [touched, setTouched] = useState<Record<string, boolean>>({});
@@ -195,7 +214,9 @@ export default function SignupPage() {
         last_name: lastName.trim(),
         company_name: companyName.trim(),
         country_code: countryCode,
-        phone: phone.trim(),
+        phone: phoneNumber.trim()
+          ? `${phoneDialCode}${phoneNumber.trim()}`
+          : "",
         email: email.trim(),
         password,
 
@@ -396,15 +417,81 @@ export default function SignupPage() {
             )}
           </div>
 
-          <input
-            name="phone"
-            autoComplete="tel"
-            className="rounded-xl border border-black/10 dark:border-white/10 bg-transparent px-3 py-2"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            onBlur={() => markTouched("phone")}
-            placeholder={t("phone")}
-          />
+          {/* Phone with country code dropdown */}
+          <div>
+            <label className="block text-sm opacity-80 mb-2" htmlFor="phone">
+              {t("phone")}
+            </label>
+            <div className="flex w-full">
+              {/* Country code dropdown */}
+              <div className="relative flex-shrink-0">
+                <button
+                  type="button"
+                  onClick={() => setShowPhoneDropdown(!showPhoneDropdown)}
+                  className="flex items-center gap-1 h-full rounded-l-xl border border-r-0 border-black/10 dark:border-white/10 bg-[rgb(var(--card))] px-2 py-2 text-sm hover:bg-black/5 dark:hover:bg-white/5 transition whitespace-nowrap"
+                >
+                  <span className="text-base">
+                    {PHONE_COUNTRIES.find((c) => c.dialCode === phoneDialCode)
+                      ?.flag || "🌍"}
+                  </span>
+                  <span className="text-xs font-medium">{phoneDialCode}</span>
+                  <ChevronDown size={12} className="opacity-60" />
+                </button>
+
+                {showPhoneDropdown && (
+                  <>
+                    {/* Backdrop */}
+                    <div
+                      className="fixed inset-0 z-10"
+                      onClick={() => setShowPhoneDropdown(false)}
+                    />
+                    {/* Dropdown menu */}
+                    <div className="absolute z-20 top-full left-0 mt-1 w-56 max-h-64 overflow-y-auto rounded-xl border border-black/10 dark:border-white/10 bg-[rgb(var(--card))] shadow-lg">
+                      {PHONE_COUNTRIES.map((country) => (
+                        <button
+                          key={country.code}
+                          type="button"
+                          onClick={() => {
+                            setPhoneDialCode(country.dialCode);
+                            setShowPhoneDropdown(false);
+                          }}
+                          className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm hover:bg-black/5 dark:hover:bg-white/5 transition ${
+                            phoneDialCode === country.dialCode
+                              ? "bg-emerald-50 dark:bg-emerald-900/20"
+                              : ""
+                          }`}
+                        >
+                          <span className="text-lg">{country.flag}</span>
+                          <span className="flex-1 text-left">
+                            {country.name}
+                          </span>
+                          <span className="opacity-60 font-medium">
+                            {country.dialCode}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
+
+              {/* Phone number input */}
+              <input
+                id="phone"
+                name="phone"
+                autoComplete="tel-national"
+                type="tel"
+                inputMode="numeric"
+                className="flex-1 min-w-0 rounded-r-xl border border-black/10 dark:border-white/10 bg-transparent px-3 py-2"
+                value={phoneNumber}
+                onChange={(e) =>
+                  setPhoneNumber(e.target.value.replace(/[^0-9]/g, ""))
+                }
+                onBlur={() => markTouched("phone")}
+                placeholder="123 456 789"
+              />
+            </div>
+          </div>
         </div>
 
         {/* checkbox */}

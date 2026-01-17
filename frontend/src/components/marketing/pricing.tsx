@@ -22,6 +22,7 @@ export default function Pricing() {
         t("plans.starter.features.extra"),
         t("plans.starter.features.pdf"),
         t("plans.starter.features.support"),
+        t("plans.starter.features.peppol"),
       ],
     },
     {
@@ -51,8 +52,6 @@ export default function Pricing() {
         t("plans.enterprise.features.pdf"),
         t("plans.enterprise.features.support"),
         t("plans.enterprise.features.peppol"),
-        t("plans.enterprise.features.api"),
-        t("plans.enterprise.features.manager"),
       ],
     },
   ];

@@ -31,10 +31,13 @@ export default function LogoutButton() {
       type="button"
       onClick={onLogout}
       disabled={loading}
-      className="inline-flex items-center gap-2 rounded-xl border border-black/10 dark:border-white/10 px-3 py-2 text-sm hover:shadow-glow transition disabled:opacity-60"
+      className="inline-flex items-center gap-2 rounded-xl border border-rose-200 dark:border-rose-800/50 bg-rose-50 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400 px-3 py-2 text-sm font-medium hover:bg-rose-100 dark:hover:bg-rose-900/40 hover:border-rose-300 dark:hover:border-rose-700 transition-all disabled:opacity-50"
+      title={t("logout")}
     >
       <LogOut size={16} />
-      {loading ? t("loggingOut") : t("logout")}
+      <span className="hidden sm:inline">
+        {loading ? t("loggingOut") : t("logout")}
+      </span>
     </button>
   );
 }

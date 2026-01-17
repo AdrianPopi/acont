@@ -8,11 +8,13 @@ from app.core.countries import CountryCode
 from app.models.legal_acceptance import LegalAcceptance, LegalDocType
 from app.core.legal import get_current_legal_versions
 from app.models.legal_document import LegalDocument
+from app.core.email import send_welcome_email, send_forgot_password_email
 from sqlalchemy import desc
 from sqlalchemy.dialects.postgresql import insert as pg_insert
 from fastapi import Request
 from pydantic import BaseModel
 import json
+import secrets
 
 
 from app.db.session import get_db
@@ -210,6 +212,24 @@ def signup_merchant(payload: MerchantSignupIn, request: Request, db: Session = D
     
     _record_current_acceptances(db, user.id, request)
     db.commit()
+    
+    # ✅ Send welcome email (async-friendly, non-blocking)
+    try:
+        # Determine language from country
+        lang_map = {"BE": "fr", "NL": "nl", "FR": "fr", "RO": "ro"}
+        language = lang_map.get(payload.country_code.value, "en")
+        
+        send_welcome_email(
+            to_email=user.email,
+            first_name=user.first_name,
+            company_name=payload.company_name,
+            language=language,
+        )
+    except Exception as e:
+        # Don't fail signup if email fails
+        import logging
+        logging.error(f"Failed to send welcome email: {e}")
+    
     return {"ok": True}
 
 
@@ -391,10 +411,116 @@ def delete_account(
     db: Session = Depends(get_db),
 ):
     """Delete user account (marked for deletion, 30 day recovery period)"""
-    # In production, you'd mark for deletion and set a deletion date
-    # For now, we'll mark is_active as False
+    import stripe
+    from app.core.config import settings
+    from app.models.subscription import Subscription
+    
+    # Cancel Stripe subscription if exists
+    if user.role == UserRole.merchant_admin:
+        merchant = db.query(Merchant).filter(Merchant.owner_user_id == user.id).first()
+        if merchant and merchant.subscription:
+            sub = merchant.subscription
+            if sub.stripe_subscription_id and settings.STRIPE_SECRET_KEY:
+                try:
+                    stripe.api_key = settings.STRIPE_SECRET_KEY
+                    # Cancel immediately
+                    stripe.Subscription.cancel(sub.stripe_subscription_id)
+                except Exception as e:
+                    import logging
+                    logging.error(f"Failed to cancel Stripe subscription: {e}")
+    
+    # Mark user as inactive
     user.is_active = False
     db.add(user)
     db.commit()
     
     return {"ok": True, "message": "Account marked for deletion"}
+
+
+# ==================== FORGOT PASSWORD ====================
+class ForgotPasswordRequest(BaseModel):
+    email: str
+    language: str = "en"
+
+
+class ResetPasswordRequest(BaseModel):
+    token: str
+    new_password: str
+
+
+@router.post("/forgot-password")
+def forgot_password(req: ForgotPasswordRequest, db: Session = Depends(get_db)):
+    """Request a password reset email."""
+    # Always return success to prevent email enumeration
+    user = db.query(User).filter(User.email == req.email).first()
+    
+    if user:
+        # Invalidate any existing reset tokens
+        db.query(Token).filter(
+            Token.user_id == user.id,
+            Token.kind == "reset_password",
+            Token.revoked == False,
+        ).update({"revoked": True})
+        
+        # Create a new reset token
+        reset_token = secrets.token_urlsafe(32)
+        
+        db.add(Token(
+            user_id=user.id,
+            kind="reset_password",
+            token_hash=hash_token(reset_token),
+            expires_at=datetime.utcnow() + timedelta(hours=1),
+            revoked=False,
+        ))
+        db.commit()
+        
+        # Send reset email
+        try:
+            send_forgot_password_email(
+                to_email=user.email,
+                first_name=user.first_name or "User",
+                reset_token=reset_token,
+                language=req.language,
+            )
+        except Exception as e:
+            import logging
+            logging.error(f"Failed to send password reset email: {e}")
+    
+    # Always return success
+    return {"ok": True, "message": "If the email exists, a reset link has been sent"}
+
+
+@router.post("/reset-password")
+def reset_password(req: ResetPasswordRequest, db: Session = Depends(get_db)):
+    """Reset password with token."""
+    # Find the token
+    tok = db.query(Token).filter(
+        Token.kind == "reset_password",
+        Token.token_hash == hash_token(req.token),
+        Token.revoked == False,
+    ).first()
+    
+    if not tok or tok.expires_at < datetime.utcnow():
+        raise HTTPException(400, "Invalid or expired reset token")
+    
+    # Get the user
+    user = db.query(User).filter(User.id == tok.user_id).first()
+    if not user:
+        raise HTTPException(400, "User not found")
+    
+    # Update password
+    user.password_hash = hash_password(req.new_password)
+    
+    # Revoke the token
+    tok.revoked = True
+    
+    # Revoke all other reset tokens for this user
+    db.query(Token).filter(
+        Token.user_id == user.id,
+        Token.kind == "reset_password",
+        Token.revoked == False,
+    ).update({"revoked": True})
+    
+    db.commit()
+    
+    return {"ok": True, "message": "Password has been reset successfully"}

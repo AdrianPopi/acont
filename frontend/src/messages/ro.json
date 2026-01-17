@@ -136,7 +136,7 @@
   },
   "pricing": {
     "title": "Abonamente",
-    "subtitle": "Alege planul potrivit pentru ritmul tău de facturare. Upgrade oricând.",
+    "subtitle": "Alege planul potrivit pentru volumul tău. Gestionează facturi de achiziție și vânzare, export PDF și integrare Peppol.",
     "note": "Toate prețurile includ TVA. Anulează oricând.",
     "cta": "Începe perioada de probă",
     "monthly": "Lunar",
@@ -151,32 +151,31 @@
       "starter": {
         "name": "Starter",
         "features": {
-          "invoices": "25 facturi/lună",
-          "extra": "Factură suplimentară: €0.50",
-          "pdf": "PDF + format structurat",
-          "support": "Suport email"
+          "invoices": "25 documente/lună (achiziții & vânzări)",
+          "extra": "Document suplimentar: €0.50",
+          "pdf": "Export PDF + format structurat",
+          "support": "Suport email",
+          "peppol": "Integrare Peppol"
         }
       },
       "pro": {
         "name": "Pro",
         "features": {
-          "invoices": "500 facturi/lună",
-          "extra": "Factură suplimentară: €0.25",
-          "pdf": "PDF + format structurat",
-          "support": "Suport prioritar",
+          "invoices": "500 documente/lună (achiziții & vânzări)",
+          "extra": "Document suplimentar: €0.25",
+          "pdf": "Export PDF + format structurat",
+          "support": "Suport email",
           "peppol": "Integrare Peppol"
         }
       },
       "enterprise": {
         "name": "Enterprise",
         "features": {
-          "invoices": "1000 facturi/lună",
-          "extra": "Factură suplimentară: €0.15",
-          "pdf": "PDF + format structurat",
-          "support": "Suport dedicat",
-          "peppol": "Integrare Peppol",
-          "api": "Acces API",
-          "manager": "Manager de cont dedicat"
+          "invoices": "1000 documente/lună (achiziții & vânzări)",
+          "extra": "Document suplimentar: €0.15",
+          "pdf": "Export PDF + format structurat",
+          "support": "Suport email",
+          "peppol": "Integrare Peppol"
         }
       }
     }
@@ -192,6 +191,14 @@
     "renewsOn": "Se Reînnoiește la",
     "cancelAtPeriodEnd": "Abonamentul tău va fi anulat la sfârșitul perioadei curente",
     "manageSubscription": "Gestionează Abonamentul",
+    "cancelSubscription": "Anulează Abonamentul",
+    "cancelConfirm": "Ești sigur că vrei să anulezi abonamentul? Vei pierde accesul la funcționalitățile premium la sfârșitul perioadei de facturare curente.",
+    "cancelConfirmTitle": "Anulează Abonamentul",
+    "cancelConfirmMessage": "Ești sigur că vrei să anulezi abonamentul? Vei avea în continuare acces până la sfârșitul perioadei de facturare curente.",
+    "keepSubscription": "Păstrează Abonamentul",
+    "confirmCancel": "Da, Anulează",
+    "cancelSuccess": "Abonament anulat cu succes",
+    "reactivate": "Reactivează Abonamentul",
     "choosePlan": "Alege un Plan",
     "changePlan": "Schimbă Planul",
     "selectPlan": "Selectează Plan",
@@ -227,7 +234,14 @@
       "extraInvoices": "Facturi Suplimentare",
       "extraCost": "Cost Suplimentar",
       "progress": "Progres Utilizare",
-      "resetsIn": "Se resetează în {days} zile"
+      "resetsIn": "Se resetează în {days} zile",
+      "warnings": {
+        "approaching": "Te apropii de limita lunară ({used}/{limit}). Documentele suplimentare vor fi taxate cu €{extraPrice}/document.",
+        "atLimit": "Ai atins limita lunară. Documentele suplimentare vor fi taxate cu €{extraPrice}/document.",
+        "overLimit": "Ai depășit limita. {extraCount} documente suplimentare luna aceasta = €{extraCost} pe următoarea factură."
+      },
+      "confirmExtra": "Acest document va fi taxat suplimentar (€{price}). Continui?",
+      "upgradeHint": "Consideră upgrade-ul planului pentru mai multe documente."
     }
   },
   "cta": {
@@ -251,7 +265,35 @@
       "signingIn": "Se autentifică...",
       "showPassword": "Afișează parola",
       "hidePassword": "Ascunde parola",
-      "errorGeneric": "Autentificare eșuată"
+      "errorGeneric": "Autentificare eșuată",
+      "forgotPassword": "Ai uitat parola?",
+      "noAccount": "Nu ai cont?",
+      "signUpLink": "Înregistrează-te"
+    },
+    "forgotPassword": {
+      "title": "Am uitat parola",
+      "description": "Introdu adresa de email și îți vom trimite un link pentru a reseta parola.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "Adresa de email",
+      "submit": "Trimite link",
+      "submitting": "Se trimite...",
+      "success": "Dacă emailul există, un link de resetare a fost trimis. Verifică inbox-ul.",
+      "backToLogin": "Înapoi la autentificare",
+      "errorGeneric": "A apărut o eroare. Te rugăm să încerci din nou."
+    },
+    "resetPassword": {
+      "title": "Resetează parola",
+      "description": "Introdu noua ta parolă mai jos.",
+      "passwordLabel": "Parolă nouă",
+      "passwordPlaceholder": "Parolă nouă (min 8 caractere)",
+      "confirmLabel": "Confirmă parola",
+      "confirmPlaceholder": "Confirmă parola nouă",
+      "submit": "Resetează parola",
+      "submitting": "Se resetează...",
+      "success": "Parola a fost resetată cu succes! Acum te poți autentifica.",
+      "errorGeneric": "A apărut o eroare. Linkul poate fi expirat.",
+      "passwordMismatch": "Parolele nu se potrivesc",
+      "loginLink": "Mergi la autentificare"
     },
     "signup": {
       "title": "Creează cont",
@@ -799,6 +841,7 @@
   },
   "clients": {
     "title": "Clienți",
+    "list": "Lista clienților",
     "add": "Adaugă client",
     "loading": "Se încarcă...",
     "name": "Nume",

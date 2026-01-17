@@ -28,6 +28,17 @@ class Settings(BaseModel):
 
     # DB
     DATABASE_URL: str = os.getenv("DATABASE_URL", "")
+    
+    # App URLs
+    APP_BASE_URL: str = os.getenv("APP_BASE_URL", "http://localhost:3000")
+    API_BASE_URL: str = os.getenv("API_BASE_URL", "http://localhost:8000")
+    
+    # Email / SMTP
+    SMTP_HOST: str = os.getenv("SMTP_HOST", "")
+    SMTP_PORT: int = int(os.getenv("SMTP_PORT", "587") or "587")
+    SMTP_USER: str = os.getenv("SMTP_USER", "")
+    SMTP_PASS: str = os.getenv("SMTP_PASS", "")
+    EMAIL_FROM: str = os.getenv("EMAIL_FROM", "no-reply@acont.be")
 
     # Stripe
     STRIPE_SECRET_KEY: str = os.getenv("STRIPE_SECRET_KEY", "")

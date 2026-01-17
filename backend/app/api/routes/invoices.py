@@ -14,10 +14,59 @@ from app.models.product import Product
 from app.models.invoice import Invoice, InvoiceStatus
 from app.models.invoice_item import InvoiceItem
 from app.models.invoice_sequence import InvoiceSequence
+from app.models.subscription import Subscription, SubscriptionStatus
 from app.schemas.invoices import InvoiceCreateIn, InvoiceListOut, InvoiceOut
 from app.core.invoice_pdf import build_invoice_pdf
+from app.core.usage_tracking import check_and_increment_usage, get_usage_status, get_subscription_for_merchant, should_warn_user
+from app.core.email import send_invoice_email
 
 router = APIRouter(prefix="/invoices", tags=["invoices"])
+
+
+@router.get("/usage-check")
+def check_invoice_usage(
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """
+    Check current usage status before creating an invoice.
+    Returns warning info if user is approaching or over their limit.
+    """
+    m = _current_merchant(db, user)
+    subscription = get_subscription_for_merchant(db, m)
+    
+    if not subscription:
+        return {
+            "can_create": True,
+            "warning": None,
+        }
+    
+    usage_status = get_usage_status(subscription)
+    should_warn, warn_level = should_warn_user(subscription)
+    
+    # Messages for different warning levels (will be translated on frontend)
+    warning_messages = {
+        "approaching": "You are approaching your monthly invoice limit. Additional invoices will be charged at €{extra_price}/invoice.",
+        "at_limit": "You have reached your monthly invoice limit. Additional invoices will be charged at €{extra_price}/invoice.",
+        "over_limit": "You have exceeded your monthly limit. {extra_count} extra invoices this month will be charged €{extra_cost:.2f} on your next bill.",
+    }
+    
+    warning_message = None
+    if should_warn and warn_level in warning_messages:
+        warning_message = warning_messages[warn_level].format(
+            extra_price=usage_status.extra_unit_price,
+            extra_count=usage_status.extra_count,
+            extra_cost=usage_status.extra_cost,
+        )
+    
+    return {
+        "can_create": True,  # We allow creation, just warn
+        "warning_level": warn_level if should_warn else None,
+        "warning_message": warning_message,
+        "usage": usage_status.to_dict(),
+        "plan": subscription.plan.value,
+        "status": subscription.status.value,
+    }
 
 
 def normalize_lang(v: str | None) -> str:
@@ -354,9 +403,27 @@ def create_invoice(payload: InvoiceCreateIn, user: User = Depends(get_current_us
         inv.invoice_no = inv_no
         inv.status = InvoiceStatus.issued
         inv.issued_at = datetime.now(timezone.utc)
+        
+        # ✅ Track usage when invoice is issued
+        subscription = get_subscription_for_merchant(db, m)
+        if subscription:
+            is_over_limit, usage_warning = check_and_increment_usage(db, subscription, document_count=1)
 
     db.commit()
     db.refresh(inv)
+    
+    # ✅ Return usage warning in response if applicable
+    usage_info = None
+    if payload.issue_now:
+        subscription = get_subscription_for_merchant(db, m)
+        if subscription:
+            should_warn, warn_level = should_warn_user(subscription)
+            if should_warn:
+                usage_status = get_usage_status(subscription)
+                usage_info = {
+                    "warning_level": warn_level,
+                    **usage_status.to_dict()
+                }
 
     return InvoiceOut(
         id=inv.id,
@@ -487,7 +554,7 @@ class SendEmailRequest(BaseModel):
 
 
 @router.post("/{invoice_id}/send-email")
-def send_invoice_email(
+def send_invoice_email_endpoint(
     invoice_id: int,
     req: SendEmailRequest,
     user: User = Depends(get_current_user),
@@ -495,8 +562,7 @@ def send_invoice_email(
 ):
     """
     Send invoice PDF via email.
-    For now, this is a placeholder that validates the request and updates the invoice status.
-    In production, integrate with SMTP or email service (SendGrid, SES, etc.)
+    Uses SMTP service if configured, otherwise logs to console.
     """
     m = _current_merchant(db, user)
     inv = db.query(Invoice).filter(Invoice.id == invoice_id, Invoice.merchant_id == m.id).first()
@@ -514,27 +580,42 @@ def send_invoice_email(
     if req.from_email not in valid_emails:
         raise HTTPException(400, "Invalid sender email. Please configure your email in Settings.")
 
-    # TODO: Implement actual email sending here
-    # For now, we just mark the invoice as sent via email
-    # Example integration points:
-    # - SMTP: smtplib.SMTP(host, port)
-    # - SendGrid: sendgrid.SendGridAPIClient(api_key)
-    # - AWS SES: boto3.client('ses')
-    
     # Generate PDF
     pdf = build_invoice_pdf(inv, merchant_logo_url=m.logo_url)
     filename = (inv.invoice_no or f"invoice-{inv.id}").replace("/", "-") + ".pdf"
+    
+    # Prepare invoice details
+    issue_date_str = inv.issue_date.strftime("%d/%m/%Y") if inv.issue_date else ""
+    due_date_str = inv.due_date.strftime("%d/%m/%Y") if inv.due_date else ""
+    total_amount_str = f"{float(inv.total_gross):.2f}"
+    payment_ref = inv.communication_reference or inv.invoice_no or ""
+    
+    # Determine language
+    language = (inv.language or "FR").lower()[:2]
+    
+    # Send email using email service
+    email_sent = send_invoice_email(
+        to_email=req.to_email,
+        client_name=inv.client_name,
+        company_name=m.company_name,
+        invoice_no=inv.invoice_no,
+        issue_date=issue_date_str,
+        due_date=due_date_str,
+        total_amount=total_amount_str,
+        payment_reference=payment_ref,
+        language=language,
+        from_email=req.from_email,
+        pdf_attachment=pdf,
+    )
     
     # Mark invoice as sent via email
     inv.sent_via_email = True
     db.commit()
     
-    # Log the email attempt (for audit)
-    # In production: actually send the email
-    
     return {
         "success": True,
-        "message": f"Invoice {inv.invoice_no} queued for sending to {req.to_email}",
+        "email_sent": email_sent,
+        "message": f"Invoice {inv.invoice_no} {'sent' if email_sent else 'queued'} to {req.to_email}",
         "from_email": req.from_email,
         "to_email": req.to_email,
         "invoice_no": inv.invoice_no,

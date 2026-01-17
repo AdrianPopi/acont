@@ -136,7 +136,7 @@
   },
   "pricing": {
     "title": "Prijzen",
-    "subtitle": "Kies het plan dat past bij jouw factuurvolume. Upgrade wanneer je wilt.",
+    "subtitle": "Kies het plan dat past bij jouw volume. Beheer aankoop- en verkoopfacturen, PDF export en Peppol integratie.",
     "note": "Alle prijzen inclusief btw. Altijd opzegbaar.",
     "cta": "Start gratis proefperiode",
     "monthly": "Maandelijks",
@@ -151,32 +151,31 @@
       "starter": {
         "name": "Starter",
         "features": {
-          "invoices": "25 facturen/maand",
-          "extra": "Extra factuur: 0.50",
-          "pdf": "PDF + gestructureerd formaat",
-          "support": "E-mail support"
+          "invoices": "25 documenten/maand (aankoop & verkoop)",
+          "extra": "Extra document: €0.50",
+          "pdf": "PDF + gestructureerd formaat export",
+          "support": "E-mail support",
+          "peppol": "Peppol integratie"
         }
       },
       "pro": {
         "name": "Pro",
         "features": {
-          "invoices": "500 facturen/maand",
-          "extra": "Extra factuur: 0.25",
-          "pdf": "PDF + gestructureerd formaat",
-          "support": "Prioritaire support",
+          "invoices": "500 documenten/maand (aankoop & verkoop)",
+          "extra": "Extra document: €0.25",
+          "pdf": "PDF + gestructureerd formaat export",
+          "support": "E-mail support",
           "peppol": "Peppol integratie"
         }
       },
       "enterprise": {
         "name": "Enterprise",
         "features": {
-          "invoices": "1000 facturen/maand",
-          "extra": "Extra factuur: €0.15",
-          "pdf": "PDF + gestructureerd formaat",
-          "support": "Dedicated support",
-          "peppol": "Peppol integratie",
-          "api": "API toegang",
-          "manager": "Dedicated accountmanager"
+          "invoices": "1000 documenten/maand (aankoop & verkoop)",
+          "extra": "Extra document: €0.15",
+          "pdf": "PDF + gestructureerd formaat export",
+          "support": "E-mail support",
+          "peppol": "Peppol integratie"
         }
       }
     }
@@ -192,6 +191,14 @@
     "renewsOn": "Verlengt op",
     "cancelAtPeriodEnd": "Je abonnement wordt aan het einde van de huidige periode geannuleerd",
     "manageSubscription": "Abonnement Beheren",
+    "cancelSubscription": "Abonnement Opzeggen",
+    "cancelConfirm": "Weet je zeker dat je je abonnement wilt opzeggen? Je verliest toegang tot premium functies aan het einde van je huidige factureringsperiode.",
+    "cancelConfirmTitle": "Abonnement Opzeggen",
+    "cancelConfirmMessage": "Weet je zeker dat je je abonnement wilt opzeggen? Je behoudt toegang tot het einde van je huidige factureringsperiode.",
+    "keepSubscription": "Abonnement Behouden",
+    "confirmCancel": "Ja, Opzeggen",
+    "cancelSuccess": "Abonnement succesvol opgezegd",
+    "reactivate": "Abonnement Heractiveren",
     "choosePlan": "Kies een Plan",
     "changePlan": "Wijzig Plan",
     "selectPlan": "Selecteer",
@@ -227,7 +234,14 @@
       "extraInvoices": "Extra Facturen",
       "extraCost": "Extra Kosten",
       "progress": "Gebruiksvoortgang",
-      "resetsIn": "Reset over {days} dagen"
+      "resetsIn": "Reset over {days} dagen",
+      "warnings": {
+        "approaching": "Je nadert je maandelijkse limiet ({used}/{limit}). Extra documenten worden in rekening gebracht tegen €{extraPrice}/document.",
+        "atLimit": "Je hebt je maandelijkse limiet bereikt. Extra documenten worden in rekening gebracht tegen €{extraPrice}/document.",
+        "overLimit": "Je hebt je limiet overschreden. {extraCount} extra documenten deze maand = €{extraCost} op je volgende factuur."
+      },
+      "confirmExtra": "Dit document wordt extra in rekening gebracht (€{price}). Doorgaan?",
+      "upgradeHint": "Overweeg je plan te upgraden voor meer documenten."
     }
   },
   "cta": {
@@ -250,7 +264,35 @@
       "signingIn": "Bezig met inloggen...",
       "showPassword": "Toon wachtwoord",
       "hidePassword": "Verberg wachtwoord",
-      "errorGeneric": "Inloggen mislukt"
+      "errorGeneric": "Inloggen mislukt",
+      "forgotPassword": "Wachtwoord vergeten?",
+      "noAccount": "Nog geen account?",
+      "signUpLink": "Registreren"
+    },
+    "forgotPassword": {
+      "title": "Wachtwoord vergeten",
+      "description": "Voer je e-mailadres in en we sturen je een link om je wachtwoord te resetten.",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "E-mailadres",
+      "submit": "Verstuur link",
+      "submitting": "Versturen...",
+      "success": "Als het e-mailadres bestaat, is er een resetlink verzonden. Controleer je inbox.",
+      "backToLogin": "Terug naar inloggen",
+      "errorGeneric": "Er is een fout opgetreden. Probeer het opnieuw."
+    },
+    "resetPassword": {
+      "title": "Wachtwoord resetten",
+      "description": "Voer hieronder je nieuwe wachtwoord in.",
+      "passwordLabel": "Nieuw wachtwoord",
+      "passwordPlaceholder": "Nieuw wachtwoord (min. 8 tekens)",
+      "confirmLabel": "Bevestig wachtwoord",
+      "confirmPlaceholder": "Bevestig nieuw wachtwoord",
+      "submit": "Wachtwoord resetten",
+      "submitting": "Resetten...",
+      "success": "Je wachtwoord is succesvol gewijzigd! Je kunt nu inloggen.",
+      "errorGeneric": "Er is een fout opgetreden. De link is mogelijk verlopen.",
+      "passwordMismatch": "Wachtwoorden komen niet overeen",
+      "loginLink": "Ga naar inloggen"
     },
     "signup": {
       "title": "Account aanmaken",
@@ -799,6 +841,7 @@
   },
   "clients": {
     "title": "Klanten",
+    "list": "Klantenlijst",
     "add": "Klant toevoegen",
     "loading": "Bezig met laden...",
     "name": "Naam",

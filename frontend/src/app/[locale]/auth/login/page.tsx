@@ -4,6 +4,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { Eye, EyeOff } from "lucide-react";
+import Link from "next/link";
 
 type LoginRes = { access_token: string; role: string; token_type?: string };
 
@@ -162,15 +163,36 @@ export default function LoginPage() {
           </button>
         </div>
 
+        {/* Forgot password link */}
+        <div className="mt-3 text-right">
+          <Link
+            href={`/${locale}/auth/forgot-password`}
+            className="text-sm text-emerald-600 dark:text-emerald-400 hover:underline"
+          >
+            {t("forgotPassword")}
+          </Link>
+        </div>
+
         <button
           disabled={loading}
-          className="mt-6 w-full rounded-2xl bg-brand-gradient px-4 py-2.5 text-black font-medium shadow-glow
+          className="mt-4 w-full rounded-2xl bg-brand-gradient px-4 py-2.5 text-black font-medium shadow-glow
           transition active:brightness-95 hover:brightness-105
           disabled:opacity-60 disabled:cursor-not-allowed
           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20 dark:focus-visible:ring-white/20"
         >
           {loading ? t("signingIn") : t("signIn")}
         </button>
+
+        {/* Sign up link */}
+        <div className="mt-6 text-center text-sm opacity-80">
+          <span>{t("noAccount")} </span>
+          <Link
+            href={`/${locale}/auth/signup`}
+            className="text-emerald-600 dark:text-emerald-400 font-medium hover:underline"
+          >
+            {t("signUpLink")}
+          </Link>
+        </div>
       </form>
     </div>
   );

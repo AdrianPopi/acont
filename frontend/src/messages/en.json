@@ -136,7 +136,7 @@
   },
   "pricing": {
     "title": "Pricing",
-    "subtitle": "Pick the plan that matches your invoicing volume. Upgrade anytime.",
+    "subtitle": "Pick the plan that matches your invoicing volume. Manage purchase & sales invoices, PDF export, and Peppol integration.",
     "note": "All prices include VAT. Cancel anytime.",
     "cta": "Start free trial",
     "monthly": "Monthly",
@@ -151,32 +151,31 @@
       "starter": {
         "name": "Starter",
         "features": {
-          "invoices": "25 invoices/month",
-          "extra": "Extra invoice: €0.50",
-          "pdf": "PDF + structured format",
-          "support": "Email support"
+          "invoices": "25 documents/month (purchase & sales)",
+          "extra": "Extra document: €0.50",
+          "pdf": "PDF + structured format export",
+          "support": "Email support",
+          "peppol": "Peppol integration"
         }
       },
       "pro": {
         "name": "Pro",
         "features": {
-          "invoices": "500 invoices/month",
-          "extra": "Extra invoice: €0.25",
-          "pdf": "PDF + structured format",
-          "support": "Priority support",
+          "invoices": "500 documents/month (purchase & sales)",
+          "extra": "Extra document: €0.25",
+          "pdf": "PDF + structured format export",
+          "support": "Email support",
           "peppol": "Peppol integration"
         }
       },
       "enterprise": {
         "name": "Enterprise",
         "features": {
-          "invoices": "1000 invoices/month",
-          "extra": "Extra invoice: €0.15",
-          "pdf": "PDF + structured format",
-          "support": "Dedicated support",
-          "peppol": "Peppol integration",
-          "api": "API access",
-          "manager": "Dedicated account manager"
+          "invoices": "1000 documents/month (purchase & sales)",
+          "extra": "Extra document: €0.15",
+          "pdf": "PDF + structured format export",
+          "support": "Email support",
+          "peppol": "Peppol integration"
         }
       }
     }
@@ -192,6 +191,14 @@
     "renewsOn": "Renews On",
     "cancelAtPeriodEnd": "Your subscription will be canceled at the end of the current period",
     "manageSubscription": "Manage Subscription",
+    "cancelSubscription": "Cancel Subscription",
+    "cancelConfirm": "Are you sure you want to cancel your subscription? You will lose access to premium features at the end of your current billing period.",
+    "cancelConfirmTitle": "Cancel Subscription",
+    "cancelConfirmMessage": "Are you sure you want to cancel your subscription? You will continue to have access until the end of your current billing period.",
+    "keepSubscription": "Keep Subscription",
+    "confirmCancel": "Yes, Cancel",
+    "cancelSuccess": "Subscription canceled successfully",
+    "reactivate": "Reactivate Subscription",
     "choosePlan": "Choose a Plan",
     "changePlan": "Change Plan",
     "selectPlan": "Select Plan",
@@ -227,7 +234,14 @@
       "extraInvoices": "Extra Invoices",
       "extraCost": "Extra Cost",
       "progress": "Usage Progress",
-      "resetsIn": "Resets in {days} days"
+      "resetsIn": "Resets in {days} days",
+      "warnings": {
+        "approaching": "You are approaching your monthly limit ({used}/{limit}). Additional documents will be charged at €{extraPrice}/document.",
+        "atLimit": "You have reached your monthly limit. Additional documents will be charged at €{extraPrice}/document.",
+        "overLimit": "You have exceeded your limit. {extraCount} extra documents this month = €{extraCost} on your next bill."
+      },
+      "confirmExtra": "This document will be charged as extra (€{price}). Continue?",
+      "upgradeHint": "Consider upgrading your plan for more documents."
     }
   },
   "cta": {
@@ -251,7 +265,35 @@
       "signingIn": "Signing in...",
       "showPassword": "Show password",
       "hidePassword": "Hide password",
-      "errorGeneric": "Login failed"
+      "errorGeneric": "Login failed",
+      "forgotPassword": "Forgot password?",
+      "noAccount": "Don't have an account?",
+      "signUpLink": "Sign up"
+    },
+    "forgotPassword": {
+      "title": "Forgot Password",
+      "description": "Enter your email address and we'll send you a link to reset your password.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "Email address",
+      "submit": "Send Reset Link",
+      "submitting": "Sending...",
+      "success": "If the email exists, a reset link has been sent. Check your inbox.",
+      "backToLogin": "Back to login",
+      "errorGeneric": "An error occurred. Please try again."
+    },
+    "resetPassword": {
+      "title": "Reset Password",
+      "description": "Enter your new password below.",
+      "passwordLabel": "New Password",
+      "passwordPlaceholder": "New password (min 8 characters)",
+      "confirmLabel": "Confirm Password",
+      "confirmPlaceholder": "Confirm new password",
+      "submit": "Reset Password",
+      "submitting": "Resetting...",
+      "success": "Password has been reset successfully! You can now log in.",
+      "errorGeneric": "An error occurred. The link may be expired.",
+      "passwordMismatch": "Passwords do not match",
+      "loginLink": "Go to login"
     },
     "signup": {
       "title": "Create account",
@@ -835,6 +877,7 @@
 
   "clients": {
     "title": "Clients",
+    "list": "Clients list",
     "add": "Add client",
     "loading": "Loading...",
     "name": "Name",

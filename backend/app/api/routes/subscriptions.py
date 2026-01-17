@@ -80,6 +80,30 @@ def get_current_subscription(
     return sub
 
 
+@router.post("/sync")
+def sync_subscription(
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Sync subscription data from Stripe (useful for local testing)."""
+    if not settings.STRIPE_SECRET_KEY:
+        raise HTTPException(500, "Stripe not configured")
+    
+    merchant = _current_merchant(db, user)
+    sub = _get_or_create_subscription(db, merchant)
+    
+    # If we have a Stripe subscription ID, sync from Stripe
+    if sub.stripe_subscription_id:
+        try:
+            stripe_sub = stripe.Subscription.retrieve(sub.stripe_subscription_id)
+            _update_subscription_from_stripe(sub, stripe_sub)
+            db.commit()
+        except stripe.error.StripeError as e:
+            raise HTTPException(400, f"Failed to sync subscription: {str(e)}")
+    
+    return {"ok": True, "message": "Subscription synced"}
+
+
 @router.get("/plans", response_model=PlansResponse)
 def get_available_plans(
     user: User = Depends(get_current_user),
@@ -98,10 +122,11 @@ def get_available_plans(
             price_monthly=15.00,
             price_yearly=150.00,
             features=[
-                "25 invoices/month",
-                "Purchase & sales invoices",
-                "PDF export",
+                "25 documents/month (purchase & sales)",
+                "Extra document: €0.50",
+                "PDF + structured format export",
                 "Email support",
+                "Peppol integration",
             ]
         ),
         PlanInfo(
@@ -112,11 +137,11 @@ def get_available_plans(
             price_monthly=30.00,
             price_yearly=320.00,
             features=[
-                "500 invoices/month",
-                "Purchase & sales invoices",
-                "PDF export",
-                "Priority email support",
-                "PEPPOL integration",
+                "500 documents/month (purchase & sales)",
+                "Extra document: €0.25",
+                "PDF + structured format export",
+                "Email support",
+                "Peppol integration",
             ]
         ),
         PlanInfo(
@@ -127,13 +152,11 @@ def get_available_plans(
             price_monthly=120.00,
             price_yearly=1400.00,
             features=[
-                "1000 invoices/month",
-                "Purchase & sales invoices",
-                "PDF export",
-                "Priority support",
-                "PEPPOL integration",
-                "API access",
-                "Dedicated account manager",
+                "1000 documents/month (purchase & sales)",
+                "Extra document: €0.15",
+                "PDF + structured format export",
+                "Email support",
+                "Peppol integration",
             ]
         ),
     ]
@@ -254,6 +277,76 @@ def create_portal_session(
         )
         
         return CreatePortalSessionResponse(portal_url=session.url)
+        
+    except stripe.error.StripeError as e:
+        raise HTTPException(400, str(e))
+
+
+@router.post("/cancel")
+def cancel_subscription(
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Cancel the current subscription at period end."""
+    if not settings.STRIPE_SECRET_KEY:
+        raise HTTPException(500, "Stripe not configured")
+    
+    merchant = _current_merchant(db, user)
+    sub = _get_or_create_subscription(db, merchant)
+    
+    if not sub.stripe_subscription_id:
+        raise HTTPException(400, "No active Stripe subscription found")
+    
+    if sub.status == SubscriptionStatus.canceled:
+        raise HTTPException(400, "Subscription is already canceled")
+    
+    try:
+        # Cancel at period end (not immediately)
+        stripe_sub = stripe.Subscription.modify(
+            sub.stripe_subscription_id,
+            cancel_at_period_end=True,
+        )
+        
+        # Update local subscription
+        sub.cancel_at_period_end = True
+        db.commit()
+        
+        return {"ok": True, "message": "Subscription will be canceled at the end of the current period"}
+        
+    except stripe.error.StripeError as e:
+        raise HTTPException(400, str(e))
+
+
+@router.post("/reactivate")
+def reactivate_subscription(
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Reactivate a subscription that was set to cancel at period end."""
+    if not settings.STRIPE_SECRET_KEY:
+        raise HTTPException(500, "Stripe not configured")
+    
+    merchant = _current_merchant(db, user)
+    sub = _get_or_create_subscription(db, merchant)
+    
+    if not sub.stripe_subscription_id:
+        raise HTTPException(400, "No active Stripe subscription found")
+    
+    if not sub.cancel_at_period_end:
+        raise HTTPException(400, "Subscription is not set to cancel")
+    
+    try:
+        # Remove cancel at period end
+        stripe_sub = stripe.Subscription.modify(
+            sub.stripe_subscription_id,
+            cancel_at_period_end=False,
+        )
+        
+        # Update local subscription
+        sub.cancel_at_period_end = False
+        db.commit()
+        
+        return {"ok": True, "message": "Subscription reactivated successfully"}
         
     except stripe.error.StripeError as e:
         raise HTTPException(400, str(e))

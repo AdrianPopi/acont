@@ -44,13 +44,13 @@ function normalizeStatus(s: string) {
 function badgeClass(kind: "paid" | "unpaid" | "draft" | "void") {
   switch (kind) {
     case "paid":
-      return "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/20";
+      return "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/50";
     case "unpaid":
-      return "bg-amber-500/15 text-amber-700 dark:text-amber-400 border-amber-500/20";
+      return "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300 border border-amber-200 dark:border-amber-800/50";
     case "draft":
-      return "bg-slate-500/15 text-slate-700 dark:text-slate-300 border-slate-500/20";
+      return "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700";
     case "void":
-      return "bg-rose-500/15 text-rose-700 dark:text-rose-400 border-rose-500/20";
+      return "bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300 border border-rose-200 dark:border-rose-800/50";
   }
 }
 
@@ -122,134 +122,263 @@ export default function MerchantDashboard() {
 
   return (
     <DashboardShell titleKey="merchant.title" nav={nav}>
-      {/* Header identic ca la clienți */}
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-semibold">
-            {tDash("merchant.overview")}
-          </h1>
-        </div>
+      {/* Header dengan greeting */}
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">
+          {tDash("merchant.overview")}
+        </h1>
+        <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+          {tInvoices("createSubtitle")}
+        </p>
+      </div>
 
-        <div className="flex flex-wrap gap-2">
-          <Link
-            href={`/${locale}/dashboard/merchant/invoices/new`}
-            className="rounded-2xl bg-brand-gradient px-4 py-2 text-sm text-black font-medium shadow-glow hover:opacity-90"
+      {/* Action buttons */}
+      <div className="mb-8 flex flex-wrap gap-3">
+        <Link
+          href={`/${locale}/dashboard/merchant/invoices/new`}
+          className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-1 to-brand-5 px-5 py-2.5 text-sm font-semibold text-slate-900 shadow-lg shadow-brand-3/30 hover:shadow-xl hover:shadow-brand-3/40 hover:scale-105 transition-all duration-200"
+        >
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
           >
-            {tInvoices("create")}
-          </Link>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 4v16m8-8H4"
+            />
+          </svg>
+          {tInvoices("create")}
+        </Link>
 
-          <Link
-            href={`/${locale}/dashboard/merchant/credit-notes/new`}
-            className="rounded-2xl border border-black/10 dark:border-white/10 px-4 py-2 text-sm hover:bg-black/5 dark:hover:bg-white/5"
+        <Link
+          href={`/${locale}/dashboard/merchant/credit-notes/new`}
+          className="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-5 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-200 hover:border-brand-3/50 dark:hover:border-brand-3/50 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all"
+        >
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
           >
-            {tDash("creditNotesNew.title")}
-          </Link>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+            />
+          </svg>
+          {tDash("creditNotesNew.title")}
+        </Link>
 
-          <Link
-            href={`/${locale}/dashboard/merchant/clients`}
-            className="rounded-2xl border border-black/10 dark:border-white/10 px-4 py-2 text-sm hover:bg-black/5 dark:hover:bg-white/5"
+        <Link
+          href={`/${locale}/dashboard/merchant/clients`}
+          className="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-5 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-200 hover:border-brand-3/50 dark:hover:border-brand-3/50 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all"
+        >
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
           >
-            {tDash("merchant.clients")}
-          </Link>
-        </div>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M17 20h5v-2a3 3 0 00-5.856-1.487M15 10a3 3 0 11-6 0 3 3 0 016 0zM16 12a4 4 0 11-8 0 4 4 0 018 0z"
+            />
+          </svg>
+          {tDash("merchant.clients")}
+        </Link>
       </div>
 
       {err && (
-        <div className="mt-4 rounded-2xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-500">
+        <div className="mb-6 rounded-xl border border-rose-200 dark:border-rose-800/50 bg-rose-50 dark:bg-rose-900/20 px-4 py-3 text-sm text-rose-700 dark:text-rose-400 flex items-start gap-3">
+          <svg
+            className="w-5 h-5 flex-shrink-0 mt-0.5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              fillRule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+              clipRule="evenodd"
+            />
+          </svg>
           {err}
         </div>
       )}
 
-      {/* KPI – folosim DOAR chei existente: dashboard.merchant.kpi* */}
-      <div className="mt-4 grid gap-4 lg:grid-cols-3">
+      {/* KPI Cards */}
+      <div className="mb-8 grid gap-6 lg:grid-cols-3">
         <KpiCard
           title={tDash("merchant.kpiClients")}
           value={String(kpis.totalClients)}
+          icon="👥"
+          gradient="from-blue-500/20 via-blue-600/20 to-blue-700/20"
+          borderColor="border-blue-200 dark:border-blue-800/50"
         />
         <KpiCard
           title={tDash("merchant.kpiIssuedInvoices")}
           value={String(kpis.issued)}
+          icon="📄"
+          gradient="from-emerald-500/20 via-emerald-600/20 to-emerald-700/20"
+          borderColor="border-emerald-200 dark:border-emerald-800/50"
         />
         <KpiCard
           title={tDash("merchant.kpiToValidate")}
           value={String(kpis.toValidate)}
+          icon="⏳"
+          gradient="from-amber-500/20 via-amber-600/20 to-amber-700/20"
+          borderColor="border-amber-200 dark:border-amber-800/50"
         />
       </div>
 
-      {/* Tabel facturi recente – folosim DOAR cheile existente din dashboard.invoices */}
-      <div className="mt-6 rounded-3xl border border-black/10 dark:border-white/10 bg-[rgb(var(--card))] p-5">
-        <div className="flex items-center justify-between gap-3">
-          <div>
-            <h2 className="text-lg font-semibold">{tInvoices("title")}</h2>
-            <div className="mt-1 text-xs opacity-60">
-              {tInvoices("createSubtitle")}
+      {/* Recent Invoices */}
+      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-hidden">
+        <div className="border-b border-slate-200 dark:border-slate-800 p-6">
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
+                {tInvoices("title")}
+              </h2>
+              <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                {tInvoices("createSubtitle")}
+              </p>
             </div>
-          </div>
 
-          <Link
-            href={`/${locale}/dashboard/merchant/invoices`}
-            className="rounded-xl border border-black/10 dark:border-white/10 px-3 py-1.5 text-sm hover:bg-black/5 dark:hover:bg-white/5"
-          >
-            {tInvoices("title")}
-          </Link>
+            <Link
+              href={`/${locale}/dashboard/merchant/invoices`}
+              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-1/10 to-brand-5/10 dark:from-brand-1/20 dark:to-brand-5/20 border border-brand-3/20 px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-200 hover:border-brand-3/50 transition-all"
+            >
+              {tInvoices("title")}
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
+          </div>
         </div>
 
         {loading ? (
-          <div className="mt-4 text-sm opacity-70">{tInvoices("loading")}</div>
+          <div className="p-6 text-center">
+            <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 animate-pulse">
+              <div className="w-4 h-4 rounded-full bg-slate-300 dark:bg-slate-600 animate-pulse"></div>
+            </div>
+            <p className="mt-3 text-sm text-slate-600 dark:text-slate-400">
+              {tInvoices("loading")}
+            </p>
+          </div>
         ) : recent.length === 0 ? (
-          <div className="mt-4 text-sm opacity-70">{tInvoices("empty")}</div>
+          <div className="p-12 text-center">
+            <svg
+              className="mx-auto h-12 w-12 text-slate-300 dark:text-slate-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
+            </svg>
+            <p className="mt-4 text-sm text-slate-600 dark:text-slate-400">
+              {tInvoices("empty")}
+            </p>
+          </div>
         ) : (
-          <div className="mt-4 overflow-x-auto">
+          <div className="overflow-x-auto">
             <table className="w-full text-sm">
-              <thead className="opacity-70">
-                <tr className="text-left">
-                  <th className="py-2">{tInvoices("colNo")}</th>
-                  <th className="py-2">{tInvoices("colClient")}</th>
-                  <th className="py-2">{tInvoices("colIssueDate")}</th>
-                  <th className="py-2">{tInvoices("colTotal")}</th>
-                  <th className="py-2">{tInvoices("colStatus")}</th>
-                  <th className="py-2 text-right">{tInvoices("colActions")}</th>
+              <thead className="border-b border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-900/50">
+                <tr>
+                  <th className="px-6 py-3 text-left font-semibold text-slate-900 dark:text-slate-200">
+                    {tInvoices("colNo")}
+                  </th>
+                  <th className="px-6 py-3 text-left font-semibold text-slate-900 dark:text-slate-200">
+                    {tInvoices("colClient")}
+                  </th>
+                  <th className="px-6 py-3 text-left font-semibold text-slate-900 dark:text-slate-200">
+                    {tInvoices("colIssueDate")}
+                  </th>
+                  <th className="px-6 py-3 text-right font-semibold text-slate-900 dark:text-slate-200">
+                    {tInvoices("colTotal")}
+                  </th>
+                  <th className="px-6 py-3 text-center font-semibold text-slate-900 dark:text-slate-200">
+                    {tInvoices("colStatus")}
+                  </th>
+                  <th className="px-6 py-3 text-right font-semibold text-slate-900 dark:text-slate-200">
+                    {tInvoices("colActions")}
+                  </th>
                 </tr>
               </thead>
 
-              <tbody>
+              <tbody className="divide-y divide-slate-200 dark:divide-slate-700/50">
                 {recent.map((r) => {
                   const kind = normalizeStatus(r.status);
 
                   return (
                     <tr
                       key={r.id}
-                      className="border-t border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition"
+                      className="hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors"
                     >
-                      <td className="py-3 font-medium">
+                      <td className="px-6 py-4">
                         <Link
                           href={`/${locale}/dashboard/merchant/invoices/${r.id}`}
-                          className="hover:underline"
+                          className="font-semibold text-blue-600 dark:text-blue-400 hover:underline"
                         >
                           {r.invoice_no}
                         </Link>
                       </td>
-                      <td className="py-3">{r.client_name}</td>
-                      <td className="py-3">{r.issue_date}</td>
-                      <td className="py-3">
-                        {money(Number(r.total_gross))} EUR
+                      <td className="px-6 py-4 text-slate-700 dark:text-slate-300">
+                        {r.client_name}
                       </td>
-                      <td className="py-3">
+                      <td className="px-6 py-4 text-slate-600 dark:text-slate-400">
+                        {r.issue_date}
+                      </td>
+                      <td className="px-6 py-4 text-right font-medium text-slate-900 dark:text-slate-50">
+                        €{money(Number(r.total_gross))}
+                      </td>
+                      <td className="px-6 py-4 text-center">
                         <span
-                          className={`inline-flex items-center rounded-full border px-2 py-0.5 text-xs ${badgeClass(kind)}`}
+                          className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold border ${badgeClass(kind)}`}
                         >
                           {r.status}
                         </span>
                       </td>
-                      <td className="py-3">
-                        <div className="flex justify-end">
-                          <Link
-                            href={`/${locale}/dashboard/merchant/invoices/${r.id}`}
-                            className="rounded-xl border border-black/10 dark:border-white/10 px-3 py-1.5 text-sm hover:bg-black/5 dark:hover:bg-white/5"
+                      <td className="px-6 py-4 text-right">
+                        <Link
+                          href={`/${locale}/dashboard/merchant/invoices/${r.id}`}
+                          className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
+                        >
+                          {tInvoices("colActions")}
+                          <svg
+                            className="w-3.5 h-3.5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
                           >
-                            {tInvoices("colActions")}
-                          </Link>
-                        </div>
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
+                          </svg>
+                        </Link>
                       </td>
                     </tr>
                   );
@@ -263,11 +392,51 @@ export default function MerchantDashboard() {
   );
 }
 
-function KpiCard({ title, value }: { title: string; value: string }) {
+function KpiCard({
+  title,
+  value,
+  icon,
+  gradient,
+  borderColor,
+}: {
+  title: string;
+  value: string;
+  icon?: string;
+  gradient?: string;
+  borderColor?: string;
+}) {
   return (
-    <div className="rounded-3xl border border-black/10 dark:border-white/10 bg-[rgb(var(--card))] p-5">
-      <div className="text-sm opacity-70">{title}</div>
-      <div className="mt-2 text-3xl font-semibold">{value}</div>
+    <div
+      className={`group relative rounded-2xl border ${borderColor || "border-slate-200 dark:border-slate-800"} bg-white dark:bg-slate-900 p-6 overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-brand-3/10 dark:hover:shadow-brand-3/5 hover:border-brand-3/30`}
+    >
+      {/* Glow effect on hover */}
+      <div className="absolute inset-0 bg-gradient-to-br from-brand-1/5 to-brand-5/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+      <div className="relative z-10">
+        <div className="flex items-start justify-between">
+          <div className="flex-1">
+            <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
+              {title}
+            </p>
+            <p className="mt-3 text-4xl font-bold text-slate-900 dark:text-white">
+              {value}
+            </p>
+          </div>
+          {icon && (
+            <div className="text-4xl opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
+              {icon}
+            </div>
+          )}
+        </div>
+
+        {/* Progress bar with brand gradient */}
+        <div className="mt-5 h-1.5 w-full rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+          <div
+            className="h-full bg-gradient-to-r from-brand-1 to-brand-5 rounded-full"
+            style={{ width: `${Math.min(100, (parseInt(value) || 0) * 15)}%` }}
+          />
+        </div>
+      </div>
     </div>
   );
 }

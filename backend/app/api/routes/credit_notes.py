@@ -21,6 +21,7 @@ from app.schemas.credit_notes import (
 )
 
 from app.core.credit_note_pdf import build_credit_note_pdf
+from app.core.usage_tracking import check_and_increment_usage, get_subscription_for_merchant
 
 
 router = APIRouter(prefix="/credit-notes", tags=["credit-notes"])
@@ -344,6 +345,11 @@ def create_credit_note(payload: CreditNoteCreateIn, user: User = Depends(get_cur
         cn.credit_note_no = cn_no
         cn.status = CreditNoteStatus.issued
         cn.issued_at = datetime.now(timezone.utc)
+        
+        # ✅ Track usage when credit note is issued
+        subscription = get_subscription_for_merchant(db, m)
+        if subscription:
+            is_over_limit, usage_warning = check_and_increment_usage(db, subscription, document_count=1)
 
     db.commit()
     db.refresh(cn)
