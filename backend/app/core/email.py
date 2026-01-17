@@ -553,11 +553,18 @@ def send_email(
                 )
                 msg.attach(part)
         
-        # Send via SMTP
-        with smtplib.SMTP(settings.SMTP_HOST, settings.SMTP_PORT) as server:
-            server.starttls()
-            server.login(settings.SMTP_USER, settings.SMTP_PASS)
-            server.sendmail(msg["From"], [to_email], msg.as_string())
+        # Send via SMTP (SSL for port 465, STARTTLS for port 587)
+        if settings.SMTP_PORT == 465:
+            # SSL connection
+            with smtplib.SMTP_SSL(settings.SMTP_HOST, settings.SMTP_PORT) as server:
+                server.login(settings.SMTP_USER, settings.SMTP_PASS)
+                server.sendmail(msg["From"], [to_email], msg.as_string())
+        else:
+            # STARTTLS connection (port 587)
+            with smtplib.SMTP(settings.SMTP_HOST, settings.SMTP_PORT) as server:
+                server.starttls()
+                server.login(settings.SMTP_USER, settings.SMTP_PASS)
+                server.sendmail(msg["From"], [to_email], msg.as_string())
         
         logger.info(f"Email sent successfully to {to_email}")
         return True
