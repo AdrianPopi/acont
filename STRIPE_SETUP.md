@@ -45,7 +45,7 @@ După ce te-ai logat în Dashboard-ul Stripe:
   - **Price 1**: €120.00, Recurring → Monthly, ID: `price_enterprise_monthly`
   - **Price 2**: €1400.00, Recurring → Yearly, ID: `price_enterprise_yearly`
 
-**Notă**: După ce creezi fiecare preț, Stripe îi va atribui un ID unic (ex: `price_1abc123...`). Copiază aceste ID-uri.
+**Notă**: După ce creezi fiecare preț, Stripe îi va atribui .un ID unic (ex: `price_1abc123...`). Copiază aceste ID-uri.
 
 ### 4. Configurează Trial Period (1 lună gratuită)
 
